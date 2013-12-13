@@ -1,0 +1,45 @@
+<div class="well row">
+  <div class="span6">
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="Clusters group places when they are too near each other, with an icon that indicates how many there are in that area">
+          Enable clusters <span class="icon-question-sign"></span>
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.clusters.enable"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="The larger the size, the more places will be included in the cluster">
+          Cluster grid size <span class="icon-question-sign"></span>. See <a href="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/examples/advanced_example.html">this link</a> as a reference
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.clusterSize"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.clusters.size"}}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

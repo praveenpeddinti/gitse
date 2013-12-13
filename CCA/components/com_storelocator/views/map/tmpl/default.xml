@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Standard Map Layout" option="Store Locator">
+		<message>
+			<![CDATA[Display locations on a map with radius search functionality.]]>
+		</message>
+	</layout>
+	<state>
+		<name>Standard Map Layout</name>
+		<description>Display locations on a map with radius search functionality.</description>
+		<params addpath="/administrator/components/com_storelocator/elements">
+			<param name="show_all" type="radio" default="1" label="Show All Categories" description="Show all locations from all categories">
+				<option value="1">Yes</option>
+				<option value="0">No, show categories below</option>
+			</param>
+			
+			<param name="categories" type="categories" default="0" label="Categories" description="Choose from available categories to be shown as long as show all categories is not selected." />
+			
+			<param name="cat_mode" type="radio" default="1" label="Category Mode" description="SHow the category filter as a drop down list, or a checkbox list">
+				<option value="1">Dropdown</option>
+				<option value="0">Checkboxes</option>
+				<option value="-1">Hidden</option>
+			</param>
+			
+			<param name="show_all_tags" type="radio" default="1" label="Show All Tags" description="Show all locations from all tags">
+				<option value="1">Yes</option>
+				<option value="0">No, show tags below</option>
+			</param>
+			
+			<param name="tags" type="tags" default="0" label="Tags" multiple="true" description="Choose from available tags to be shown as long as show all tags is not selected." />
+			
+			<param name="tag_mode" type="radio" default="2" label="Tag Mode" description="Show the tag filter as a drop down list, or a checkbox list or hidden completely">
+				<option value="2">Checkboxes</option>
+				<option value="1">Dropdown</option>
+				<option value="0">Hidden</option>
+			</param>
+			
+			<param name="tagmode_and" type="radio" default="0" label="Tag Search Method" description="Whether to show results with ALL the selected tags, or ANY of the selected tags. Only applies if Tag Mode is set to Checkboxes.">
+				<option value="0">ANY</option>
+				<option value="1">ALL</option>
+			</param>
+												
+			
+			<param name="load_order" type="list" default="lp.name" label="Initial Order" description="Set the default field used to order results on load. Requires Show all on load to be enabled to have a function.">
+				<option value="lp.name">Name</option>
+				<option value="lp.id">ID</option>
+				<option value="lp.cust1">Custom Field 1</option>
+				<option value="lp.cust2">Custom Field 2</option>
+				<option value="lp.cust3">Custom Field 3</option>
+				<option value="lp.cust4">Custom Field 4</option>
+				<option value="lp.cust5">Custom Field 5</option>
+				<option value="RAND()">Random</option>
+			</param>
+			
+			<param name="load_dir" type="radio" default="ASC" label="Initial Direction" description="Set the direction of the Initial Ordering">
+				<option value="ASC">Ascending</option>
+				<option value="DESC">Decending</option>
+			</param>
+		
+			<param name="search_order" type="list" default="distance" label="Result Order" description="Set the field used to order results on search">
+				<option value="distance">Distance</option>
+				<option value="lp.id">ID</option>
+				<option value="lp.name">Name</option>
+				<option value="lp.cust1">Custom Field 1</option>
+				<option value="lp.cust2">Custom Field 2</option>
+				<option value="lp.cust3">Custom Field 3</option>
+				<option value="lp.cust4">Custom Field 4</option>
+				<option value="lp.cust5">Custom Field 5</option>
+				<option value="RAND()">Random</option>
+			</param>
+			
+			<param name="search_dir" type="radio" default="ASC" label="Result Direction" description="Set the direction of the result Ordering">
+				<option value="ASC">Ascending</option>
+				<option value="DESC">Decending</option>
+			</param>
+			
+			<param name="name_search" type="radio" default="0" label="Search Location Data" description="Allow Searching by Name, and/or Custom Fields.">
+				<option value="1">Yes</option>
+				<option value="0">No</option>
+			</param>
+			
+			<param name="namesearchmode" type="list" default="0" label="Data Search Method" description="Which fields to perform text search in. Has no effect if Search Data is disabled.">
+				<option value="0">Name Only</option>
+				<option value="1">Custom Fields Only</option>
+				<option value="2">Name and Custom Fields</option>
+			</param>
+			
+			<param name="articleid_head" type="article" default="0" label="Top Article" description="An optional article to display above the store locator" />
+			<param name="articleid_foot" type="article" default="0" label="Bottom Article" description="An optional article to display below the store locator" /> 
+			
+		</params>
+		<advanced>
+			<param type="spacer" default="&lt;b&gt;Info Bubble Options&lt;/b&gt;" />
+			
+			<param name="field_bubble_featured" type="radio" default="1" label="Show Featured Status" description="Show the Featured Status Icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_address" type="radio" default="1" label="Show Address" description="Show the Address field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_fulladdress" type="radio" default="0" label="Show Description" description="Show the Description field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_category" type="radio" default="0" label="Show Category" description="Show the Category field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_phone" type="radio" default="1" label="Show Phone" description="Show the Phone field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_url" type="radio" default="1" label="Show URL" description="Show the URL field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+						
+			<param name="field_bubble_url_target" label="Link Target" type="list" default="_blank" description="Set the default link target for when a user clicks on the url." >
+			  <option value="_blank">Open Link in a new window or tab</option>
+			  <option value="_top">Open Link in the existing window</option>
+			  <option value="_parent">Open Link in the parent window</option>
+			  <option value="_self">Open Link in the same frame as it was clicked</option>
+			</param>
+			
+			<param name="field_bubble_email" type="radio" default="1" label="Show Email" description="Show the Email Icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_facebook" type="radio" default="1" label="Show Facebook" description="Show the Facebook Icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_twitter" type="radio" default="1" label="Show Twitter" description="Show the Twitter icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_tags" type="radio" default="1" label="Show Tags" description="Show the Tags in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_custom1" type="radio" default="1" label="Show Custom Field 1" description="Show the Custom 1 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_custom2" type="radio" default="1" label="Show Custom Field 2" description="Show the Custom 2 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_custom3" type="radio" default="1" label="Show Custom Field 3" description="Show the Custom 3 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_custom4" type="radio" default="1" label="Show Custom Field 4" description="Show the Custom 4 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_bubble_custom5" type="radio" default="1" label="Show Custom Field 5" description="Show the Custom 5 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			
+			<param type="spacer" default="&lt;b&gt;Sidebar Options&lt;/b&gt;" />
+			
+			<param name="field_sidebar_featured" type="radio" default="1" label="Show Featured Status" description="Show the Featured Status Icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_address" type="radio" default="1" label="Show Address" description="Show the Address field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_fulladdress" type="radio" default="1" label="Show Description" description="Show the Description field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_category" type="radio" default="0" label="Show Category" description="Show the Category field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_phone" type="radio" default="1" label="Show Phone" description="Show the Phone field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_url" type="radio" default="1" label="Show URL" description="Show the URL field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_url_target" label="Link Target" type="list" default="_blank" description="Set the default link target for when a user clicks on the url." >
+			  <option value="_blank">Open Link in a new window or tab</option>
+			  <option value="_top">Open Link in the existing window</option>
+			  <option value="_parent">Open Link in the parent window</option>
+			  <option value="_self">Open Link in the same frame as it was clicked</option>
+			</param>
+			
+			<param name="field_sidebar_email" type="radio" default="1" label="Show Email" description="Show the Email Icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_facebook" type="radio" default="1" label="Show Facebook" description="Show the Facebook Icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_twitter" type="radio" default="1" label="Show Twitter" description="Show the Twitter icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_tags" type="radio" default="1" label="Show Tags" description="Show the Tags in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_custom1" type="radio" default="1" label="Show Custom Field 1" description="Show the Custom 1 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_custom2" type="radio" default="1" label="Show Custom Field 2" description="Show the Custom 2 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_custom3" type="radio" default="1" label="Show Custom Field 3" description="Show the Custom 3 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_custom4" type="radio" default="1" label="Show Custom Field 4" description="Show the Custom 4 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+			
+			<param name="field_sidebar_custom5" type="radio" default="1" label="Show Custom Field 5" description="Show the Custom 5 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</param>
+		
+        </advanced>
+
+	</state>
+	
+	<!-- Add fields to the parameters object for the layout. -->
+	<fields name="params" addfieldpath="/administrator/components/com_storelocator/models/fields">
+
+		<!-- Basic options. -->
+		<fieldset name="basic" label="Basic Settings">
+		
+			<field name="show_all" type="radio" default="1" label="Show All Categories" description="Show all locations from all categories">
+				<option value="1">Yes</option>
+				<option value="0">No, show categories below</option>
+			</field>
+			
+			<field name="categories" type="categories" default="0" label="Categories" multiple="true" description="Choose from available categories to be shown as long as show all categories is not selected." />
+			
+			<field name="cat_mode" type="radio" default="1" label="Category Mode" description="SHow the category filter as a drop down list, or a checkbox list">
+				<option value="1">Dropdown</option>
+				<option value="0">Checkboxes</option>
+				<option value="-1">Hidden</option>
+			</field>
+			
+			<field name="show_all_tags" type="radio" default="1" label="Show All Tags" description="Show all locations from all tags">
+				<option value="1">Yes</option>
+				<option value="0">No, show tags below</option>
+			</field>
+			
+			<field name="tags" type="tags" default="0" label="Tags" multiple="true" description="Choose from available tags to be shown as long as show all tags is not selected." />
+			
+			<field name="tag_mode" type="radio" default="2" label="Tag Mode" description="Show the tag filter as a drop down list, or a checkbox list or hidden completely">
+				<option value="2">Checkboxes</option>
+				<option value="1">Dropdown</option>
+				<option value="0">Hidden</option>
+			</field>
+			
+			<field name="tagmode_and" type="radio" default="0" label="Tag Search Method" description="Wether to show results with ALL selected tags, or ANY selected tags. Only applies if Tag Mode is set to Checkboxes.">
+				<option value="0">ANY</option>
+				<option value="1">ALL</option>
+			</field>
+			
+			<field name="load_order" type="list" default="lp.name" label="Initial Order" description="Set the default field used to order results on load. Requires Show all on load to be enabled to have a function.">
+				<option value="lp.name">Name</option>
+				<option value="lp.id">ID</option>
+				<option value="lp.cust1">Custom Field 1</option>
+				<option value="lp.cust2">Custom Field 2</option>
+				<option value="lp.cust3">Custom Field 3</option>
+				<option value="lp.cust4">Custom Field 4</option>
+				<option value="lp.cust5">Custom Field 5</option>
+				<option value="lp.catid, lp.name">Category, Then Name</option>
+				<option value="lp.catid, lp.id">Category, Then ID</option>
+				<option value="RAND()">Random</option>
+			</field>
+			
+			<field name="load_dir" type="radio" default="ASC" label="Initial Direction" description="Set the direction of the Initial Ordering">
+				<option value="ASC">Ascending</option>
+				<option value="DESC">Decending</option>
+			</field>
+			
+			<field name="search_order" type="list" default="distance" label="Result Order" description="Set the field used to order results on search">
+				<option value="distance">Distance</option>
+				<option value="lp.name">Name</option>
+				<option value="lp.id">ID</option>
+				<option value="lp.cust1">Custom Field 1</option>
+				<option value="lp.cust2">Custom Field 2</option>
+				<option value="lp.cust3">Custom Field 3</option>
+				<option value="lp.cust4">Custom Field 4</option>
+				<option value="lp.cust5">Custom Field 5</option>
+				<option value="lp.catid, distance">Category, Then Distance</option>
+				<option value="lp.catid, lp.name">Category, Then Name</option>
+				<option value="RAND()">Random</option>
+			</field>
+			
+			<field name="search_dir" type="radio" default="ASC" label="Result Direction" description="Set the direction of the result Ordering">
+				<option value="ASC">Ascending</option>
+				<option value="DESC">Decending</option>
+			</field>
+			
+			<field name="name_search" type="radio" default="0" label="Search Location Data" description="Allow Searching by Name, and/or Custom Fields.">
+				<option value="1">Yes</option>
+				<option value="0">No</option>
+			</field>
+			
+			<field name="namesearchmode" type="list" default="0" label="Data Search Method" description="Which fields to perform text search in. Has no effect if Search Data is disabled.">
+				<option value="0">Name Only</option>
+				<option value="1">Custom Fields Only</option>
+				<option value="2">Name and Custom Fields</option>
+			</field>
+			
+			<field name="articleid_head" type="article" default="0" label="Top Article" description="An optional article to display above the store locator" />
+			<field name="articleid_foot" type="article" default="0" label="Bottom Article" description="An optional article to display below the store locator" /> 
+			
+			
+		</fieldset>
+		
+		<!-- Basic options. -->
+		<fieldset name="bubble" label="Popup Bubble View Settings">			
+			<field name="field_bubble_featured" type="radio" default="1" label="Show Featured Status" description="Show the Featured Status Icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_address" type="radio" default="1" label="Show Address" description="Show the Address field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_fulladdress" type="radio" default="0" label="Show Description" description="Show the Description field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_category" type="radio" default="0" label="Show Category" description="Show the Category field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_phone" type="radio" default="1" label="Show Phone" description="Show the Phone field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_url" type="radio" default="1" label="Show URL" description="Show the URL as a link in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_url_target" label="Link Target" type="list" default="_blank" description="Set the default link target for when a user clicks on the url." >
+			  <option value="_blank">Open Link in a new window or tab</option>
+			  <option value="_top">Open Link in the existing window</option>
+			  <option value="_parent">Open Link in the parent window</option>
+			  <option value="_self">Open Link in the same frame as it was clicked</option>
+			</field>
+						
+			<field name="field_bubble_email" type="radio" default="1" label="Show Email" description="Show the Email Icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_facebook" type="radio" default="1" label="Show Facebook" description="Show the Facebook Icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_twitter" type="radio" default="1" label="Show Twitter" description="Show the Twitter icon in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_tags" type="radio" default="1" label="Show Tags" description="Show the Tags in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_custom1" type="radio" default="1" label="Show Custom Field 1" description="Show the Custom 1 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_custom2" type="radio" default="1" label="Show Custom Field 2" description="Show the Custom 2 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_custom3" type="radio" default="1" label="Show Custom Field 3" description="Show the Custom 3 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_custom4" type="radio" default="1" label="Show Custom Field 4" description="Show the Custom 4 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_bubble_custom5" type="radio" default="1" label="Show Custom Field 5" description="Show the Custom 5 field in the Popup Bubble">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+		</fieldset>
+		<fieldset name="sidebar" label="Sidebar Results View Settings">			
+			
+			<field name="field_sidebar_featured" type="radio" default="1" label="Show Featured Status" description="Show the Featured Status Icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_address" type="radio" default="1" label="Show Address" description="Show the Address field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_fulladdress" type="radio" default="1" label="Show Description" description="Show the Description field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_category" type="radio" default="0" label="Show Category" description="Show the Category field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_phone" type="radio" default="1" label="Show Phone" description="Show the Phone field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_url" type="radio" default="1" label="Show URL" description="Show the URL field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_url_target" label="Link Target" type="list" default="_blank" description="Set the default link target for when a user clicks on the url." >
+			  <option value="_blank">Open Link in a new window or tab</option>
+			  <option value="_top">Open Link in the existing window</option>
+			  <option value="_parent">Open Link in the parent window</option>
+			  <option value="_self">Open Link in the same frame as it was clicked</option>
+			</field>
+			
+			<field name="field_sidebar_email" type="radio" default="1" label="Show Email" description="Show the Email Icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_facebook" type="radio" default="1" label="Show Facebook" description="Show the Facebook Icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_twitter" type="radio" default="1" label="Show Twitter" description="Show the Twitter icon in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_tags" type="radio" default="1" label="Show Tags" description="Show the Tags in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_custom1" type="radio" default="1" label="Show Custom Field 1" description="Show the Custom 1 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_custom2" type="radio" default="1" label="Show Custom Field 2" description="Show the Custom 2 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_custom3" type="radio" default="1" label="Show Custom Field 3" description="Show the Custom 3 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_custom4" type="radio" default="1" label="Show Custom Field 4" description="Show the Custom 4 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+			
+			<field name="field_sidebar_custom5" type="radio" default="1" label="Show Custom Field 5" description="Show the Custom 5 field in the sidebar">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+		</fieldset>
+	</fields>
+</metadata>

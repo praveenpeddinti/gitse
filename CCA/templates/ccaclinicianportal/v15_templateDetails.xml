@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://dev.joomla.org/xml/1.5/template-install.dtd">
+<install version="1.5" type="template">
+	<name>CCA Clinician Portal</name>
+	<creationDate>06/14/2010</creationDate>
+	<author>Rebecca Soll</author>
+	<authorEmail>rsoll@phmc.org</authorEmail>
+	<authorUrl>http://www.rebecasoll.com</authorUrl>
+	<copyright></copyright>
+	<license>GNU/GPL</license>
+	<version>1.0.0</version>
+	<description>main template for cca clinician portal</description>
+	<files>
+		<filename>index.php</filename>
+		<filename>css/clinicians.css</filename>
+		</files>
+	<positions>
+		<position>absolute</position>
+		<position>top</position>
+		<position>nav</position>
+		<position>nav_clinicians</position>
+		<position>news</position>
+		<position>left</position>
+		<position>left_clinicians</position>
+		<position>premain</position>
+		<position>postmain</position>
+		<position>footer</position>
+		<position>article</position>
+		<position>login</position>
+		<position>clinicianportal</position>
+	</positions>
+</install>

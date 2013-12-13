@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="2.1"  method="upgrade">
+	<name>Store Locator Search</name>
+	<creationDate>November 2012</creationDate>
+	<author>Sysgen Media LLC</author>
+	<authorEmail>support@sysgenmedia.com</authorEmail>
+	<authorUrl>http://www.sysgenmedia.com</authorUrl>
+	<copyright>Copyright 2012 Sysgen Media LLC. All Rights Reserved.</copyright>
+	<license>GPLv3</license>
+	<version>3.0</version>
+	<description>Store Locator - Add a Search Module to another page for quick searching</description>
+	
+	<files>
+		<filename module="mod_storelocator_search">mod_storelocator_search.php</filename>
+		<filename module="mod_storelocator_search">mod_storelocator_search.xml</filename>
+	</files>
+	
+	<config>
+		<fields name="params"><fieldset name="basic" label="Settings">		
+			<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module, this allows individual module styling" />
+			<field name="search_text" type="text" label="Search Text (Override)" description="Use this option to override the text that displays above the search box. Leave blank to use the default text." />
+			<field name="search_text_before" type="text" label="Search Text Top" description="Use this option to add text that displays above the search area." />
+			<field name="search_text_after" type="text" label="Search Text Bottom" description="Use this option to add text that displays below the search area." />
+			<field name="mod_sl_itemid" type="text" size="6" label="Store Locator Itemid" description="Enter the Itemid of your Store Locator Map menu link. This will allow the module to link to the correct results page." />
+			
+			<field name="catsearch_enabled" type="radio" default="0" label="Enable Category Search" description="Enable / Disable showing the category search filter dropdown option.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</field>
+			
+			<field name="featsearch_enabled" type="radio" default="0" label="Enable Featured Search" description="Enable / Disable showing the featured item search filter dropdown option.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</field>
+		</fieldset></fields>
+	</config>
+	
+	<params>
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module, this allows individual module styling" />
+		<param name="search_text" type="text" label="Search Text (Override)" description="Use this option to override the text that displays above the search box. Leave blank to use the default text." />
+		<param name="search_text_before" type="text" label="Search Text Top" description="Use this option to add text that displays above the search area." />
+		<param name="search_text_after" type="text" label="Search Text Bottom" description="Use this option to add text that displays below the search area." />
+        <param name="mod_sl_itemid" type="text" size="6" label="Store Locator Itemid" description="Enter the Itemid of your Store Locator Map menu link. This will allow the module to link to the correct results page." />
+		
+		<param name="catsearch_enabled" type="radio" default="1" label="Enable Category Search" description="Enable / Disable showing the category search filter dropdown option.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		
+		<param name="featsearch_enabled" type="radio" default="1" label="Enable Featured Search" description="Enable / Disable showing the featured item search filter dropdown option.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	
+	
+	<languages>
+        <!-- Any language files included with the module -->
+        <language tag="en-GB">en-GB.mod_storelocator_search.ini</language>
+    </languages>
+
+</install>

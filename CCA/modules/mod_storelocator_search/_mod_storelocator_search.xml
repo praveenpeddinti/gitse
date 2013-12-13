@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5"  method="upgrade">
+	<name>Store Locator Search</name>
+	<creationDate>November 2012</creationDate>
+	<author>Sysgen Media LLC</author>
+	<authorEmail>support@sysgenmedia.com</authorEmail>
+	<authorUrl>http://www.sysgenmedia.com</authorUrl>
+	<copyright>Copyright 2012 Sysgen Media LLC. All Rights Reserved.</copyright>
+	<license>GPLv3</license>
+	<version>3.0</version>
+	<description>Store Locator - Add a Search Module to another page for quick searching</description>
+	<files>
+		<filename module="mod_storelocator_search">mod_storelocator_search.php</filename>
+		<filename module="mod_storelocator_search">mod_storelocator_search.xml</filename>
+	</files>
+</install>

@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="basic" label="Basic" description="Basic Configuration Options">
+		
+		<field name="map_units" type="radio" default="1" label="Units" description="Set the search units in either Miles or Kilometers">
+			<option value="1">Miles</option>
+			<option value="0">Kilometers</option>
+		</field>
+					
+		<field name="show_all_onload" type="radio" default="1" label="Show Locations on Load" description="If set to Yes, locations are shown upon initial load. If set to No, then no locations will be shown on load. If set to Featured, then only featured locations would show. Total locations are still limited by Max Search Results.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+			<option value="2">Featured</option>
+		</field>
+		
+		
+		<field name="marker_pref" type="radio" default="tags" label="Marker Icon Preference" description="Determines which icon takes preference">
+			<option value="tags">Tags</option>
+			<option value="cats">Categories</option>
+		</field>
+		
+		<field name="fix_jquery" type="radio" default="0" label="jQuery Compatability Mode" description="Enable jQuery noConflict Mode. ONLY use if you are having trouble loading the store locator, and you have jQuery on your site. This MAY fix the problem. DO NOT USE UNLESS YOU ARE HAVING PROBLEMS AND USE JQUERY.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+			
+	</fieldset>
+	
+	<fieldset name="map" label="Map" description="Map Configuration Options">
+			
+		<field name="map_directions" type="radio" default="1" label="Enable Directions" description="Shows an address box to type a start location for directions on each map point. When the user clicks (Go) it will launch them to google maps with directtions">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="map_zoom_wheel" type="radio" default="1" label="Enable Zoom Wheel" description="Enable zooming via mouse wheel">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+
+		<field name="map_include_terrain" type="radio" default="0" label="Enable Terrain" description="Enable the Terrain map type">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="map_view_state" type="list" default="ROADMAP" label="Default Map Type" description="Set the default map type that is shown on start">
+			<option value="ROADMAP">Road Map</option>
+			<option value="SATELLITE">Satellite</option>
+			<option value="HYBRID">Roads and Satellite</option>
+			<option value="TERRAIN ">Terrain</option>
+		</field>
+		
+		<field name="map_cluster_method" type="list" default="MarkerCluster" label="Marker Cluster Method" description="Set the method of clustering used on the map.">
+			<option value="MarkerCluster">Google MarkerCluster</option>
+			<option value="Spiderfier">Overlapping Marker Spiderfier</option>
+			<option value="0">None</option>
+		</field>
+		
+		
+		<field type="text" name="map_width" size="4" label="Map Width (px)" default="500" description="The width of the Map Area" />
+		<field type="text" name="map_height" size="4" label="Map Height (px)" default="400" description="The height of the Map Area" />
+		
+		<field name="hide_list_onload" type="radio" default="0" label="Hide List on Load" description="If set to hidden, hides the result list until a search is performed. Has no effect if the results list is set to disabled.">
+			<option value="0">No</option>
+			<option value="1">Yes, Hide on Load</option>
+		</field>
+		
+		<field name="map_auto_zoom" type="radio" default="1" label="Initial Zoom State" description="If set to Auto, and the Locations are shown on load, the map will zoom to show all current locations. Otherwise it will use the settings below.">
+			<option value="1">Auto</option>
+			<option value="0">Manual</option>
+		</field>
+		
+		<field type="text" name="map_default_zoom_level" size="3" label="Initial Zoom Level" default="3" description="The default zoom level of the Map Area" />
+		<field type="text" name="map_center_lat" size="10" label="Initial Center Latitude" default="40" description="The Default Center Latitude of the Map Area" />
+		<field type="text" name="map_center_lon" size="10" label="Initial Center Longitude" default="-100" description="The Default Center Longitude of the Map Area" />
+	</fieldset>
+	
+	<fieldset name="search" label="Search" description="Search Configuration Options">
+	
+		<field name="search_enabled" type="radio" default="1" label="Enable Search" description="Enable / Disable the search functionality.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="catsearch_enabled" type="radio" default="1" label="Enable Category Search" description="Enable / Disable showing the category search filter dropdown option.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="featsearch_enabled" type="radio" default="1" label="Enable Featured Search" description="Enable / Disable showing the featured item search filter dropdown option.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="radiussearch_enabled" type="radio" default="1" label="Enable Radius Search" description="Enable / Disable showing the radius search filter dropdown option. If hidden the default search radius will be used.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		
+		<field name="list_enabled" type="radio" default="1" label="Enable Results List" description="Enable / Disable showing the locations in a list next to the map.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+				
+		<field name="google_suggest" type="radio" default="1" label="Google Suggest" description="If the search term yields more then one possible location, offer suggestions to clarify the results.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+
+		
+		<field type="text" name="radius_list" size="20" label="Radius Allowed Options" default="10,25,50,100" description="A list of allowed values to be shown on the search radius dropdown. The list is independent of the units. The list must be Comma-Delimited. " />
+
+		<field name="default_radius" type="text" default="25" label="Default Radius" description="Set the default Radius for the search dropdown. The value must be in the allowed values list above." />
+		
+		<field type="text" name="max_search_results" size="3" label="Max Search Results" default="250" description="The maximum number of locations returned in search results. Must be greater than zero." />
+		
+		<field type="text" name="map_max_search_zoom" size="3" label="Max Search Zoom Level" default="13" description="The maximum zoom level when returning search results. This will prevent the map from zooming in too far when there are few search results." />	
+		
+		<field name="base_country" type="list" default="" label="Country Search Bias" description="Sets the geocoder to bias search results as if they were sent from the country specified.">
+			<option value=""> - None - </option>
+			<option value="AD">ANDORRA</option>
+			<option value="AE">UNITED ARAB EMIRATES</option>
+			<option value="AF">AFGHANISTAN</option>
+			<option value="AG">ANTIGUA AND BARBUDA</option>
+			<option value="AI">ANGUILLA</option>
+			<option value="AL">ALBANIA</option>
+			<option value="AM">ARMENIA</option>
+			<option value="AN">NETHERLANDS ANTILLES</option>
+			<option value="AO">ANGOLA</option>
+			<option value="AQ">ANTARCTICA</option>
+			<option value="AR">ARGENTINA</option>
+			<option value="AS">AMERICAN SAMOA</option>
+			<option value="AT">AUSTRIA</option>
+			<option value="AU">AUSTRALIA</option>
+			<option value="AW">ARUBA</option>
+			<option value="AZ">AZERBAIJAN</option>
+			<option value="BA">BOSNIA AND HERZEGOVINA</option>
+			<option value="BB">BARBADOS</option>
+			<option value="BD">BANGLADESH</option>
+			<option value="BE">BELGIUM</option>
+			<option value="BF">BURKINA FASO</option>
+			<option value="BG">BULGARIA</option>
+			<option value="BH">BAHRAIN</option>
+			<option value="BI">BURUNDI</option>
+			<option value="BJ">BENIN</option>
+			<option value="BM">BERMUDA</option>
+			<option value="BN">BRUNEI DARUSSALAM</option>
+			<option value="BO">BOLIVIA</option>
+			<option value="BR">BRAZIL</option>
+			<option value="BS">BAHAMAS</option>
+			<option value="BT">BHUTAN</option>
+			<option value="BV">BOUVET ISLAND</option>
+			<option value="BW">BOTSWANA</option>
+			<option value="BY">BELARUS</option>
+			<option value="BZ">BELIZE</option>
+			<option value="CA">CANADA</option>
+			<option value="CC">COCOS (KEELING) ISLANDS</option>
+			<option value="CD">CONGO, THE DEMOCRATIC REPUBLIC OF THE</option>
+			<option value="CF">CENTRAL AFRICAN REPUBLIC</option>
+			<option value="CG">CONGO</option>
+			<option value="CH">SWITZERLAND</option>
+			<option value="CI">COTE D'IVOIRE</option>
+			<option value="CK">COOK ISLANDS</option>
+			<option value="CL">CHILE</option>
+			<option value="CM">CAMEROON</option>
+			<option value="CN">CHINA</option>
+			<option value="CO">COLOMBIA</option>
+			<option value="CR">COSTA RICA</option>
+			<option value="CU">CUBA</option>
+			<option value="CV">CAPE VERDE</option>
+			<option value="CX">CHRISTMAS ISLAND</option>
+			<option value="CY">CYPRUS</option>
+			<option value="CZ">CZECH REPUBLIC</option>
+			<option value="DE">GERMANY</option>
+			<option value="DJ">DJIBOUTI</option>
+			<option value="DK">DENMARK</option>
+			<option value="DM">DOMINICA</option>
+			<option value="DO">DOMINICAN REPUBLIC</option>
+			<option value="DZ">ALGERIA</option>
+			<option value="EC">ECUADOR</option>
+			<option value="EE">ESTONIA</option>
+			<option value="EG">EGYPT</option>
+			<option value="EH">WESTERN SARARA</option>
+			<option value="ER">ERITREA</option>
+			
+			<option value="ES">SPAIN</option>
+			<option value="ET">ETHIOPIA</option>
+			<option value="FI">FINLAND</option>
+			<option value="FJ">FIJI</option>
+			<option value="FK">FALKLAND ISLANDS (MALVINAS)</option>
+			
+			<option value="FM">MICRONESIA, FEDERATED STATES OF</option>
+			<option value="FO">FAROE ISLANDS</option>
+			<option value="FR">FRANCE</option>
+			<option value="GA">GABON</option>
+			<option value="GB">UNITED KINGDOM</option>
+			
+			<option value="GD">GRENADA</option>
+			<option value="GE">GEORGIA</option>
+			<option value="GF">FRENCH GUIANA</option>
+			<option value="GH">GHANA</option>
+			<option value="GI">GIBRALTAR</option>
+			
+			<option value="GL">GREENLAND</option>
+			<option value="GM">GAMBIA</option>
+			<option value="GN">GUINEA</option>
+			<option value="GP">GUADELOUPE</option>
+			<option value="GQ">EQUATORIAL GUINEA</option>
+			
+			<option value="GR">GREECE</option>
+			<option value="GS">SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option>
+			<option value="GT">GUATEMALA</option>
+			<option value="GU">GUAM</option>
+			<option value="GW">GUINEA-BISSAU</option>
+			
+			<option value="GY">GUYANA</option>
+			<option value="HK">HONG KONG</option>
+			<option value="HM">HEARD ISLAND AND MCDONALD ISLANDS</option>
+			<option value="HN">HONDURAS</option>
+			<option value="HR">CROATIA</option>
+			
+			<option value="HT">HAITI</option>
+			<option value="HU">HUNGARY</option>
+			<option value="ID">INDONESIA</option>
+			<option value="IE">IRELAND</option>
+			<option value="IL">ISRAEL</option>
+			
+			<option value="IN">INDIA</option>
+			<option value="IO">BRITISH INDIAN OCEAN TERRITORY</option>
+			<option value="IQ">IRAQ</option>
+			<option value="IR">IRAN, ISLAMIC REPUBLIC OF</option>
+			<option value="IS">ICELAND</option>
+			
+			<option value="IT">ITALY</option>
+			<option value="JM">JAMAICA</option>
+			<option value="JO">JORDAN</option>
+			<option value="JP">JAPAN</option>
+			<option value="KE">KENYA</option>
+			
+			<option value="KG">KYRGYZSTAN</option>
+			<option value="KH">CAMBODIA</option>
+			<option value="KI">KIRIBATI</option>
+			<option value="KM">COMOROS</option>
+			<option value="KN">SAINT KITTS AND NEVIS</option>
+			
+			<option value="KP">KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option>
+			<option value="KR">KOREA, REPUBLIC OF</option>
+			<option value="KW">KUWAIT</option>
+			<option value="KY">CAYMAN ISLANDS</option>
+			<option value="KZ">KAZAKHSTAN</option>
+			
+			<option value="LA">LAO PEOPLE'S DEMOCRATIC REPUBLIC</option>
+			<option value="LB">LEBANON</option>
+			<option value="LC">SAINT LUCIA</option>
+			<option value="LI">LIECHTENSTEIN</option>
+			<option value="LK">SRI LANKA</option>
+			
+			<option value="LR">LIBERIA</option>
+			<option value="LS">LESOTHO</option>
+			<option value="LT">LITHUANIA</option>
+			<option value="LU">LUXEMBOURG</option>
+			<option value="LV">LATVIA</option>
+			
+			<option value="LY">LIBYAN ARAB JAMABIRIYA</option>
+			<option value="MA">MOROCCO</option>
+			<option value="MC">MONACO</option>
+			<option value="MD">MOLDOVA, REPUBLIC OF</option>
+			<option value="MG">MADAGASCAR</option>
+			
+			<option value="MH">MARSHALL ISLANDS</option>
+			<option value="MK">MACEDONIA, THE FORMER YUGOSLAV REPU8LIC OF</option>
+			<option value="ML">MALI</option>
+			<option value="MM">MYANMAR</option>
+			<option value="MN">MONGOLIA</option>
+			
+			<option value="MO">MACAU</option>
+			<option value="MP">NORTHERN MARIANA ISLANDS</option>
+			<option value="MQ">MARTINIQUE</option>
+			<option value="MR">MAURITANIA</option>
+			<option value="MS">MONTSERRAT</option>
+			
+			<option value="MT">MALTA</option>
+			<option value="MU">MAURITIUS</option>
+			<option value="MV">MALDIVES</option>
+			<option value="MW">MALAWI</option>
+			<option value="MX">MEXICO</option>
+			
+			<option value="MY">MALAYSIA</option>
+			<option value="MZ">MOZAMBIQUE</option>
+			<option value="NA">NAMIBIA</option>
+			<option value="NC">NEW CALEDONIA</option>
+			<option value="NE">NIGER</option>
+			
+			<option value="NF">NORFOLK ISLAND</option>
+			<option value="NG">NIGERIA</option>
+			<option value="NI">NICARAGUA</option>
+			<option value="NL">NETHERLANDS</option>
+			<option value="NO">NORWAY</option>
+			
+			<option value="NP">NEPAL</option>
+			<option value="NU">NIUE</option>
+			<option value="NZ">NEW ZEALAND</option>
+			<option value="OM">OMAN</option>
+			<option value="PA">PANAMA</option>
+			
+			<option value="PE">PERU</option>
+			<option value="PF">FRENCH POLYNESIA</option>
+			<option value="PG">PAPUA NEW GUINEA</option>
+			<option value="PH">PHILIPPINES</option>
+			<option value="PK">PAKISTAN</option>
+			
+			<option value="PL">POLAND</option>
+			<option value="PM">SAINT PIERRE AND MIQUELON</option>
+			<option value="PN">PITCAIRN</option>
+			<option value="PR">PUERTO RICO</option>
+			<option value="PT">PORTUGAL</option>
+			
+			<option value="PW">PALAU</option>
+			<option value="PY">PARAGUAY</option>
+			<option value="QA">QATAR</option>
+			<option value="RO">ROMANIA</option>
+			
+			<option value="RU">RUSSIAN FEDERATION</option>
+			<option value="RW">RWANDA</option>
+			<option value="SA">SAUDI ARABIA</option>
+			<option value="SB">SOLOMON ISLANDS</option>
+			<option value="SC">SEYCHELLES</option>
+			
+			<option value="SD">SUDAN</option>
+			<option value="SE">SWEDEN</option>
+			<option value="SG">SINGAPORE</option>
+			<option value="SH">SAINT HELENA</option>
+			<option value="SI">SLOVENIA</option>
+			
+			<option value="SJ">SVALBARD AND JAN MAYEN</option>
+			<option value="SK">SLOVAKIA</option>
+			<option value="SL">SIERRA LEONE</option>
+			<option value="SM">SAN MARINO</option>
+			<option value="SN">SENEGAL</option>
+			
+			<option value="SO">SOMALIA</option>
+			<option value="SR">SURINAME</option>
+			<option value="ST">SAO TOME AND PRINCIPE</option>
+			<option value="SV">EL SALVADOR</option>
+			<option value="SY">SYRIAN ARAB REPUBLIC</option>
+			
+			<option value="SZ">SWAZILAND</option>
+			<option value="TC">TURKS AND CAICOS ISLANDS</option>
+			<option value="TD">CHAD</option>
+			<option value="TF">FRENCH SOUTHERN TERRITORIES</option>
+			<option value="TG">TOGO</option>
+			
+			<option value="TH">THAILAND</option>
+			<option value="TJ">TAJIKISTAN</option>
+			<option value="TK">TOKELAU</option>
+			<option value="TM">TURKMENISTAN</option>
+			<option value="TN">TUNISIA</option>
+			
+			<option value="TO">TONGA</option>
+			<option value="TP">EAST TIMOR</option>
+			<option value="TR">TURKEY</option>
+			<option value="TT">TRINIDAD AND TOBAGO</option>
+			<option value="TV">TUVALU</option>
+			
+			<option value="TW">TAIWAN, PROVINCE OF CHINA</option>
+			<option value="TZ">TANZANIA, UNITED REPUBLIC OF</option>
+			<option value="UA">UKRAINE</option>
+			<option value="UG">UGANDA</option>
+			<option value="UM">UNITED STATES MINOR OUTLYING ISLANDS</option>
+			
+			<option value="US">UNITED STATES</option>
+			<option value="UY">URUGUAY</option>
+			<option value="UZ">UZBEKISTAN</option>
+			<option value="VE">VENEZUELA</option>
+			<option value="VG">VIRGIN ISLANDS, BRITISH</option>
+			
+			<option value="VI">VIRGIN ISLANDS, U.S.</option>
+			<option value="VN">VIET NAM</option>
+			<option value="VU">VANUATU</option>
+			<option value="WF">WALLIS AND FUTUNA</option>
+			<option value="WS">SAMOA</option>
+			
+			<option value="YE">YEMEN</option>
+			<option value="YT">MAYOTTE</option>
+			<option value="YU">YUGOSLAVIA</option>
+			<option value="ZA">SOUTH AFRICA</option>
+			<option value="ZM">ZAMBIA</option>
+			
+			<option value="ZW">ZIMBABWE</option>
+		</field>
+		
+		<field name="searchlog_enabled" type="radio" default="0" label="Search Logging" description="Enable logging of search queries.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field type="text" name="search_limit" size="3" label="Search Limit" default="0" description="Enable limiting of searches per IP address. Requires Search Logging to be Enabled. Set to Zero to disable Limiting" />
+		
+		<field name="search_limit_period" type="list" default="-1 Day" label="Limiting Period" description="The length of time before a users search limit is reset.">
+			<option value="-1 Minute">1 Minute</option>
+			<option value="-15 Minutes">15 Minutes</option>
+			<option value="-30 Minutes">30 Minutes</option>
+			<option value="-1 hour">1 Hour</option>
+			<option value="-12 hours">12 Hours</option>
+			<option value="-1 Day">1 Day</option>
+			<option value="-2 Days">2 Days</option>
+			<option value="-1 Week">1 Week</option>
+			<option value="-2 Weeks">2 Weeks</option>
+			<option value="-1 Month">1 Month</option>
+			<option value="-2 Months">2 Months</option>
+			<option value="-3 Months">3 Months</option>
+			<option value="-6 Months">6 Months</option>
+			<option value="-1 Year">1 Year</option>
+			<option value="0">Never</option>
+		</field>
+		
+	</fieldset>
+	
+	<fieldset name="custom" label="Custom Fields" description="Custom Field Configuration Options">
+			
+		<field type="text" name="cust1_label" size="25" label="Custom Field Label 1" default="Custom Field 1" description="The Label for the Custom Field" />
+
+		<field type="text" name="cust2_label" size="25" label="Custom Field Label 2" default="Custom Field 2" description="The Label for the Custom Field" />
+
+		<field type="text" name="cust3_label" size="25" label="Custom Field Label 3" default="Custom Field 3" description="The Label for the Custom Field" />
+
+		<field type="text" name="cust4_label" size="25" label="Custom Field Label 4" default="Custom Field 4" description="The Label for the Custom Field" />
+
+		<field type="text" name="cust5_label" size="25" label="Custom Field Label 5" default="Custom Field 5" description="The Label for the Custom Field" />
+
+	</fieldset>
+
+	<fieldset name="misc" label="Misc" description="Additional Configuration Options">
+
+		<field name="keep_data" type="radio" default="1" label="Safe Uninstall" description="Setting this to yes will preserve your database tables on uninstall">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="show_copyright" type="radio" default="1" label="Show Sysgen Media Link" description="If set to Yes, a small tagline will appear beneth the component with our copyright and link to our website. We appreciate the support.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="auto_detect_line_endings" type="radio" default="1" label="Auto Detect Line Endings" description="Improves Compatability with CSV importing. Try to disable if you are having problems importing.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		
+		<field name="include_mootools" type="radio" default="1" label="Include MooTools" description="Include MooTools Library from Joomla. Disable if you have conflicts.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="include_css" type="radio" default="1" label="Include CSS" description="Include Default Stylesheet">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+		
+		<field name="google_maps_v3_api_key" type="text" size="35" label="Google Maps Premiere API Key" description="Only needed for high volume sites. For-profit web sites are permitted to generate up to 25,000 map loads per day using the Google Maps JavaScript API v3. For more information, please see: http://code.google.com/apis/maps/documentation/javascript/usage.html" />
+			
+	</fieldset>
+	
+	<params>
+			<param name="fix_jquery" type="radio" default="0" label="jQuery Compatability Mode" description="Enable jQuery noConflict Mode. ONLY use if you are having trouble loading the store locator, and you have jQuery on your site. This MAY fix the problem. DO NOT USE UNLESS YOU ARE HAVING PROBLEMS AND USE JQUERY.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="include_mootools" type="radio" default="1" label="Include MooTools" description="Include MooTools Library from Joomla. Disable if you have conflicts.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="include_css" type="radio" default="1" label="Include CSS" description="Include Default Stylesheet">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="keep_data" type="radio" default="1" label="Safe Uninstall" description="Setting this to yes will preserve your database tables on uninstall">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+
+
+			<param name="map_directions" type="radio" default="1" label="Enable Directions" description="Shows an address box to type a start location for directions on each map point. When the user clicks (Go) it will launch them to google maps with directtions">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="map_zoom_wheel" type="radio" default="1" label="Enable Zoom Wheel" description="Enable zooming via mouse wheel">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+
+			<param name="map_include_terrain" type="radio" default="0" label="Enable Terrain" description="Enable the Terrain map type">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="search_enabled" type="radio" default="1" label="Enable Search" description="Enable / Disable the search functionality.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="catsearch_enabled" type="radio" default="1" label="Enable Category Search" description="Enable / Disable showing the category search filter dropdown option.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="featsearch_enabled" type="radio" default="1" label="Enable Featured Search" description="Enable / Disable showing the featured item search filter dropdown option.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="radiussearch_enabled" type="radio" default="1" label="Enable Radius Search" description="Enable / Disable showing the radius search filter dropdown option. If hidden the default search radius will be used.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="list_enabled" type="radio" default="1" label="Enable Results List" description="Enable / Disable showing the locations in a list next to the map.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="hide_list_onload" type="radio" default="0" label="Hide List on Load" description="If set to hidden, hides the result list until a search is performed. Has no effect if the results list is set to disabled.">
+				<option value="0">No</option>
+				<option value="1">Yes, Hide on Load</option>
+			</param>
+			
+			<param name="google_suggest" type="radio" default="1" label="Google Suggest" description="If the search term yields more then one possible location, offer suggestions to clarify the results.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param name="searchlog_enabled" type="radio" default="0" label="Search Logging" description="Enable logging of search queries.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			
+			<param type="text" name="search_limit" size="3" label="Search Limit" default="0" description="Enable limiting of searches per IP address. Requires Search Logging to be Enabled. Set to Zero to disable Limiting" />
+			
+			<param name="search_limit_period" type="list" default="-1 Day" label="Limiting Period" description="The length of time before a users search limit is reset.">
+				<option value="-1 Minute">1 Minute</option>
+				<option value="-15 Minutes">15 Minutes</option>
+				<option value="-30 Minutes">30 Minutes</option>
+				<option value="-1 hour">1 Hour</option>
+				<option value="-12 hours">12 Hours</option>
+				<option value="-1 Day">1 Day</option>
+				<option value="-2 Days">2 Days</option>
+				<option value="-1 Week">1 Week</option>
+				<option value="-2 Weeks">2 Weeks</option>
+				<option value="-1 Month">1 Month</option>
+				<option value="-2 Months">2 Months</option>
+				<option value="-3 Months">3 Months</option>
+				<option value="-6 Months">6 Months</option>
+				<option value="-1 Year">1 Year</option>
+				<option value="0">Never</option>
+			</param>
+			
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			
+			<param name="map_cluster_method" type="list" default="MarkerCluster" label="Marker Cluster Method" description="Set the method of clustering used on the map.">
+				<option value="MarkerCluster">Google MarkerCluster</option>
+				<option value="Spiderfier">Overlapping Marker Spiderfier</option>
+				<option value="0">None</option>
+			</param>
+			
+			
+			<param type="text" name="map_width" size="4" label="Map Width (px)" default="500" description="The width of the Map Area" />
+			<param type="text" name="map_height" size="4" label="Map Height (px)" default="400" description="The height of the Map Area" />
+			
+			<param name="map_view_state" type="list" default="ROADMAP" label="Default Map Type" description="Set the default map type that is shown on start">
+				<option value="ROADMAP">Road Map</option>
+				<option value="SATELLITE">Satellite</option>
+				<option value="HYBRID">Roads and Satellite</option>
+				<option value="TERRAIN ">Terrain</option>
+			</param>
+			
+			<param name="marker_pref" type="radio" default="tags" label="Marker Icon Preference" description="Determines which icon takes preference">
+				<option value="tags">Tags</option>
+				<option value="cats">Categories</option>
+			</param>
+			
+			
+			<param name="map_units" type="radio" default="1" label="Units" description="Set the search units in either Miles or Kilometers">
+				<option value="1">Miles</option>
+				<option value="0">Kilometers</option>
+			</param>
+			
+			<param type="text" name="radius_list" size="20" label="Radius Allowed Options" default="10,25,50,100" description="A list of allowed values to be shown on the search radius dropdown. The list is independent of the units. The list must be Comma-Delimited. " />
+
+
+			<param name="default_radius" type="text" default="25" label="Default Radius" description="Set the default Radius for the search dropdown. The value must be in the allowed values list above." />
+						
+			<param type="text" name="max_search_results" size="3" label="Max Search Results" default="100" description="The maximum number of locations returned in search results. Must be greater than zero." />
+			
+			<param type="text" name="map_max_search_zoom" size="3" label="Map Max Zoom Level" default="13" description="The maximum zoom level when returning search results. This will prevent the map from zooming in too far when there are few search results." />
+
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			
+			<param name="show_all_onload" type="radio" default="1" label="Show Locations on Load" description="If set to Yes, locations are shown upon initial load. If set to No, then no locations will be shown on load. If set to Featured, then only featured locations would show. Total locations are still limited by Max Search Results.">
+				<option value="1">Yes</option>
+				<option value="0">No</option>
+				<option value="0">Featured</option>
+			</param>
+			
+			<param name="map_auto_zoom" type="radio" default="1" label="On Load Zoom Mode" description="If set to Auto, and the Locations are shown on load, the map will zoom to show all current locations. Otherwise it will use the settings below.">
+				<option value="1">Auto</option>
+				<option value="0">Manual</option>
+			</param>
+			
+			<param type="text" name="map_default_zoom_level" size="3" label="Map Default Zoom Level" default="3" description="The default zoom level of the Map Area" />
+			<param type="text" name="map_center_lat" size="10" label="Map Default Center Lat" default="40" description="The Default Center Latitude of the Map Area" />
+			<param type="text" name="map_center_lon" size="10" label="Map Default Center Lon" default="-100" description="The Default Center Longitude of the Map Area" />
+			
+			<param name="base_country" type="list" default="" label="Country Search Bias" description="Sets the geocoder to bias search results as if they were sent from the country specified.">
+				<option value=""> - None - </option>
+			    <option value="AD">ANDORRA</option>
+				<option value="AE">UNITED ARAB EMIRATES</option>
+				<option value="AF">AFGHANISTAN</option>
+				<option value="AG">ANTIGUA AND BARBUDA</option>
+				<option value="AI">ANGUILLA</option>
+				<option value="AL">ALBANIA</option>
+				<option value="AM">ARMENIA</option>
+				<option value="AN">NETHERLANDS ANTILLES</option>
+				<option value="AO">ANGOLA</option>
+				<option value="AQ">ANTARCTICA</option>
+				<option value="AR">ARGENTINA</option>
+				<option value="AS">AMERICAN SAMOA</option>
+				<option value="AT">AUSTRIA</option>
+				<option value="AU">AUSTRALIA</option>
+				<option value="AW">ARUBA</option>
+				<option value="AZ">AZERBAIJAN</option>
+				<option value="BA">BOSNIA AND HERZEGOVINA</option>
+				<option value="BB">BARBADOS</option>
+				<option value="BD">BANGLADESH</option>
+				<option value="BE">BELGIUM</option>
+				<option value="BF">BURKINA FASO</option>
+				<option value="BG">BULGARIA</option>
+				<option value="BH">BAHRAIN</option>
+				<option value="BI">BURUNDI</option>
+				<option value="BJ">BENIN</option>
+				<option value="BM">BERMUDA</option>
+				<option value="BN">BRUNEI DARUSSALAM</option>
+				<option value="BO">BOLIVIA</option>
+				<option value="BR">BRAZIL</option>
+				<option value="BS">BAHAMAS</option>
+				<option value="BT">BHUTAN</option>
+				<option value="BV">BOUVET ISLAND</option>
+				<option value="BW">BOTSWANA</option>
+				<option value="BY">BELARUS</option>
+				<option value="BZ">BELIZE</option>
+				<option value="CA">CANADA</option>
+				<option value="CC">COCOS (KEELING) ISLANDS</option>
+				<option value="CD">CONGO, THE DEMOCRATIC REPUBLIC OF THE</option>
+				<option value="CF">CENTRAL AFRICAN REPUBLIC</option>
+				<option value="CG">CONGO</option>
+				<option value="CH">SWITZERLAND</option>
+				<option value="CI">COTE D'IVOIRE</option>
+				<option value="CK">COOK ISLANDS</option>
+				<option value="CL">CHILE</option>
+				<option value="CM">CAMEROON</option>
+				<option value="CN">CHINA</option>
+				<option value="CO">COLOMBIA</option>
+				<option value="CR">COSTA RICA</option>
+				<option value="CU">CUBA</option>
+				<option value="CV">CAPE VERDE</option>
+				<option value="CX">CHRISTMAS ISLAND</option>
+				<option value="CY">CYPRUS</option>
+				<option value="CZ">CZECH REPUBLIC</option>
+				<option value="DE">GERMANY</option>
+				<option value="DJ">DJIBOUTI</option>
+				<option value="DK">DENMARK</option>
+				<option value="DM">DOMINICA</option>
+				<option value="DO">DOMINICAN REPUBLIC</option>
+				<option value="DZ">ALGERIA</option>
+				<option value="EC">ECUADOR</option>
+				<option value="EE">ESTONIA</option>
+				<option value="EG">EGYPT</option>
+				<option value="EH">WESTERN SARARA</option>
+				<option value="ER">ERITREA</option>
+				
+				<option value="ES">SPAIN</option>
+				<option value="ET">ETHIOPIA</option>
+				<option value="FI">FINLAND</option>
+				<option value="FJ">FIJI</option>
+				<option value="FK">FALKLAND ISLANDS (MALVINAS)</option>
+				
+				<option value="FM">MICRONESIA, FEDERATED STATES OF</option>
+				<option value="FO">FAROE ISLANDS</option>
+				<option value="FR">FRANCE</option>
+				<option value="GA">GABON</option>
+				<option value="GB">UNITED KINGDOM</option>
+				
+				<option value="GD">GRENADA</option>
+				<option value="GE">GEORGIA</option>
+				<option value="GF">FRENCH GUIANA</option>
+				<option value="GH">GHANA</option>
+				<option value="GI">GIBRALTAR</option>
+				
+				<option value="GL">GREENLAND</option>
+				<option value="GM">GAMBIA</option>
+				<option value="GN">GUINEA</option>
+				<option value="GP">GUADELOUPE</option>
+				<option value="GQ">EQUATORIAL GUINEA</option>
+				
+				<option value="GR">GREECE</option>
+				<option value="GS">SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option>
+				<option value="GT">GUATEMALA</option>
+				<option value="GU">GUAM</option>
+				<option value="GW">GUINEA-BISSAU</option>
+				
+				<option value="GY">GUYANA</option>
+				<option value="HK">HONG KONG</option>
+				<option value="HM">HEARD ISLAND AND MCDONALD ISLANDS</option>
+				<option value="HN">HONDURAS</option>
+				<option value="HR">CROATIA</option>
+				
+				<option value="HT">HAITI</option>
+				<option value="HU">HUNGARY</option>
+				<option value="ID">INDONESIA</option>
+				<option value="IE">IRELAND</option>
+				<option value="IL">ISRAEL</option>
+				
+				<option value="IN">INDIA</option>
+				<option value="IO">BRITISH INDIAN OCEAN TERRITORY</option>
+				<option value="IQ">IRAQ</option>
+				<option value="IR">IRAN, ISLAMIC REPUBLIC OF</option>
+				<option value="IS">ICELAND</option>
+				
+				<option value="IT">ITALY</option>
+				<option value="JM">JAMAICA</option>
+				<option value="JO">JORDAN</option>
+				<option value="JP">JAPAN</option>
+				<option value="KE">KENYA</option>
+				
+				<option value="KG">KYRGYZSTAN</option>
+				<option value="KH">CAMBODIA</option>
+				<option value="KI">KIRIBATI</option>
+				<option value="KM">COMOROS</option>
+				<option value="KN">SAINT KITTS AND NEVIS</option>
+				
+				<option value="KP">KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option>
+				<option value="KR">KOREA, REPUBLIC OF</option>
+				<option value="KW">KUWAIT</option>
+				<option value="KY">CAYMAN ISLANDS</option>
+				<option value="KZ">KAZAKHSTAN</option>
+				
+				<option value="LA">LAO PEOPLE'S DEMOCRATIC REPUBLIC</option>
+				<option value="LB">LEBANON</option>
+				<option value="LC">SAINT LUCIA</option>
+				<option value="LI">LIECHTENSTEIN</option>
+				<option value="LK">SRI LANKA</option>
+				
+				<option value="LR">LIBERIA</option>
+				<option value="LS">LESOTHO</option>
+				<option value="LT">LITHUANIA</option>
+				<option value="LU">LUXEMBOURG</option>
+				<option value="LV">LATVIA</option>
+				
+				<option value="LY">LIBYAN ARAB JAMABIRIYA</option>
+				<option value="MA">MOROCCO</option>
+				<option value="MC">MONACO</option>
+				<option value="MD">MOLDOVA, REPUBLIC OF</option>
+				<option value="MG">MADAGASCAR</option>
+				
+				<option value="MH">MARSHALL ISLANDS</option>
+				<option value="MK">MACEDONIA, THE FORMER YUGOSLAV REPU8LIC OF</option>
+				<option value="ML">MALI</option>
+				<option value="MM">MYANMAR</option>
+				<option value="MN">MONGOLIA</option>
+				
+				<option value="MO">MACAU</option>
+				<option value="MP">NORTHERN MARIANA ISLANDS</option>
+				<option value="MQ">MARTINIQUE</option>
+				<option value="MR">MAURITANIA</option>
+				<option value="MS">MONTSERRAT</option>
+				
+				<option value="MT">MALTA</option>
+				<option value="MU">MAURITIUS</option>
+				<option value="MV">MALDIVES</option>
+				<option value="MW">MALAWI</option>
+				<option value="MX">MEXICO</option>
+				
+				<option value="MY">MALAYSIA</option>
+				<option value="MZ">MOZAMBIQUE</option>
+				<option value="NA">NAMIBIA</option>
+				<option value="NC">NEW CALEDONIA</option>
+				<option value="NE">NIGER</option>
+				
+				<option value="NF">NORFOLK ISLAND</option>
+				<option value="NG">NIGERIA</option>
+				<option value="NI">NICARAGUA</option>
+				<option value="NL">NETHERLANDS</option>
+				<option value="NO">NORWAY</option>
+				
+				<option value="NP">NEPAL</option>
+				<option value="NU">NIUE</option>
+				<option value="NZ">NEW ZEALAND</option>
+				<option value="OM">OMAN</option>
+				<option value="PA">PANAMA</option>
+				
+				<option value="PE">PERU</option>
+				<option value="PF">FRENCH POLYNESIA</option>
+				<option value="PG">PAPUA NEW GUINEA</option>
+				<option value="PH">PHILIPPINES</option>
+				<option value="PK">PAKISTAN</option>
+				
+				<option value="PL">POLAND</option>
+				<option value="PM">SAINT PIERRE AND MIQUELON</option>
+				<option value="PN">PITCAIRN</option>
+				<option value="PR">PUERTO RICO</option>
+				<option value="PT">PORTUGAL</option>
+				
+				<option value="PW">PALAU</option>
+				<option value="PY">PARAGUAY</option>
+				<option value="QA">QATAR</option>
+				<option value="RO">ROMANIA</option>
+				
+				<option value="RU">RUSSIAN FEDERATION</option>
+				<option value="RW">RWANDA</option>
+				<option value="SA">SAUDI ARABIA</option>
+				<option value="SB">SOLOMON ISLANDS</option>
+				<option value="SC">SEYCHELLES</option>
+				
+				<option value="SD">SUDAN</option>
+				<option value="SE">SWEDEN</option>
+				<option value="SG">SINGAPORE</option>
+				<option value="SH">SAINT HELENA</option>
+				<option value="SI">SLOVENIA</option>
+				
+				<option value="SJ">SVALBARD AND JAN MAYEN</option>
+				<option value="SK">SLOVAKIA</option>
+				<option value="SL">SIERRA LEONE</option>
+				<option value="SM">SAN MARINO</option>
+				<option value="SN">SENEGAL</option>
+				
+				<option value="SO">SOMALIA</option>
+				<option value="SR">SURINAME</option>
+				<option value="ST">SAO TOME AND PRINCIPE</option>
+				<option value="SV">EL SALVADOR</option>
+				<option value="SY">SYRIAN ARAB REPUBLIC</option>
+				
+				<option value="SZ">SWAZILAND</option>
+				<option value="TC">TURKS AND CAICOS ISLANDS</option>
+				<option value="TD">CHAD</option>
+				<option value="TF">FRENCH SOUTHERN TERRITORIES</option>
+				<option value="TG">TOGO</option>
+				
+				<option value="TH">THAILAND</option>
+				<option value="TJ">TAJIKISTAN</option>
+				<option value="TK">TOKELAU</option>
+				<option value="TM">TURKMENISTAN</option>
+				<option value="TN">TUNISIA</option>
+				
+				<option value="TO">TONGA</option>
+				<option value="TP">EAST TIMOR</option>
+				<option value="TR">TURKEY</option>
+				<option value="TT">TRINIDAD AND TOBAGO</option>
+				<option value="TV">TUVALU</option>
+				
+				<option value="TW">TAIWAN, PROVINCE OF CHINA</option>
+				<option value="TZ">TANZANIA, UNITED REPUBLIC OF</option>
+				<option value="UA">UKRAINE</option>
+				<option value="UG">UGANDA</option>
+				<option value="UM">UNITED STATES MINOR OUTLYING ISLANDS</option>
+				
+				<option value="US">UNITED STATES</option>
+				<option value="UY">URUGUAY</option>
+				<option value="UZ">UZBEKISTAN</option>
+				<option value="VE">VENEZUELA</option>
+				<option value="VG">VIRGIN ISLANDS, BRITISH</option>
+				
+				<option value="VI">VIRGIN ISLANDS, U.S.</option>
+				<option value="VN">VIET NAM</option>
+				<option value="VU">VANUATU</option>
+				<option value="WF">WALLIS AND FUTUNA</option>
+				<option value="WS">SAMOA</option>
+				
+				<option value="YE">YEMEN</option>
+				<option value="YT">MAYOTTE</option>
+				<option value="YU">YUGOSLAVIA</option>
+				<option value="ZA">SOUTH AFRICA</option>
+				<option value="ZM">ZAMBIA</option>
+				
+				<option value="ZW">ZIMBABWE</option>
+			</param>
+			
+
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			
+			<param type="text" name="cust1_label" size="25" label="Custom Field Label 1" default="Custom Field 1" description="The Label for the Custom Field" />
+
+			<param type="text" name="cust2_label" size="25" label="Custom Field Label 2" default="Custom Field 2" description="The Label for the Custom Field" />
+
+			<param type="text" name="cust3_label" size="25" label="Custom Field Label 3" default="Custom Field 3" description="The Label for the Custom Field" />
+
+			<param type="text" name="cust4_label" size="25" label="Custom Field Label 4" default="Custom Field 4" description="The Label for the Custom Field" />
+
+			<param type="text" name="cust5_label" size="25" label="Custom Field Label 5" default="Custom Field 5" description="The Label for the Custom Field" />
+			
+			<param name="@spacer" type="spacer" default="" label="Misc" description="" />
+
+
+			<param name="show_copyright" type="radio" default="1" label="Show Sysgen Media Link" description="If set to Yes, a small tagline will appear beneth the component with our copyright and link to our website. We appreciate the support.">
+				<option value="1">Yes</option>
+				<option value="0">No</option>
+			</param>
+			
+			<param name="auto_detect_line_endings" type="radio" default="1" label="Auto Detect Line Endings" description="Improves Compatability with CSV importing. Try to disable if you are having problems importing.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+						
+			<param name="google_maps_v3_api_key" type="text" size="35" label="Google Maps Premiere API Key" description="Only needed for high volume sites. For-profit web sites are permitted to generate up to 25,000 map loads per day using the Google Maps JavaScript API v3. For more information, please see: http://code.google.com/apis/maps/documentation/javascript/usage.html" />
+
+	</params>
+</config>
