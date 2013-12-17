@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CCA Mobile</title>
+        <script type="text/javascript">
+            function loadCustomResources(userAgent){
+                if(userAgent.match(/(iPhone)/)){
+                    window.location = 'www/ios.html';
+                } else if(userAgent.match(/(iPad)/)){
+                    window.location = 'www/ios.html';
+                } else if(userAgent.match(/(iPod)/)){
+                    window.location = 'www/ios.html';
+                } else if(userAgent.match(/(Android)/)){
+                    window.location = 'www/android.html';
+                } else {
+                    window.location = 'ios.html';
+                }
+            }
+            
+            loadCustomResources(navigator.userAgent)
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

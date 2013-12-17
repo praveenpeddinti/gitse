@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CCA Mobile</title>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        <link rel="shortcut icon" href="Content/images/favicon.png">
+        <link type="text/css" rel="stylesheet" href="Content/css/index.css" />
+        <link type="text/css" rel="stylesheet" href="Content/css/bootstrap-2.3.2.css" />
+        <link type="text/css" rel="stylesheet" href="Content/css/bootstrap-switch.css" />
+        <link type="text/css" rel="stylesheet" href="Content/css/stylesheet.css" />
+        <script type="text/javascript" src="Content/js/jquery-1.8.1.min.js"></script>
+        <script type="text/javascript" src="Content/js/iscroll.js"></script>
+        <script type="text/javascript" src="Content/js/android/cordova-2.6.0.js"></script>
+        <script type="text/javascript" src="Content/js/android/childbrowser.js"></script>
+        <script type="text/javascript" src="Content/js/android/custom.android.js"></script>
+        <script type="text/javascript" src="Content/js/android/device.js"></script>
+        <script type="text/javascript" src="Content/js/bootstrap.js"></script>
+        <script type="text/javascript" src="Content/js/bootstrap-switch.min.js"></script>
+        <script type="text/javascript" src="Content/js/jsrender.js"></script>
+        <script type="text/javascript" src="Content/js/heartcode-canvasloader-min.js"></script> 
+        <!--<script type="text/javascript" src="Content/js/device.js"></script>-->
+        <script type="text/javascript" src="Content/js/common.js"></script>
+        <script type="text/javascript" src="Content/js/ajaxcalls.js"></script>
+        <script type="text/javascript" src="Content/js/index.js"></script>
+    </head>
+    <body class="body">
+        <div id="loadingWidget" style="position: absolute;z-index: 99999999;width: 100%;text-align: center;top:50%;display: none;" >
+            <div id='cl_spiral' class="loader" style="margin-left:-10px;">
+                <script type="text/javascript">
+                    var cl0 = new CanvasLoader("cl_spiral", {id: "canvasLoader", safeVML: true});
+                    cl0.setShape("spiral");
+                    cl0.setDiameter(60);
+                    cl0.setDensity(60);
+                    cl0.setSpeed(6);
+                    cl0.setFPS(12);
+                    cl0.show();
+                </script>
+            </div>
+        </div>
+        
+        <div id="errorModal" class="modal fade error_modal modal_top" aria-hidden="false" aria-labelledby="Error Modal Label" role="dialog" tabindex="-1">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 id="errorModalLabel">Error Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <ul id="errorModalBody" class="error_ul"></ul>
+            </div>
+            <div class="modal-footer">
+                <button id="errorModalCancel" class="btn" data-dismiss="modal" aria-hidden="true" style="display: none;">Cancel</button>
+                <button id="errorModalOk" class="btn button" data-dismiss="modal" style="display: none;">OK</button>
+            </div>
+        </div>
+        
+        <div id="successModal" class="modal fade success_modal modal_top" aria-hidden="false" aria-labelledby="Success Modal Label" role="dialog" tabindex="-1">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 id="successModalLabel">Success Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <ul id="successModalBody" class="error_ul"></ul>
+            </div>
+            <div class="modal-footer">
+                <button id="successModalCancel" class="btn" data-dismiss="modal" aria-hidden="true" style="display: none;">Cancel</button>
+                <button id="successModalOk" class="btn button" data-dismiss="modal" style="display: none;">OK</button>
+            </div>
+        </div>
+        
+        <div id="shareActionsModal" class="modal fade share_actions" aria-hidden="false" aria-labelledby="Share Icon Modal Label" role="dialog" tabindex="-1">
+            <div class="modal-body">
+                <ul id="shareActionsModalBody">
+                    <li class="contacts" onclick="closeShareActionsModal();showAlert('Need to implement..!');"><a href="#">Add to Contacts</a></li>
+                    <li class="email" onclick="closeShareActionsModal();showAlert('Need to implement..!');"><a href="#">Send via Email</a></li>
+                    <li class="sms" onclick="closeShareActionsModal();showAlert('Need to implement..!'); "><a href="#">Send via SMS</a></li>
+                </ul>
+            </div>            
+        </div>
+        
+        <div id="header" class="header" style="display:none;">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="span3 marginT7 paddingL5">
+                        <a id="backButton" href="#" class="pull-left top_backButton" style="display:none" onclick="loadClinics('Map')"></a>
+                    </div>
+                    <div class="span6">
+                        <div id="headerLogo" style="display:none;">
+                            <p><img src="Content/images/cca_inner_logo.png" onclick="loadClinics('Map')"/></p>
+                        </div>
+                        <div id="clinicsSwitchDiv" class="register-switch" style="display:none;">
+                            <input type="radio" name="clinics" value="Map" id="clinics_Map_Switch" class="register-switch-input" checked onchange="loadClinics('Map')" />
+                            <label for="clinics_Map_Switch" class="register-switch-label">Map</label>
+                            <input type="radio" name="clinics" value="List" id="clinics_List_Switch" class="register-switch-input" onchange="loadClinics('List')" />
+                            <label for="clinics_List_Switch" class="register-switch-label">List</label>
+                        </div>
+                    </div>
+                    <div class="span3 marginT7 paddingR5"><a id="shareIcon" href="#" class="pull-right top_share_icon" style="display:none;" onclick="showShareActionsModal();"></a></div>
+                </div>
+            </div>
+        </div>
+        <div id="wrapper" class="wrapper_top">
+            <div id="scroller">
+                <div id="mainContentDiv" class="maindiv">
+                    <!-- here we will load body content dynamically -->
+                </div>
+            </div>
+        </div>    
+        <div id="footer" class="footer" style="display: none;">            
+            <div id="clinicsTab"><a href="#" class="clinic" onclick="loadClinics('Map');"><img src="Content/images/spacer.png" /></a></div>
+            <div id="partnersTab"><a href="#" class="partners" onclick="loadPartners()"><img src="Content/images/spacer.png" /></a></div>
+            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="openInChildBrowser('http://02c97e1.netsolhost.com/index.php?option=com_content&view=article&id=4&Itemid=116')"><img src="Content/images/spacer.png" /></a></div>            
+        </div>
+        
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
