@@ -71,9 +71,9 @@
         <div id="shareActionsModal" class="modal fade share_actions" aria-hidden="false" aria-labelledby="Share Icon Modal Label" role="dialog" tabindex="-1">
             <div class="modal-body">
                 <ul id="shareActionsModalBody">
-                    <li class="contacts" onclick="closeShareActionsModal();showAlert('Need to implement..!');"><a href="#">Add to Contacts</a></li>
-                    <li class="email" onclick="closeShareActionsModal();showAlert('Need to implement..!');"><a href="#">Send via Email</a></li>
-                    <li class="sms" onclick="closeShareActionsModal();showAlert('Need to implement..!'); "><a href="#">Send via SMS</a></li>
+                    <li class="contacts" onclick="closeShareActionsModal();"><a href="#">Add to Contacts</a></li>
+                    <li class="email" onclick="closeShareActionsModal();"><a href="#">Send via Email</a></li>
+                    <li class="sms" onclick="closeShareActionsModal();"><a href="#">Send via SMS</a></li>
                 </ul>
             </div>            
         </div>
@@ -109,7 +109,7 @@
         <div id="footer" class="footer" style="display: none;">            
             <div id="clinicsTab"><a href="#" class="clinic" onclick="loadClinics('Map');"><img src="Content/images/spacer.png" /></a></div>
             <div id="partnersTab"><a href="#" class="partners" onclick="loadPartners()"><img src="Content/images/spacer.png" /></a></div>
-            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="loadAboutCCA()"><img src="Content/images/spacer.png" /></a></div>            
+            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="openInChildBrowser('http://02c97e1.netsolhost.com/index.php?option=com_content&view=article&id=4&Itemid=116');loadAboutCCA();"><img src="Content/images/spacer.png" /></a></div>            
         </div>
         
         <script type="text/javascript">
