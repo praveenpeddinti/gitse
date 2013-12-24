@@ -82,16 +82,24 @@ function loadPartners(){
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").addClass("active");
     $("#aboutCCATab").removeClass("active");
-    my.utils.renderViewTo('Views/partners.html', null, 'mainContentDiv', loadPartnersResponseHandler);
+    ajaxRequest("getPartners", "", loadPartnersResponseHandler);
+    
 }
 
-function loadPartnersResponseHandler(){
-    $("#headerLogo").show();
-    $("#backButton").hide();
-    $("#clinicsSwitchDiv").hide();
-    $("#shareIcon").hide();
-    refreshBodyScroll();
-    hideLoadingIndicator();
+function loadPartnersResponseHandler(loadPartnersResponse){
+    if(loadPartnersResponse.status == "success"){
+        my.utils.renderViewTo('Views/partners.html', null, 'mainContentDiv', function(){
+            $("#headerLogo").show();
+            $("#backButton").hide();
+            $("#clinicsSwitchDiv").hide();
+            $("#shareIcon").hide();
+            refreshBodyScroll();
+            hideLoadingIndicator();
+        });
+    } else{
+        hideLoadingIndicator();
+        ShowMessage('errorModal', 'Partners', "<li class='error'>Unable to get partners.</li>", true, false);
+    }
 }
 
 /* Display Partners Ends Here */
@@ -103,16 +111,23 @@ function loadAboutCCA(){
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").addClass("active");
-    my.utils.renderViewTo('Views/aboutCCA.html', null, 'mainContentDiv', loadAboutCCAResponseHandler);
+    ajaxRequest("getAboutUs", "", loadAboutCCAResponseHandler);
 }
 
-function loadAboutCCAResponseHandler(){
-    $("#headerLogo").show();
-    $("#backButton").hide();
-    $("#clinicsSwitchDiv").hide();
-    $("#shareIcon").hide();
-    refreshBodyScroll();
-    hideLoadingIndicator();
+function loadAboutCCAResponseHandler(loadAboutCCAResponse){
+    if(loadAboutCCAResponse.status == "success"){
+        my.utils.renderViewTo('Views/aboutCCA.html', loadAboutCCAResponse, 'mainContentDiv', function(data){
+            $("#headerLogo").show();
+            $("#backButton").hide();
+            $("#clinicsSwitchDiv").hide();
+            $("#shareIcon").hide();
+            refreshBodyScroll();
+            hideLoadingIndicator();
+        });
+    } else{
+        hideLoadingIndicator();
+        ShowMessage('errorModal', 'About CCA', "<li class='error'>Unable to get about cca.</li>", true, false);
+    }
 }
 
 /* Display About CCA Ends Here */

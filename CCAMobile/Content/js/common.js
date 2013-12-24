@@ -1,5 +1,5 @@
 
-var serverURL = "http://10.10.73.107/DemoApp/index.php/";
+var serverURL = "http://10.10.73.107/CCA/index.php/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
@@ -295,4 +295,24 @@ function getPageSize(context) {
 
 function openInChildBrowser(url){
     childBrowser.showWebPage(url);
+}
+
+function identifyLinks(inputText) {
+    var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    if(deviceAgent == "PC")
+        replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+    else
+        replacedText = inputText.replace(replacePattern1, '<a href="#" onclick="openInChildBrowser(\'$1\')">$1</a>');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    if(deviceAgent == "PC")
+        replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+    else
+        replacedText = replacedText.replace(replacePattern2, '$1<a href="#" onclick="openInChildBrowser(\'http://$2\')">$2</a>');
+    
+    return replacedText;
 }
