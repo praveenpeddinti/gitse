@@ -2,18 +2,18 @@
      <div class="row-fluid">
         <div class="span12">
             <div class="serach_location">
-                <form class="form-search">
-                    <input type="text" id="mapInputKeywords" placeholder="Enter a Zip / Location" class="input-medium search-query" />
-                    <button type="button" class="btn location_searchButton" onclick="loadClinicDetailPage()"> &nbsp;</button>
-                    <button type="button" class="btn location_currentButton" onclick="loadClinicDetailPage()"> &nbsp;</button>
-                </form>
+                <div id="searchClinicsDiv" class="searchClinics">
+                    <input type="text" id="searchClinicsKeyword" placeholder="Enter a Zip / Location" class="input-medium search-query" />
+                    <button type="button" class="btn location_searchButton" onclick="searchClinics()"> &nbsp;</button>
+                    <button type="button" class="btn location_currentButton" onclick="searchClinicsInCurrentLocation()"> &nbsp;</button>
+                </div>
             </div>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span12">
             <div class="paddingT5L10">
-                <h4>Need To Load Map Here.. </h4>
+                <div id="map_canvas" class="map_canvas"></div>
             </div>
         </div>
     </div> 	

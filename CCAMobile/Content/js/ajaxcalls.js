@@ -10,6 +10,21 @@ function showIndexPageResponseHandler(){
 
 /* Display Clinics Starts Here */
 
+function searchClinicsInCurrentLocation(){
+    
+}
+
+function searchClinics(){
+    var searchKeyword = $("#searchClinicsKeyword").val().trim();
+    
+    if(searchKeyword == ""){
+        ShowMessage('errorModal', 'Search Clinics Status', "Please enter either zip code or location name." , true, false);
+        return false;
+    } else{
+        
+    }
+}
+
 function loadClinics(target){
     showLoadingIndicator();
     $("#clinicsTab").addClass("active");
@@ -37,7 +52,8 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
     $("#clinicsSwitchDiv").show();
     $("#shareIcon").hide();
     $("#headerLogo").hide();
-    $("#footer").show();   
+    $("#footer").show();              
+    showMap("map_canvas");    
     refreshBodyScroll();
     hideLoadingIndicator();
 }

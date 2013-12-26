@@ -193,15 +193,20 @@ padding:0;color:#eee;font-size:18px;text-align:center;border-bottom:1px solid #1
 .aboutus{}
 .aboutus img{ float:left; padding:10px;}
 .serach_location{ background:#2d3538; height:45px; padding-top:0px; margin:auto; }
-.serach_location .form-search .search-query { background:#202528; border:1px solid #202528; color:#626568; width:75%; border-radius:2px;font-family:exobold;font-size:16px; line-height:24px; height:32px; margin-left: 5px; }
+.serach_location .search-query { background:#202528; border:1px solid #202528; color:#626568; width:75%; border-radius:2px;font-family:exobold;font-size:16px; line-height:24px; height:32px; margin-left: 5px; }
 .location_searchButton{background:#2ec6a4 url(../images/searchlocation_icon.png) no-repeat center 2px; width:32px; height:32px; cursor:pointer;}
 .location_currentButton{ background:#2ec6a4 url(../images/searchlocation_arrow.png) no-repeat center 5px; width:32px; height:32px; cursor:pointer;margin-top: 5px;}
-form { margin:-2px 0 0 0; }
-.location_searchButton, .serach_location .form-search .search-query{ margin-top:5px;}
+.searchClinics{ margin:-2px 0 0 0; }
+.location_searchButton, .serach_location .search-query{ margin-top:5px;}
 .marginT78{ margin-top:78px;}
 .marginT55{ margin-top:55px;}
 .map_details{ background:url(../images/googleChart.png) no-repeat left top; padding-left:45px; margin-top:10px; font-size:14px; color:#1c5858;}
 .logos_top{margin-top:100px;}
+
+/* Maps Styles Starts Here */
+.map_canvas{height:350px;width:100%;}
+.marker_name { font-size:1.2em; font-weight:bold; white-space:nowrap;}
+/* Maps Styles Ends Here */
 
 /* PopUp Modal Styles Starts Here */
 .error_modal{background-color: #F2DEDE;border-color: #EED3D7; color: #B94A48;}
