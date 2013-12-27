@@ -18,7 +18,7 @@ function searchClinics(){
     var searchKeyword = $("#searchClinicsKeyword").val().trim();
     
     if(searchKeyword == ""){
-        ShowMessage('errorModal', 'Search Clinics Status', "Please enter either zip code or location name." , true, false);
+        ShowMessage('errorModal', 'Search Clinics Status', "<li class='error'>Please enter either zip code or location name.</li>" , true, false);
         return false;
     } else{
         

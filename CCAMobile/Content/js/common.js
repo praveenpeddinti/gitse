@@ -1,5 +1,5 @@
 
-var serverURL = "http://10.10.73.107/CCA/index.php/";
+var serverURL = "http://10.10.73.107:6060/CCA/index.php/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
