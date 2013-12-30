@@ -48,46 +48,18 @@ function exitApp(){
 
 /* Android Handling Back Button Ends Here */
 
-/* Map Display Starts Here */
+/* Send Email With Attachment Starts Here */
 
-function showMap(divId){
-    var mapOptions = {
-        zoom: 10,
-        minZoom :0,
-        maxZoom :15,        
-        center: new google.maps.LatLng(-33.92, 151.25),
-        size: new google.maps.Size(100,100),
-        mapTypeId:google.maps.MapTypeId.ROADMAP
-    };    
-    
-    var map = new google.maps.Map(document.getElementById(divId),mapOptions);
-    
-    var locations = [
-        ['Bondi Beach', -33.890542, 151.274856, 'Bondi Beach'],
-        ['Coogee Beach', -33.923036, 151.259052, 'Coogee Beach'],
-        ['Cronulla Beach', -34.028249, 151.157507, 'Cronulla Beach'],
-        ['Manly Beach', -33.80010128657071, 151.28747820854187, 'Manly Beach'],
-        ['Maroubra Beach', -33.950198, 151.259302, 'Maroubra Beach'],
-        ['MinuteClinic', 17.427698500000, 78.45319020000, '<div id="clinic_1" onclick="loadClinicDetailPage()"><p><span class="marker_name">MinuteClinic</span><span>(9.2 mi)</span><br/> 1361 Hylan Blvd Staten Island NY 10305-1902<br/> 866-389-2727 <br/> Category: CCA Locations</p><p><a target="_blank" href="http://www.minuteclinic.com/">Visit Site >></a></p></div>']
-    ];
-    
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
-    
-    for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map,
-            title: locations[i][0]
-        });
-        
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function(){
-                infowindow.setContent(locations[i][3]);
-                infowindow.open(map, marker);
-            }
-        })(marker, i));
-    }
+function sendViaEmail(){
+	window.plugins.emailComposer.showEmailComposer(null,null,[],[],[],true,null);	
 }
 
-/* Map Display Ends Here */
+/* Send Email With Attachment Ends Here */
+
+/* Sending SMS Starts Here */
+
+function sendSMS(){
+	
+}
+
+/* Sending SMS Ends Here */

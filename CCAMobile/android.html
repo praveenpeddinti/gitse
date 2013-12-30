@@ -15,6 +15,7 @@
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDqetQvYQHeIByyoynBbn4t_mUNFzuYu2A&sensor=true"></script>
         <script type="text/javascript" src="Content/js/android/cordova-2.6.0.js"></script>
         <script type="text/javascript" src="Content/js/android/childbrowser.js"></script>
+        <script type="text/javascript" src="Content/js/android/EmailComposer.js"></script>
         <script type="text/javascript" src="Content/js/android/custom.android.js"></script>
         <script type="text/javascript" src="Content/js/android/device.js"></script>
         <script type="text/javascript" src="Content/js/bootstrap.js"></script>
@@ -73,9 +74,9 @@
         <div id="shareActionsModal" class="modal fade share_actions" aria-hidden="false" aria-labelledby="Share Icon Modal Label" role="dialog" tabindex="-1">
             <div class="modal-body">
                 <ul id="shareActionsModalBody">
-                    <li class="contacts" onclick="closeShareActionsModal();showAlert('Need to implement..!');"><a href="#">Add to Contacts</a></li>
-                    <li class="email" onclick="closeShareActionsModal();showAlert('Need to implement..!');"><a href="#">Send via Email</a></li>
-                    <li class="sms" onclick="closeShareActionsModal();showAlert('Need to implement..!'); "><a href="#">Send via SMS</a></li>
+                    <li class="contacts" onclick="closeShareActionsModal();"><a href="#">Add to Contacts</a></li>
+                    <li class="email" onclick="closeShareActionsModal();sendViaEmail();"><a href="#">Send via Email</a></li>
+                    <li class="sms" onclick="closeShareActionsModal();sendSMS();"><a href="#">Send via SMS</a></li>
                 </ul>
             </div>
             <div class="modal-footer hcenter marginT0">
