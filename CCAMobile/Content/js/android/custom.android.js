@@ -48,14 +48,6 @@ function exitApp(){
 
 /* Android Handling Back Button Ends Here */
 
-/* Send Email With Attachment Starts Here */
-
-function sendViaEmail(){
-	window.plugins.emailComposer.showEmailComposer(null,null,[],[],[],true,null);	
-}
-
-/* Send Email With Attachment Ends Here */
-
 /* Sending SMS Starts Here */
 
 function sendSMS(){
