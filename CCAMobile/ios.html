@@ -16,6 +16,7 @@
         <script type="text/javascript" src="Content/js/ios/cordova-2.6.0.js"></script>
         <script type="text/javascript" src="Content/js/ios/ChildBrowser.js"></script>
         <script type="text/javascript" src="Content/js/ios/EmailComposer.js"></script>
+        <script type="text/javascript" src="Content/js/ios/SMSComposer.js"></script>
         <script type="text/javascript" src="Content/js/ios/custom.ios.js"></script>
         <script type="text/javascript" src="Content/js/ios/device.js"></script>
         <script type="text/javascript" src="Content/js/bootstrap.js"></script>
@@ -76,9 +77,12 @@
                 <ul id="shareActionsModalBody">
                     <li class="contacts" onclick="closeShareActionsModal();"><a href="#">Add to Contacts</a></li>
                     <li class="email" onclick="closeShareActionsModal();sendViaEmail();"><a href="#">Send via Email</a></li>
-                    <li class="sms" onclick="closeShareActionsModal();"><a href="#">Send via SMS</a></li>
+                    <li class="sms" onclick="closeShareActionsModal();sendSMS();"><a href="#">Send via SMS</a></li>
                 </ul>
-            </div>            
+            </div>
+            <div class="modal-footer hcenter marginT0">
+                <button id="successModalCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
         </div>
         
         <div id="header" class="header" style="display:none;">
