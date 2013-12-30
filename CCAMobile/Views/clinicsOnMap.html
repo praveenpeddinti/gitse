@@ -3,8 +3,8 @@
         <div class="span12">
             <div class="serach_location">
                 <div id="searchClinicsDiv" class="searchClinics">
-                    <input type="text" id="searchClinicsKeyword" placeholder="Enter a Zip / Location" class="input-medium search-query" />
-                    <button type="button" class="btn location_searchButton" onclick="searchClinics()"> &nbsp;</button>
+                    <input type="text" id="searchClinicsKeyword" placeholder="Enter a Zip / Location" class="input-medium search-query" onkeypress="return enterKeyFunction(event,'searchClinicsButton')" />
+                    <button type="button" id="searchClinicsButton" class="btn location_searchButton" onclick="searchClinics()"> &nbsp;</button>
                     <button type="button" class="btn location_currentButton" onclick="searchClinicsInCurrentLocation()"> &nbsp;</button>
                 </div>
             </div>
