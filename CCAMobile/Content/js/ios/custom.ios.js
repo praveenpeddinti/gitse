@@ -30,11 +30,10 @@ function refreshBodyScroll(){
 
 /* iScroll initilization ends here */
 
-function setAppIconBadgeCount(badgeCount){
-    if(badgeCount == 0){
-        //window.plugins.badge.clear();
-        window.plugins.badge.set(-1);
-    } else{
-        window.plugins.badge.set(badgeCount);
-    }
+/* Sending SMS Starts Here */
+
+function sendSMS(){
+    window.plugins.smsComposer.showSMSComposer();
 }
+
+/* Sending SMS Ends Here */

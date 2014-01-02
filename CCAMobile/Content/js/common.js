@@ -370,11 +370,3 @@ function sendViaEmail(){
 }
 
 /* Send Email With Attachment Ends Here */
-
-/* Sending SMS Starts Here */
-
-function sendSMS(){
-    window.plugins.smsComposer.showSMSComposer();
-}
-
-/* Sending SMS Ends Here */

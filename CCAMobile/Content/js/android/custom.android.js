@@ -51,7 +51,14 @@ function exitApp(){
 /* Sending SMS Starts Here */
 
 function sendSMS(){
-	
+	SmsPlugin.prototype.send('9010608698', 'CCA Test Message.!', '',
+	    function () { 
+	       //showAlert('SMS sent successfully');  
+	    },
+	    function (e) {
+	        //showAlert('SMS sending Failed:' + e);
+	    }
+	);
 }
 
 /* Sending SMS Ends Here */
