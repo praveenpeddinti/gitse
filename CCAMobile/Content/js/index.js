@@ -4,6 +4,7 @@ var bodyScroll,modalScroll;
 var notificationTitle = "CCA";
 var timeInterval = 5 *1000;
 var childBrowser;
+var distance = 25;
 
 var app = { 
     initialize: function () {         

@@ -6,36 +6,13 @@
                 <div class="list_results">
                     <div class="row-fluid">
                         <div class="span12">
-                            <div class="partner_list">
-                                <img src="Content/images/v1.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v2.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v3.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v2.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v3.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v1.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v2.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v3.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v2.png" width="168" height="67">
-                            </div>
-                            <div class="partner_list">
-                                <img src="Content/images/v3.png" width="168" height="67">
-                            </div>
+                            {{if data!=null && data!=""}}
+                                {{for data}}
+                                    <div class="partner_list">
+                                        <img src="{{:#parent.parent.data.site_base_ur}}{{:logo}}" class="partner_logo">
+                                    </div>
+                                {{/for}}
+                            {{/if}}
                         </div>
                     </div>
                 </div>

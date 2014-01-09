@@ -209,7 +209,10 @@ padding:0;color:#eee;font-size:18px;text-align:center;border-bottom:1px solid #1
 .map_canvas{height:350px;width:100%;}
 .marker_name { font-size:1.2em; font-weight:bold; white-space:nowrap;}
 /* Maps Styles Ends Here */
-
+.nomoreclinics{text-align: center; margin-top:6px;font-weight: bold;}
+.margin-top6{margin-top:6px}
+.loading_inline {background-color: #FFFFFF;position: relative;text-align: center;top: -30px;width: 100%;z-index: 99999;}
+.partner_logo{width : 168px; height: 67px;}
 /* PopUp Modal Styles Starts Here */
 .error_modal{background-color: #F2DEDE;border-color: #EED3D7; color: #B94A48;}
 .error_modal .modal-footer{box-shadow: 0 1px 0 #EED3D7 inset;}
