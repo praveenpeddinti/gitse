@@ -51,14 +51,18 @@ function exitApp(){
 /* Sending SMS Starts Here */
 
 function sendSMS(){
-	SmsPlugin.prototype.send('9010608698', 'CCA Test Message.!', '',
-	    function () { 
-	       //showAlert('SMS sent successfully');  
-	    },
-	    function (e) {
-	        //showAlert('SMS sending Failed:' + e);
-	    }
-	);
+    if(deviceAgent != "PC"){
+    	SmsPlugin.prototype.send('9010608698', getClinicDetailsForSMS(), '',
+            function () { 
+               //showAlert('SMS sent successfully');  
+            },
+            function (e) {
+                //showAlert('SMS sending Failed:' + e);
+            }
+        );
+    } else{
+        showAlert("Please share clinic details from mobile app only.!");
+    }   
 }
 
 /* Sending SMS Ends Here */

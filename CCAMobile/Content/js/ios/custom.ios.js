@@ -33,7 +33,11 @@ function refreshBodyScroll(){
 /* Sending SMS Starts Here */
 
 function sendSMS(){
-    window.plugins.smsComposer.showSMSComposer();
+    if(deviceAgent != "PC"){
+        window.plugins.smsComposer.showSMSComposer('',getClinicDetailsForSMS());
+    } else{
+        showAlert("Please share clinic details from mobile app only.!");
+    }
 }
 
 /* Sending SMS Ends Here */

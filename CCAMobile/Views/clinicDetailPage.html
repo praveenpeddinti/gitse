@@ -8,11 +8,11 @@
                         <div class="aboutus">
                             <div class="row-fluid">
                                 <div class="span12">
-                                    <div class="map_details">
+                                    <div id="clinicDetails" class="map_details">
                                         <p>
-                                            <span class="marker_name">{{:name}}</span>
-                                            {{:address}} {{:phone}}
-                                            Category: {{:Category}}
+                                            <span id="clinicName" class="marker_name">{{:name}}</span>
+                                            <span id="clinicAddress">{{:address}}</span> <span id="clinicPhoneNo">{{:phone}}</span>
+                                            Category: <span id="clinicCategory">{{:Category}}</span>
                                         </p>
                                         <p>
                                             {{if ~getvar('deviceAgent')=='PC'}}

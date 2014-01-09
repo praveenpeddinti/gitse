@@ -362,8 +362,30 @@ function showMap(divId, clinicsData){
 
 /* Send Email With Attachment Starts Here */
 
+function getClinicDetailsForEmail(){
+    var clinicDetails = "";
+    clinicDetails += "Clinic Name : " + $("#clinicName").html() + "<br/>";
+    clinicDetails += "Address : " + $("#clinicAddress").html() + "<br/>";
+    clinicDetails += "Phone No : " + $("#clinicPhoneNo").text() + "<br/>";
+    clinicDetails += "Category: " + $("#clinicCategory").html();
+    return clinicDetails;
+}
+
+function getClinicDetailsForSMS(){
+    var clinicDetails = "";
+    clinicDetails += "Clinic Name : " + $("#clinicName").html() + " \n";
+    clinicDetails += "Address : " + $("#clinicAddress").html() + " \n";
+    clinicDetails += "Phone No : " + $.trim($("#clinicPhoneNo").text()) + " \n";
+    clinicDetails += "Category: " + $("#clinicCategory").html();
+    return clinicDetails;
+}
+
 function sendViaEmail(){
-    window.plugins.emailComposer.showEmailComposer(null,null,[],[],[],true,null);
+    if(deviceAgent != "PC"){
+        window.plugins.emailComposer.showEmailComposer("Share Clinic Details",getClinicDetailsForEmail(),[],[],[],true,null);
+    } else{
+        showAlert("Please share clinic details from mobile app only.!");
+    }
 }
 
 /* Send Email With Attachment Ends Here */
