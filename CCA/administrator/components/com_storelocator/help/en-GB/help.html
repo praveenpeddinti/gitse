@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Store Locator Help</title>
+<link href="../help.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="help_container">
+<table class="contentpaneopen">
+<tr>
+<td valign="top" colspan="2"><table cellpadding="0" cellspacing="0" class="contenttoc">
+	<tr>
+		<th>Table of Contents</th>
+	</tr>
+	<tr>
+		<td><a href="#Introduction">Store Locator Introduction</a>		</td>
+	</tr>
+			<tr>
+			  <td><a href="#License">License Information</a></td>
+		  </tr>
+			<tr>
+				<td>
+
+				<a href="#Installation">Installation and Setup</a></td>
+		  </tr>
+			<tr>
+			  <td><a href="#Parameters">Global Options</a></td>
+		  </tr>
+			
+			<tr>
+				<td><a href="#Locations">Location  Manager</a></td>
+			</tr>
+
+			<tr>
+			  <td><a href="#Categories">Location Category Manager</a></td>
+		  </tr>
+          
+          <tr>
+			  <td><a href="#ImportExport">CSV Import / Export</a></td>
+		  </tr>
+          
+          <tr>
+            <td><a href="#Geocoder">Batch Geocoder</a></td>
+          </tr>
+          <tr>
+            <td><a href="#Markers">Marker Manager</a></td>
+          </tr>
+			
+			<tr>
+			  <td><a href="#Menus">Menu Items</a></td>
+		  </tr>
+          
+          <tr>
+			  <td><a href="#Language">Language Files</a></td>
+		  </tr>
+
+			</table>
+	<h1><a name="Introduction" id="Introduction"></a><img src="../../assets/sysgen_48.png" alt="Sysgen Media" width="48" height="48" align="absmiddle" />Joomla! Store Locator v1.8.2.0</h1>
+	<h2>Introduction</h2>
+	<p>Place a <strong>Store Locator</strong> on your website using the power  of Google Maps<span class="small">*</span>. Allow your visitors to search for nearby locations and  see them visually on a Map. You have the ability to specify unlimited  Locations easily in the Joomla! Administration area. Your locations  don't have to be stores, they can be anything you want. The Joomla Store  Locator also provides directions via Google Maps. Visitors can search  by any location that Google Maps can understand. This component is ideal  to be used as a Dealer Locator, a Store Locator, an ATM / Branch  Locator, a Member Locator or just about anything you can think of  listing on a map in Joomla. Great for Stockists and other retail  locations such as restaurants, transit systems, and points of interest.<br />
+	  <span class="small">* Your usage of the Google Maps API must meet the <a href="#GoogleTerms">Google Maps License Requirements  </a></span></p>
+	<p>For more information and the latest features please visit our website: <a href="http://www.sysgenmedia.com" target="_blank"><img src="../../assets/sysgen_16.png" alt="Sysgen Component Development" width="16" height="16" border="0" align="absmiddle" /></a> <a href="www.sysgenmedia.com" target="_blank">www.sysgenmedia.com</a></p>
+<h2><a name="License" id="License"></a>License Information</h2>
+<p>The Store Locator component is released under the <a href="http://www.gnu.org/licenses/quick-guide-gplv3.html" mce_href="http://www.gnu.org/licenses/quick-guide-gplv3.html">GNU GPLv3</a> license.</p>
+<span class="alert">
+<div style="width:140px;float:left;"><img src="../../assets/gplv3-127x51.png" alt="GPL v3" width="127" height="51"/></div>
+<div style="margin-left:150px;"> <strong>“Free software” is a matter of liberty, <a href="http://www.gnu.org/philosophy/selling.html" mce_href="http://www.gnu.org/philosophy/selling.html">not price</a>. <br />
+  To understand the concept, you should think of “free” as <br />
+  in 
+  “free speech”, not as in “free beer”.<br />
+    <br />
+Free  software is a matter of the users' freedom to run, copy, distribute,  study, change and improve the software. More precisely, it refers to  four kinds of freedom, for the users of the software.</strong></div>
+<div style="clear:both;"> </div>
+</span>
+<h3>The Users' Freedoms</h3>
+<ul>
+  <li> The freedom to run the program, for any purpose.</li>
+  <li>The  freedom to study how the program works, and adapt it to your needs. Access to the source code is a precondition for this.</li>
+  <li>The freedom to redistribute copies so you can help your neighbor.</li>
+  <li>The  freedom to improve the program, and release your improvements to the  public, so that the whole community benefits. Access to the  source code is a precondition for this.</li>
+</ul>
+<p>For a copy of the full license please visit the <a href="http://www.gnu.org/licenses/gpl-3.0.html" mce_href="http://www.gnu.org/licenses/gpl-3.0.html">GNU website</a>. Alternatively, for a human readable version of the license visit the <a href="http://creativecommons.org/licenses/GPL/2.0/" mce_href="http://creativecommons.org/licenses/GPL/2.0/">Creative Commons</a> page.</p>
+
+  <h3><a name="GoogleTerms" id="GoogleTerms"></a>Google Maps License Requirements  </h3>
+  <p>For-profit web sites are permitted to generate up to 25 000 map loads   per day using the Google Maps JavaScript API v3. A map load is counted when a   map is initialized on a web page. User interaction with a map after it has   loaded (eg. panning the map, zooming the map, or changing from roadmap to   satellite map) does not have any impact on usage limits.</p>
+  <p>In order to ensure that sites which experience short term spikes in usage   are not adversely affected by the Maps API usage limits, only sites that   exceed the limits for more than 90 consecutive days are subject to the   limits.</p>
+  <p>If you operate a for-profit web site that consistently exceeds the Maps API   usage limits every day, you will need to respond in one of the following ways: </p>
+  <ul>
+    <li>Purchase additional quota through the <a href="http://code.google.com/apis/console" target="_blank">Google APIs Console</a></li>
+    <li>Purchase a <a href="http://code.google.com/apis/maps/documentation/premier" target="_blank">Maps API Premier     license</a></li>
+    <li>Modify your site to reduce your usage to below the limits</li>
+  </ul>
+  <p>* Note:  Non-profit organizations are   exempted from the Maps API usage limits, and are also encouraged to apply   for a <a href="http://earth.google.com/outreach/program_details.html" target="_blank">Google   Earth Outeach Grant</a>, which offers eligible non-profits a Maps API   Premier license at no cost.  </p>
+  <h2><a name="Installation" id="Installation"></a>Installation and Setup</h2>
+<span class="note">  <strong>You no longer need a Google Maps API Key unless you meet the specific critiera above.<br />
+</strong></span>
+<ul>
+  <li>Navagate to <strong>Components → Store Locator → Location Manager</strong> from the drop-down menu on the back-end of your Joomla! installation</li>
+  <li>Set the Component Options/Parameters to your liking.</li>
+  <li>Add Your Location and Categoriess. </li>
+  <li>Add a new <a href="#Menus"><strong>Menu Item</strong></a> to display the Store Locator on your site.</li>
+  <li>Optional: Enable the Search Module to search from an alternate page on your site.</li>
+</ul>
+<h2><a name="Parameters" id="Parameters"></a>Global Options</h2>
+<p>Click the Options button to open the Store Locator   Configuration window. This window allows you to set default parameters  for Locations.  </p>
+<h4>Basic</h4>
+<ul>
+  <li><strong>Units:</strong> Set the units for search radius. Miles or Kilometers. (Default Miles)</li>
+  <li><strong>Show  Locations on Load:</strong> If set to Yes, locations are shown upon initial load. If set to No, then no locations will be shown on load. Total locations are still limited by Max Search Results. (Default Yes)</li>
+  <li><strong>Marker Icon Preference:</strong> Determines which icons takes preference</li>
+  <li><strong>jQuery Compatability Mode:</strong> Enable jQuery noConflict Mode. ONLY use if you are having trouble loading the store locator, and you use jQuery on your site. This MAY fix the problem. <em><strong>DO NOT USE UNLESS YOU ARE HAVING PROBLEMS AND USE JQUERY.</strong></em></li>
+</ul>
+<h4>Map</h4>
+<ul>
+  <li><strong>Enable Directions</strong>: Adds a directions box to each marker popup. (Default Enabled)<br />
+  </li>
+  <li><strong>Enable Zoom Wheel</strong>: Enable Zoom Control on the Map with the Mouse Wheel. (Default Enabled)<br />
+  </li>
+  <li><strong>Enable Terrain</strong>: Enable the Terrain Map Type (Default Disabled)</li>
+  <li><strong>Default Map Type</strong>: Set the default Map Type that is visible on load (Deafault Roads)</li>
+  <li>
+    <strong>
+    <label aria-invalid="false" id="jform_map_cluster_method-lbl" for="jform_map_cluster_method" title="">Marker Cluster Method</label>
+    :</strong> Set the method of Clustering used on the map. (Default Google
+MarkerCluster)  </li>
+  <li><strong>Map Width</strong>: The width of the Map Area in pixels.<br />
+  </li>
+  <li><strong>Map Height</strong>: The height of the Map Area in pixels.  &nbsp;</li>
+  <li><strong>Hide List on Load:</strong> If set to hidden, hides the result list until a search is performed. Has no effect if the results list is set to disabled.</li>
+  <li><strong>Initial Zoom State:</strong> If set to Auto, and the Locations are shown on load, the map will zoom to show all current locations. Otherwise it will use the settings below. (Default Auto)</li>
+  <li><strong>Initial Zoom Level:</strong> The default zoom level of the Map Area. (Default 3)</li>
+  <li><strong>Initial Center Latitude:</strong> The Default Center Latitude of the Map Area. (Default 40)</li>
+  <li><strong>Initial Center Longitude:</strong> The Default Center Longitude of the Map Area. (Default -100)</li>
+</ul>
+<h4>Search</h4>
+<ul>
+  <li><strong>Enable Search</strong>: Enable the Front-End Search functionality. (Default Enabled)</li>
+  <li><strong>Enable Category Search</strong>: Enable the ability to filter search results by Category. This is also limited by the available categories set in the Menu Item. (Default Enabled)</li>
+  <li><strong>Enable Featured Search</strong>: Enable the ability to filter search results by Featured Items. (Default Enabled)</li>
+  <li><strong>Enable Radius Search</strong>: Enable / Disable showing the radius search filter dropdown option. If hidden the default search radius will be used. (Default Enabled)</li>
+  <li><strong>Enable Results List</strong>: Enable the list of locations to appear next to the Map. (Default Enabled)</li>
+  <li><strong>Google Suggest:</strong> If the search term yields more then one possible location, offer suggestions to clarify the results.</li>
+  <li><strong>Radius Allowed Options: </strong>A list of allowed values to be shown on the search radius dropdown. The list is independent of the units. The list must be Comma-Delimited.</li>
+  <li><strong>Default Radius:</strong> Set the default Radius for the search dropdown. The value must be in the allowed values list above. (Default 25 mi/km)</li>
+  <li><strong>Max Search Results:</strong> The maximum number of locations returned in search results. Must be greater than zero. (Default 250)</li>
+  <li><strong> Max Search Zoom Level:</strong> The maximum zoom level when returning search results. This will prevent the map from zooming in too far when there are few search results. (Default 13)</li>
+  <li><strong> Country Search Bias: </strong>Sets the geocoder to bias search results as if they were sent from the country specified. (Default: None)</li>
+  <li><strong>Search Logging:</strong> Enable logging of search queries.&nbsp;(Default: No)</li>
+  <li><strong>Search Limit: </strong>Enable limiting of searches per IP address. Requires Search Logging to be Enabled. Set to Zero to disable Limiting. (Default: 0)</li>
+  <li><strong>Limiting Period:</strong> The length of time before a users search limit is reset. (Default: 1 Day)</li>
+</ul>
+<h4>Custom Fields</h4>
+<ul>
+  <li><strong>Custom Field Label 1 :</strong>The Label for the Custom Field. (Default: Custom Field 1)</li>
+  <li><strong>Custom Field Label 2 :</strong>The Label for the Custom Field. (Default: Custom Field 2)</li>
+  <li><strong>Custom Field Label 3 :</strong>The Label for the Custom Field. (Default: Custom Field 3)</li>
+  <li><strong>Custom Field Label 4 :</strong>The Label for the Custom Field. (Default: Custom Field 4)</li>
+  <li><strong>Custom Field Label 5 :</strong>The Label for the Custom Field. (Default: Custom Field 5)</li>
+</ul>
+<h4>Misc</h4>
+<ul>
+  <li><strong>Safe Uninstall</strong>:  Setting this to yes will preserve your database tables on uninstall and r-install. (Default Yes)</li>
+  <li><strong>Show Sysgen Media Link:</strong> If set to Yes, a small tagline will appear beneth the component with our copyright and link to our website. <em><strong>We appreciate the support!</strong></em></li>
+  <li><strong>Auto Detect Line Endings:</strong> Improves Compatability with CSV importing. Try to disable if you are having problems importing (Default Yes)</li>
+  <li><strong>Include MooTools</strong>: Include MooTools Library from Joomla. Disable if you have conflicts. (Default Yes) <br />
+  </li>
+  <li><strong>Include CSS</strong>: Include Default Style sheet. Adds a head tag to import the style sheet.  (Default Yes)</li>
+  <li><strong>Google Maps Premiere API  Key</strong>: <span style="color:red;">Optional: </span>Only needed for high volume sites or Maps APi Premier Users. <br />
+    For-profit web sites are permitted to generate up to 25,000 map loads per day using the Google Maps JavaScript API v3. For more information, please see: http://code.google.com/apis/maps/documentation/javascript/usage.html<br />
+  </li>
+</ul>
+<h2><a name="Locations" id="Installation2"></a>Location Manager</h2>
+<h3>How to Access</h3>
+<p> Select <strong>Components → Store Locator → Location Manager</strong> from the drop-down menu on the back-end of your Joomla! installation, or select the &quot;<strong>Location Manager</strong>&quot; link from the <strong> <a href="#Categories">Store Locator - Categories</a> </strong> . </p>
+<h3> Description</h3>
+<p> The Location Manager screen allows you to add location information to  your Joomla! site. You can enter information such as name, address,  Latitude and Longitude.  Afterwards, you can use the <a href="http://help.joomla.org/index2.php?option=com_content&amp;task=view&amp;id=1454&amp;Itemid=278" target="_self" title="Screen.menumanager.15">Menu Manager</a> to create front-end maps to the locations. </p>
+<h3> Column Headers</h3>
+<p> Click on the column heading to sort the list by that column's value.</p>
+<ul>
+  <li>
+    <p> <strong>ID</strong>. The ID number. This is a unique identification  	number for this item assigned automatically by Joomla!. It is used to  	identify the item internally, for example in internal links. You can  	not change this number. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Checkbox</strong>. Check this box to select one or more items.  	To select all items, check the box in the column heading. After one or  	more boxes are checked, click a toolbar button to take an action on the  	selected item or items. Many toolbar actions, such as Publish and  	Un-publish, can work with multiple items. Others, such as Edit, only  	work on one item at a time. If multiple items are checked and you press  	Edit, the first item will be opened for editing. </p>
+  </li>
+  <li>
+    <p> <strong>Name</strong>. The name of the Location. You can click on the Name to open the Location for editing. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Category.</strong> The Category that this Location belongs to. Clicking on the Category Title opens the Category for editing. See <a href="#catedit" target="_self" title="Screen.contact_details.categories.edit.15"> Category Manager - New/Edit</a>.  	Note that Location Categories are separate from other Categories, such  	as those for Articles, Banners, Newsfeeds, and Web Links.</p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Address.</strong> The address of the Location.</p>
+  </li>
+  <li>
+    <p> <strong>Featured</strong>. Whether the item is a featured item. You can change the Featured state by clicking on the icon in this column.</p>
+  </li>
+  <li>
+    <p> <strong>Published</strong>. Whether the item has been published or not. You can change the Published state by clicking on the icon in this column.</p>
+  </li>
+  <li>
+    <p> <strong>Access Level</strong>. Who haspermissions to view  this item. </p></li>
+</ul>
+<h3>
+  Toolbar</h3>
+<p> At the top right you will see the toolbar: </p>
+<p> <img src="../../assets/Location_toolbar.png" alt="Image:Contacts_toolbar.png" border="0" height="52" width="374" /> </p>
+<p> The functions are: </p>
+<ul>
+  <li>
+    <p> <strong>Publish</strong>. To publish one or more items, select them and click on this button.</p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Un-publish</strong>. To un-publish one or more items, select them and click on this button.</p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Delete</strong>. To delete one or more items, select them and click this button. The selected items will be deleted. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Edit</strong>. Select one item and click on this button to open  	it in edit mode. If you have more than one item selected, the first  	item will be opened. You can also open an item for editing by clicking  	on its   Name. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>New</strong>. Click on this button to create a new item. You will enter the New page for this item. </p>
+  </li>
+  <li>
+    <p> <strong>Options.</strong> See <a href="#Parameters" target="_self">Global Options</a> section above. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Help</strong>. Opens this Help Screen. </p>
+  </li>
+</ul>
+<h2><a name="Categories" id="Categories"></a>Location Category Manager</h2>
+<h3>How to Access</h3>
+<p> Select <strong>Components → Store Locator → Categories </strong> from the drop-down menu on the back-end of your Joomla! installation, or select the &quot;<strong>Categories</strong>&quot; link from the <strong> <a href="#Locations">Location Manager</a> </strong> screen. </p>
+<h3> Description</h3>
+<p> The Location Category Manager is where you can edit existing Location  Categories and create new ones. Note that Location Categories are  separate from other Categories, such as for Articles, Banners, News  Feeds, and Web Links. From this screen, you can also navigate to the <a href="#Locations" target="_self" title="Screen.contactmanager.15">Location  Manager</a> screen. </p>
+<h3>Column Headers</h3>
+<p> Click on the column heading to sort the list by that column's value.<span class="small"> (Coming Soon)</span></p>
+<ul>
+  <li>
+    <p> <strong>ID</strong>. The ID number. This is a unique identification  	number for this item assigned automatically by Joomla!. It is used to  	identify the item internally, for example in internal links. You can  	not change this number. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Checkbox</strong>. Check this box to select one or more items.  	To select all items, check the box in the column heading. After one or  	more boxes are checked, click a toolbar button to take an action on the  	selected item or items. Many toolbar actions, such as Publish and  	Un-publish, can work with multiple items. Others, such as Edit, only  	work on one item at a time. If multiple items are checked and you press  	Edit, the first item will be opened for editing. </p>
+  </li>
+  <li>
+    <p> <strong>Name</strong>. The name of the Category. You can click on the Name to open the Location for editing. <br />
+    </p>
+  </li>
+  <li><strong>Marker Type. </strong>The Category Icon used for displaying associated locations on the map. Over 90+ Icons Available!</li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Published</strong>. Whether the item has been published or not. You can change the Published state by clicking on the icon in this column. <span class="small"> (Coming Soon)</span></p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Order</strong>. The order to display items. If the list is  	sorted by this column, you can change the order by clicking the arrows  	or by entering the sequential order and clicking 'Save Order'. Note  	that the display order on a page is set in the Parameters - Advanced  	section for each <a href="http://help.joomla.org/index2.php?option=com_content&amp;task=view&amp;id=1517&amp;Itemid=278" target="_self" title="Screen.menus.edit.15">Menu Item</a>.  	If that order is set to use something other than 'Order' (for example,  	'Title - Alphabetical'), then the order value in this screen will be  	ignored. If the Menu Item Order parameter is set to use 'Order', then  	the items will display on the page based on the order in this screen. <span class="small"> (Coming Soon)</span></p>
+  </li>
+</ul>
+<h3> <a name="catedit" id="catedit"></a>Toolbar</h3>
+<p> At the top right you will see the toolbar: </p>
+<p> <img src="../../assets/Category_toolbar.png" alt="Image:banner_category_manager_toolbar.png" border="0" height="51" width="299" /> </p>
+<ul>
+  <li>
+    <p> <strong>Publish</strong>. To publish one or more items, select them and click on this button. <span class="small"> (Coming Soon)</span></p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Un-publish</strong>. To un-publish one or more items, select them and click on this button. <span class="small"> (Coming Soon)</span></p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Delete</strong>. To delete one or more items, select them and click this button. The selected items will be deleted. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Edit</strong>. Select one item and click on this button to open  	it in edit mode. If you have more than one item selected, the first  	item will be opened. You can also open an item for editing by clicking  	on its Title or Name. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>New</strong>. Click on this button to create a new item. You will enter the New page for this item. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Help</strong>. Opens this Help Screen. </p>
+  </li>
+</ul>
+<h2><a name="ImportExport" id="Installation3"></a>CSV Import / Export</h2>
+<h3>How to Access</h3>
+<p> Select <strong>Components → Store Locator → Import / Export </strong> from the drop-down menu on the back-end of your Joomla! installation, or select the &quot;<strong>Import / Export</strong>&quot; link from the <strong> <a href="#Locations">Location Manager</a> </strong> screen. </p>
+<h3> Description</h3>
+<p> The CSV Import / Export screen is where you can manage your location data via CSV files so that you can backup and save your existing location data or import a large data set of locations. With the new <a href="#Geocoder">Batch Geocoder</a> you can now import a large dataset and then look up coordinates for each location in a very quick and efficient manner. To use the Batch Geocoder, first Import your locations with the Lat/Lng fields set to 0. Then run the Batch Geocoder.</p>
+<h3> CSV Import</h3>
+<p> To import a list of locations browse for a CSV file on your computer. If the first row contains column headers check the box next to &quot;<strong>First Row Contains Column Names</strong>&quot; to skip importing the first row in the CSV file. Then click the &quot;Import&quot; button and wait untill the process is completed. You will be presented with the import results and let you know if there were any errors.</p>
+<h3>CSV Instructions</h3>
+    <p>To see an example import file, add one location to the database from the location manager and then run an export.</p>
+    <p><strong>Column Format:</strong><br />
+Name,Address,Phone,Website,Lattitude,Longitude,Category,Email,Facebook,Twitter,Custom1,Custom2,Custom3,Custom4,Custom5,Tags,Featured,Published,&quot;Start Publishing&quot;,&quot;Finished Publishing&quot;,Description</p>
+    <p> <strong>Example:</strong> <br />
+  &quot;Sysgen Media&quot;,&quot;81 Scudder Ave Northport NY&quot;,&quot;631-343-2211&quot;,&quot;http://www.sysgenmedia.com&quot;,40.899818,-73.347762,&quot;General&quot;,&quot;test@example.com&quot;,&quot;http://facebook.com/SysgenMedia&quot;,&quot;sysgenmedia&quot;,&quot;custom text 1&quot;,&quot;custom text 2&quot;,&quot;custom text 3&quot;,&quot;custom text 4&quot;,&quot;custom text 5&quot;,&quot;Tag 1,Tag 2&quot;,1,1</p>
+<p><strong><em>CSV File - Syntax Rules:</em></strong></p>
+    <ul>
+      <li><em> File should be a  Formatted as a CSV File.</em></li>
+      <li><strong><em>Every Row MUST have 19 columns</em></strong></li>
+      <li><em>Name, Category,  Featured, and Published fields are required</em></li>
+      <li><em>Category can be specified by Name or by existing category ID.  If the  category doesnt exist it will be  created. Category is Required.</em></li>
+      <li><em>Tags should be enclosed in quotes. Multiple tags should be  delimited by commas. If the Tag doesn't exist, it will be created.  Example: &quot;Tag 1, Tag 2&quot;</em></li>
+      <li><em>Featured should be specified as a 0 or 1. 0 = Unfeatured, 1 = Featured</em></li>
+      <li><em>Published should be specified as a 0 or 1. 0 - Unpublished, 1 = Published.</em>  </li>
+      <li>Start Publishing, Finished Publishing and Description are Optional Columns</li>
+    </ul>
+    <p><strong><em>If Latitude and Longitude are set to Zero you can use the <a href="#Geocoder">Batch Geocoder</a> to look up the correct coordinates.</em></strong></p>
+<h3>CSV Export</h3>
+  <p>To export a list of locations in a CSV file select the categories you wish to include in the export and click the &quot;Export&quot; button. The file will follow the same format as the CSV Import Requirements. For an example CSV Import file, add a location via the <a href="#Locations">Location Manager</a> and then perform a CSV Export.</p>
+  <h2><a name="Geocoder" id="Installation4"></a>Batch Geocoder</h2>
+  <h3>How to Access</h3>
+  <p> Select <strong>Components → Store Locator → Batch Geocoder </strong> from the drop-down menu on the back-end of your Joomla! installation, or select the &quot;<strong>Batch Geocoder</strong>&quot; link from the <strong> <a href="#Locations">Location Manager</a> </strong> screen. </p>
+  <h3> Description</h3>
+  <p>Geocode multiple locations quiclky using the power of the Google   Geocoding Web Service. The system will automatically locate any locations that have missing coordinates (locations with their coordinates set to Zero), upon clicking &quot;Process Locations&quot; the system will attempt to encode all your locations and automatically save their coordinates to the database. The system has a batch limit of 500 requests per run. If you need more, run it again and it will pick up where it left off. Please be patient, Geocoding is a time and resource intensive task and may take a few minutes to complete. <em>In addition, Google imposes a daily limit of 2,500 requests per IP Address. Note: Because the service runs in the background in a very efficient manner the IP Address used is the Web Server's IP Address.</em></p>
+  <h3>What is Geocoding?</h3>
+  <p>Geocoding is the process of converting addresses (like &quot;1600  Amphitheatre Parkway, Mountain View, CA&quot;) into geographic  coordinates (like latitude 37.423021 and longitude -122.083739),  which you can use to place markers or position the map. The Google  Geocoding API provides a direct way to access a geocoder  via an HTTP request. Additionally, the service allows you to  perform the converse operation (turning coordinates into addresses);  this process is known as &quot;reverse geocoding.&quot;</p>
+  <h2><a name="Markers" id="Markers"></a>Marker Manager</h2>
+<h3>How to Access</h3>
+<p> Select <strong>Components → Store Locator → Marker Manager</strong> from the drop-down menu on the back-end of your Joomla! installation, or select the &quot;<strong>Marker Manager</strong>&quot; link from the <strong> <a href="#Locations">Location Manager</a> </strong> screen. </p>
+<h3> Description</h3>
+<p> The Maker Manager is where you can edit existing Marker Iconsand create new ones. From this screen, you can also navigate to the <a href="#Locations" target="_self" title="Screen.contactmanager.15">Location  Manager</a> screen. </p>
+<h3>Column Headers</h3>
+<p> Click on the column heading to sort the list by that column's value.<span class="small"> (Coming Soon)</span></p>
+<ul>
+  <li>
+    <p> <strong>ID</strong>. The ID number. This is a unique identification  	number for this item assigned automatically by Joomla!. It is used to  	identify the item internally, for example in internal links. You can  	not change this number. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Checkbox</strong>. Check this box to select one or more items.  	To select all items, check the box in the column heading. After one or  	more boxes are checked, click a toolbar button to take an action on the  	selected item or items. Many toolbar actions, such as Publish and  	Un-publish, can work with multiple items. Others, such as Edit, only  	work on one item at a time. If multiple items are checked and you press  	Edit, the first item will be opened for editing. </p>
+  </li>
+  <li>
+    <p> <strong>Name</strong>. The name of the Marker. You can click on the Name to open the Marker for editing. <br />
+    </p>
+  </li>
+  <li><strong>Marker Image. </strong>The Marker Icon used for displaying associated locations on the map.  </li>
+</ul>
+<h3> <a name="catedit" id="catedit"></a>Toolbar</h3>
+<p> At the top right you will see the toolbar: </p>
+<p> <img src="../../assets/Category_toolbar.png" alt="Image:banner_category_manager_toolbar.png" border="0" height="51" width="299" /></p>
+<ul>
+  <li>
+    <p> <strong>Delete</strong>. To delete one or more items, select them and click this button. The selected items will be deleted. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Edit</strong>. Select one item and click on this button to open  	it in edit mode. If you have more than one item selected, the first  	item will be opened. You can also open an item for editing by clicking  	on its Title or Name. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>New</strong>. Click on this button to create a new item. You will enter the New page for this item. </p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p> <strong>Help</strong>. Opens this Help Screen. </p>
+  </li>
+</ul>
+
+  <h2><a name="Menus" id="Categories2"></a>Menu Items</h2>
+<p>To show the Store Locator on your site you need to create a Menu Item for it. You have the option to display all locations (default) or to specify up to four categories to display. This allows you to create Menu Items to show different   categories.</p>
+<h3> How To Access</h3>
+<p> To access the New Menu Creation wizard, navigate to the <a href="http://help.joomla.org/index2.php?option=com_content&amp;task=view&amp;id=1455&amp;Itemid=278" target="_self">Menu Item Manager</a> for the desired menu and press the New button on the toolbar. </p>
+<h3> Description</h3>
+<p> In this screen, you will select the Menu Item Type for this Menu Item.  The Menu Item Type determines the type of page that will display when  this menu choice is selected by the User.&nbsp; Choose Menu Type: <strong> Store Locator→ Store Locator→ </strong><strong>Map Layout</strong></p>
+<p><strong> Basic Settings</strong> - Settings allow you to define which Categories and/or Tags are visible. You can also specify location&nbsp;ordering, Name Seach, and additional display options.</p>
+<p><strong>Popup Bubble View Settings</strong> - Allows you to define what fields are visible on the Popup Bubble</p>
+<p><strong>Sidebar Results View Settings</strong> - Allows you to define what fields are visible on the Results List</p>
+<p>&nbsp;</p>
+<h2><a name="Language" id="Categories3"></a>Language Files</h2>
+<p>The Store Locator now includes multi-language support. We implemented the Joomla Language system as well as Joom!Fish support for Database information.</p>
+<h3> Joomla Language File</h3>
+<p> To modify any of the static text, the English language file provided will be located in:<br />
+  Joomla 1.5:  <strong>/language/en-GB/en-GB.com_storelocator.ini</strong><br />
+  Joomla 1.6/1.7: <strong>/components/com_storelocator/language/en-GB/en-GB.com_storelocator.ini</strong><br />
+  <br />
+  To add additional languages copy the ini file to the appropriate language folder and modify the entries. If you build a language file for a new language we would appricieate it if you could post it to our forums so we may include it in future releases.</p>
+<h3> Joom!Fish - For Joomla 1.5</h3>
+<p>We have also included Joom!Fish Content Element files so that yo can easily translate your Database entries for Category names and Location information. The content element files are automatically installed upon installation of Joom!Fish is detected. If you install Joom!Fish after you have already installed the store locator, you can install a Joom!Fish content element pack via the Joom!Fish installer. The content element pack is available as a separate download on the site. For more information visit: <a href="http://www.joomfish.net/">http://www.joomfish.net/</a></p>
+<hr />
+<p>The Store Locator Joomla Component is developed by <a href="http://www.sysgenmedia.com" target="_blank"><img src="../../assets/sysgen_16.png" alt="Sysgen Component Development" width="16" height="16" border="0" align="absmiddle" /></a> <a href="http://www.sysgenmedia.com" target="_blank">Sysgen Media LLC</a>.<br />
+  For support inquires please check our <a href="https://www.sysgenmedia.com/forum">Forums</a> or if you have an active subscription <a href="https://www.sysgenmedia.com/submit-a-ticket">Submit a Ticket</a></p>
+<p><strong>For Joomla Web Design, Hosting or Custom Component Development please <a href="http://www.sysgenmedia.com">contact us today</a>.</strong></p></td>
+</tr>
+<tr>
+	<td colspan="2"  class="modifydate">
+		Last Updated (  
+		  <!-- #BeginDate format:Am1m -->April 8, 2013  14:27<!-- #EndDate -->
+	    )	</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

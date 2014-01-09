@@ -1,0 +1,122 @@
+<div class="well row">
+  <div class="span6">
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="">
+          Pan
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.controls.pan"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="">
+          Zoom
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.controls.zoom"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="">
+          Map type
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.controls.mapType"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="">
+          Scale
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.controls.scale"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="">
+          Street view
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.controls.streetView"}}
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <label
+          id="jform_info_block_position-lbl"
+          for="jform_info_block_position"
+          class="hasTooltip"
+          title="">
+          Overview map
+        </label>
+      </div>
+      <div class="controls">
+        {{view Ember.Select
+          contentBinding="view.selectValues.yesOrNo"
+          optionValuePath="content.value"
+          optionLabelPath="content.label"
+          valueBinding="App.settings.controls.overviewMap"}}
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
