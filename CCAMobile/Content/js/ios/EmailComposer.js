@@ -85,7 +85,7 @@
                                            
             if (!window.plugins.emailComposer) {
                window.plugins.emailComposer = new EmailComposer();
-                console.log("**************************** Email Composer ready *************************");
+                //console.log("**************************** Email Composer ready *************************");
             }
         });
 })();/* End of Temporary Scope. */

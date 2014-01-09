@@ -10,9 +10,9 @@ function showIndexPageResponseHandler(){
 
 /* Display Clinics Starts Here */
 
-function searchClinicsInCurrentLocation(){
+function searchClinicsInCurrentLocation(position){
     showLoadingIndicator();
-    queryString = "distance="+distance+"&lat=40.7143528&lng=-74.0059731";
+    queryString = "distance="+distance+"&lat="+position.coords.latitude+"&lng="+position.coords.longitude;
     ajaxRequest("getClinicsDetails", queryString, loadClinicsOnMapResponseHandler);
 }
 
@@ -41,7 +41,7 @@ function loadClinics(target){
     if(target == "Map"){
         $("#clinics_Map_Switch").attr('checked', true);
         $('#backButton').attr('onclick',"loadClinics('Map')");
-        searchClinicsInCurrentLocation();
+        getCurrentLocationLatLong();
     } else if(target == "List"){
         $("#clinics_List_Switch").attr('checked', true);
         $('#backButton').attr('onclick',"loadClinics('List')");

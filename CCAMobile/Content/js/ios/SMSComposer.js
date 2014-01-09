@@ -91,7 +91,7 @@
        
        if (!window.plugins.smsComposer){
             window.plugins.smsComposer = new SMSComposer();
-            console.log("**************************** SMS Composer ready *************************");
+            //console.log("**************************** SMS Composer ready *************************");
        }
     });
  })();/* End of Temporary Scope. */

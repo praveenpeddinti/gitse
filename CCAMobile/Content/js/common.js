@@ -367,3 +367,37 @@ function sendViaEmail(){
 }
 
 /* Send Email With Attachment Ends Here */
+
+/* Calculate Current Location Latitude & Longitude Starts Here */
+
+function getCurrentLocationLatLong(){
+    if(deviceAgent == "PC"){
+        if(navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(searchClinicsInCurrentLocation, geoLocationError);
+        else
+            //showAlert("Geolocation is not supported by this browser.!");
+    } else{
+        navigator.geolocation.getCurrentPosition( searchClinicsInCurrentLocation, geoLocationError, { enableHighAccuracy: true } );
+    }
+}
+
+function geoLocationError(error){
+    //showAlert("Error occured while finding current location lat long.!");
+    switch(error.code)
+    {
+        case error.PERMISSION_DENIED:
+            //showAlert("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            //showAlert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            //showAlert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            //showAlert("An unknown error occurred.");
+            break;
+    }
+}
+
+/* Calculate Current Location Latitude & Longitude Starts Here */
