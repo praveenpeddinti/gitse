@@ -374,8 +374,9 @@ function getCurrentLocationLatLong(){
     if(deviceAgent == "PC"){
         if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(searchClinicsInCurrentLocation, geoLocationError);
-        else
+        else{
             //showAlert("Geolocation is not supported by this browser.!");
+        }
     } else{
         navigator.geolocation.getCurrentPosition( searchClinicsInCurrentLocation, geoLocationError, { enableHighAccuracy: true } );
     }
@@ -383,21 +384,21 @@ function getCurrentLocationLatLong(){
 
 function geoLocationError(error){
     //showAlert("Error occured while finding current location lat long.!");
-    switch(error.code)
+    /*switch(error.code)
     {
         case error.PERMISSION_DENIED:
-            //showAlert("User denied the request for Geolocation.");
+            showAlert("User denied the request for Geolocation.");
             break;
         case error.POSITION_UNAVAILABLE:
-            //showAlert("Location information is unavailable.");
+            showAlert("Location information is unavailable.");
             break;
         case error.TIMEOUT:
-            //showAlert("The request to get user location timed out.");
+            showAlert("The request to get user location timed out.");
             break;
         case error.UNKNOWN_ERROR:
-            //showAlert("An unknown error occurred.");
+            showAlert("An unknown error occurred.");
             break;
-    }
+    }*/
 }
 
 /* Calculate Current Location Latitude & Longitude Starts Here */
