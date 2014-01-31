@@ -424,3 +424,35 @@ function geoLocationError(error){
 }
 
 /* Calculate Current Location Latitude & Longitude Starts Here */
+
+/* Add To Contacts Starts Here */
+
+function addPhoneNumberToContacts(){
+    var contact = navigator.contacts.create();
+    contact.id = $("#clinicId").html();
+    contact.displayName = $("#clinicName").html();
+    contact.nickname = $("#clinicName").html(); //specify both to support all devices
+    
+    var name = new ContactName();
+    name.givenName = $("#clinicName").html(); //First Name
+    name.familyName = ""; //Last Name
+    contact.name = name;
+    
+    var phoneNumbers = [];
+    phoneNumbers[0] = new ContactField('mobile', $.trim($("#clinicPhoneNo").text()), true);
+    contact.phoneNumbers = phoneNumbers;
+    
+    contact.note = $("#clinicAddress").html() + " Category: " + $("#clinicCategory").html();
+    
+    contact.save(contactSaveSuccess, contactSaveError);
+}
+
+function contactSaveSuccess(contact){
+    ShowMessage('successModal', 'Add Clinics Details Status', "<li class='success'>Clinic details added succesfully to your contacts.</li>" , true, false);
+}
+
+function contactSaveError(contactError){
+    ShowMessage('errorModal', 'Add Clinics Details Status', "<li class='error'>Adding clinic details to your contacts failed.</li>" , true, false);
+}
+
+/* Add To Contacts Ends Here */
