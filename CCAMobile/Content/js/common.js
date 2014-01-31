@@ -1,6 +1,6 @@
 
-var serverURL = "http://10.10.73.107:6060/CCA/index.php/";
-var site_base_ur = "http://10.10.73.107:6060/CCA/";
+var serverURL = "http://10.10.73.107/CCA/index.php/";
+var site_base_ur = "http://10.10.73.107/CCA/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
@@ -327,15 +327,15 @@ function showMap(divId, clinicsData){
         zoom: 10,
         minZoom :0,
         maxZoom :15,
-        center: new google.maps.LatLng(-33.92, 151.25),        
+        center: new google.maps.LatLng(globalspace.currentLatitude, globalspace.currentLongitude),        
         size: new google.maps.Size(100,100),
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
 
-    if(clinicsData.length > 0)
+    /*if(clinicsData.length > 0)
         mapOptions.center = new google.maps.LatLng(clinicsData[0].lat, clinicsData[0].lng);
     else
-        mapOptions.center = new google.maps.LatLng(-33.92, 151.25);
+        mapOptions.center = new google.maps.LatLng(globalspace.currentLatitude, globalspace.currentLongitude);*/
     
     var map = new google.maps.Map(document.getElementById(divId),mapOptions);
     var infowindow = new google.maps.InfoWindow();

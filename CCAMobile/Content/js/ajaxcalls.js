@@ -12,6 +12,8 @@ function showIndexPageResponseHandler(){
 
 function searchClinicsInCurrentLocation(position){
     showLoadingIndicator();
+    globalspace.currentLatitude = position.coords.latitude;
+    globalspace.currentLongitude = position.coords.longitude;
     queryString = "distance="+distance+"&lat="+position.coords.latitude+"&lng="+position.coords.longitude;
     ajaxRequest("getClinicsDetails", queryString, loadClinicsOnMapResponseHandler);
 }
@@ -60,9 +62,6 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
         $("#footer").show();
         
         my.utils.renderViewTo('Views/clinicsOnMap.html', loadClinicsOnMapResponse, 'mainContentDiv', function(){
-            if(loadClinicsOnMapResponse.data.length == 0)
-                ShowMessage('errorModal', 'Search Clinics Status', "<li class='error'>No clinics found to locate on map.</li>" , true, false);
-            
             if(loadClinicsOnMapResponse.searchKeyword!=undefined)
                 $("#searchClinicsKeyword").val(loadClinicsOnMapResponse.searchKeyword);
             
