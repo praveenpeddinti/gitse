@@ -52,7 +52,7 @@ function exitApp(){
 
 function sendSMS(){
     if(deviceAgent != "PC"){
-    	SmsPlugin.prototype.send('9010608698', getClinicDetailsForSMS(), '',
+    	SmsPlugin.prototype.send([], getClinicDetailsForSMS(), '',
             function () { 
                //showAlert('SMS sent successfully');  
             },

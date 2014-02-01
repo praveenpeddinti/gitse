@@ -1,6 +1,6 @@
 
-var serverURL = "http://10.10.73.107/CCA/index.php/";
-var site_base_ur = "http://10.10.73.107/CCA/";
+var serverURL = "http://10.10.73.70/CCA/index.php/";
+var site_base_ur = "http://10.10.73.70/CCA/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
@@ -406,21 +406,6 @@ function getCurrentLocationLatLong(){
 
 function geoLocationError(error){
     //showAlert("Error occured while finding current location lat long.!");
-    /*switch(error.code)
-    {
-        case error.PERMISSION_DENIED:
-            showAlert("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            showAlert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            showAlert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            showAlert("An unknown error occurred.");
-            break;
-    }*/
 }
 
 /* Calculate Current Location Latitude & Longitude Starts Here */
@@ -428,23 +413,27 @@ function geoLocationError(error){
 /* Add To Contacts Starts Here */
 
 function addPhoneNumberToContacts(){
-    var contact = navigator.contacts.create();
-    contact.id = $("#clinicId").html();
-    contact.displayName = $("#clinicName").html();
-    contact.nickname = $("#clinicName").html(); //specify both to support all devices
-    
-    var name = new ContactName();
-    name.givenName = $("#clinicName").html(); //First Name
-    name.familyName = ""; //Last Name
-    contact.name = name;
-    
-    var phoneNumbers = [];
-    phoneNumbers[0] = new ContactField('mobile', $.trim($("#clinicPhoneNo").text()), true);
-    contact.phoneNumbers = phoneNumbers;
-    
-    contact.note = $("#clinicAddress").html() + " Category: " + $("#clinicCategory").html();
-    
-    contact.save(contactSaveSuccess, contactSaveError);
+    if(deviceAgent != "PC"){
+        var contact = navigator.contacts.create();
+        contact.id = $("#clinicId").html();
+        contact.displayName = $("#clinicName").html();
+        contact.nickname = $("#clinicName").html(); //specify both to support all devices
+        
+        var name = new ContactName();
+        name.givenName = $("#clinicName").html(); //First Name
+        name.familyName = ""; //Last Name
+        contact.name = name;
+        
+        var phoneNumbers = [];
+        phoneNumbers[0] = new ContactField('mobile', $.trim($("#clinicPhoneNo").text()), true);
+        contact.phoneNumbers = phoneNumbers;
+        
+        contact.note = $("#clinicAddress").html() + " Category: " + $("#clinicCategory").html();
+        
+        contact.save(contactSaveSuccess, contactSaveError);
+    } else{
+        showAlert("Sorry! You can add clinic details to your contacts from mobile app only.!");
+    }
 }
 
 function contactSaveSuccess(contact){
