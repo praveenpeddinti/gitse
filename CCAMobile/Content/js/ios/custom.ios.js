@@ -59,8 +59,6 @@ function addPhoneNumberToContacts(){
             });
         }
     }, contactSaveError, contactOptions);
-    
-    return flag;
 }
 
 function addPhoneNoToContacts(){
@@ -88,7 +86,7 @@ function addPhoneNoToContacts(){
 }
 
 function contactSaveSuccess(contact){
-    ShowMessage('successModal', 'Add Clinics Details Status', "<li class='success'>Clinic details added succesfully to your contacts.</li>" , true, false);
+    ShowMessage('successModal', 'Add Clinics Details Status', "<li class='success'>Clinic details added successfully to your contacts.</li>" , true, false);
 }
 
 function contactSaveError(contactError){
