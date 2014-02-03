@@ -55,7 +55,7 @@ function addPhoneNumberToContacts(){
             addPhoneNoToContacts();
         } else{
             showConfirmation("Another contact(s) is existed with "+ clinicName +". Do you want to update it?", function(){
-                             contacts[0].remove( function(){ addPhoneNoToContacts(); }, contactSaveError );
+                contacts[0].remove( function(){ addPhoneNoToContacts(); }, contactSaveError );
             });
         }
     }, contactSaveError, contactOptions);
@@ -86,11 +86,11 @@ function addPhoneNoToContacts(){
 }
 
 function contactSaveSuccess(contact){
-    ShowMessage('successModal', 'Add Clinics Details Status', "<li class='success'>Clinic details added successfully to your contacts.</li>" , true, false);
+    ShowMessage('successModal', 'Add Clinic Details Status', "<li class='success'>Clinic details added successfully to your contacts.</li>" , true, false);
 }
 
 function contactSaveError(contactError){
-    ShowMessage('errorModal', 'Add Clinics Details Status', "<li class='error'>Adding clinic details to your contacts failed.</li>" , true, false);
+    ShowMessage('errorModal', 'Add Clinic Details Status', "<li class='error'>Adding clinic details to your contacts failed.</li>" , true, false);
 }
 
 /* Add To Contacts Ends Here */
