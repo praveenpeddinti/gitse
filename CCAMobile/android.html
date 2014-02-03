@@ -30,20 +30,7 @@
         <script type="text/javascript" src="Content/js/index.js"></script>
     </head>
     <body class="body">
-        <div id="loadingWidget" style="position: absolute;z-index: 99999999;width: 100%;text-align: center;top:50%;display: none;" >
-            <div id='cl_spiral' class="loader" style="margin-left:-10px;">
-                <script type="text/javascript">
-                    var cl0 = new CanvasLoader("cl_spiral", {id: "canvasLoader", safeVML: true});
-                    cl0.setShape("spiral");
-                    cl0.setDiameter(60);
-                    cl0.setDensity(60);
-                    cl0.setSpeed(6);
-                    cl0.setFPS(12);
-                    cl0.show();
-                </script>
-            </div>
-        </div>
-        
+        <div id="splashscreen_spinner" class="splash_spinner" style="display:none;"><i class="custom-spinner margin_auto"></i></div>
         <div id="errorModal" class="modal fade error_modal modal_top" aria-hidden="false" aria-labelledby="Error Modal Label" role="dialog" tabindex="-1">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -81,7 +68,7 @@
                 </ul>
             </div>
             <div class="modal-footer hcenter marginT0">
-                <button id="successModalCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>                
+                <button id="successModalCancel" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
         </div>
         
@@ -89,30 +76,26 @@
             <div class="row-fluid">
                 <div class="span12">
                     <div class="span3 marginT7 paddingL5">
+                        <div><i id="loadingWidget" class="custom-spinner" style="display: none;"></i></div>
                         <a id="backButton" href="#" class="pull-left top_backButton" style="display:none" onclick="loadClinics('Map')"></a>
                     </div>
                     <div class="span6">
-                        <div id="headerLogo" style="display:none;">
+                        <div id="headerLogo">
                             <p><img src="Content/images/cca_inner_logo.png" onclick="loadClinics('Map')"/></p>
-                        </div>
-                        <div id="clinicsSwitchDiv" class="register-switch" style="display:none;">
-                            <input type="radio" name="clinics" value="Map" id="clinics_Map_Switch" class="register-switch-input" checked onchange="loadClinics('Map')" />
-                            <label for="clinics_Map_Switch" class="register-switch-label">Map</label>
-                            <input type="radio" name="clinics" value="List" id="clinics_List_Switch" class="register-switch-input" onchange="loadClinics('List')" />
-                            <label for="clinics_List_Switch" class="register-switch-label">List</label>
                         </div>
                     </div>
                     <div class="span3 marginT7 paddingR5"><a id="shareIcon" href="#" class="pull-right top_share_icon" style="display:none;" onclick="showShareActionsModal();"></a></div>
                 </div>
             </div>
         </div>
-        <div id="wrapper" class="wrapper_top">
+        
+        <div id="wrapper" class="wrapper_top bottom0">
             <div id="scroller">
                 <div id="mainContentDiv" class="maindiv">
-                    <!-- here we will load body content dynamically -->                    
+                    <!-- here we will load body content dynamically -->
                 </div>
             </div>
-        </div>
+        </div>    
         <div id="footer" class="footer" style="display: none;">            
             <div id="clinicsTab"><a href="#" class="clinic" onclick="loadClinics('Map');"><img src="Content/images/spacer.png" /></a></div>
             <div id="partnersTab"><a href="#" class="partners" onclick="loadPartners()"><img src="Content/images/spacer.png" /></a></div>

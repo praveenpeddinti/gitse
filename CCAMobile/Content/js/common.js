@@ -1,6 +1,6 @@
 
-var serverURL = "http://10.10.73.70/CCA/index.php/";
-var site_base_ur = "http://10.10.73.70/CCA/";
+var serverURL = "http://10.10.73.107/CCA/index.php/";
+var site_base_ur = "http://10.10.73.107/CCA/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
@@ -90,6 +90,14 @@ function showLoadingIndicator(){
 
 function hideLoadingIndicator(){
     $("#loadingWidget").hide();
+}
+
+function showSplashScreenLoadingIndicator(){ 
+    $("#splashscreen_spinner").show();
+}
+
+function hideSplashScreenLoadingIndicator(){
+    $("#splashscreen_spinner").hide();
 }
 
 var my = my || {};
@@ -393,6 +401,7 @@ function sendViaEmail(){
 /* Calculate Current Location Latitude & Longitude Starts Here */
 
 function getCurrentLocationLatLong(){
+    showLoadingIndicator();
     if(deviceAgent == "PC"){
         if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(searchClinicsInCurrentLocation, geoLocationError);

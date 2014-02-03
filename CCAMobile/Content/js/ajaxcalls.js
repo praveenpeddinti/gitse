@@ -1,17 +1,17 @@
 function showIndexPage() {
-    showLoadingIndicator();
+    showSplashScreenLoadingIndicator();
     my.utils.renderViewTo('Views/index.html', null, 'mainContentDiv', showIndexPageResponseHandler);
 }
 
 function showIndexPageResponseHandler(){
     refreshBodyScroll();
-    hideLoadingIndicator();
+    splashIntervalId = setTimeout( function(){ loadClinics('Map'); } , timeInterval);
+    hideSplashScreenLoadingIndicator();
 }
 
 /* Display Clinics Starts Here */
 
 function searchClinicsInCurrentLocation(position){
-    showLoadingIndicator();
     globalspace.currentLatitude = position.coords.latitude;
     globalspace.currentLongitude = position.coords.longitude;
     queryString = "distance="+distance+"&lat="+position.coords.latitude+"&lng="+position.coords.longitude;
@@ -35,15 +35,20 @@ function getClinicsForZipOrLocation(searchKeyword){
 }
 
 function loadClinics(target){
+    clearInterval(splashIntervalId);
+    //showSplashScreenLoadingIndicator();
+    $("#wrapper").removeClass("bottom0");
     $("#clinicsTab").addClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").removeClass("active");
     $("#clinics_Map_Switch").removeAttr('checked');
     $("#clinics_List_Switch").removeAttr('checked');
+    $("#backButton").hide();
+    $("#shareIcon").hide();
     if(target == "Map"){
         $("#clinics_Map_Switch").attr('checked', true);
         $('#backButton').attr('onclick',"loadClinics('Map')");
-        getCurrentLocationLatLong();
+        getCurrentLocationLatLong();        
     } else if(target == "List"){
         $("#clinics_List_Switch").attr('checked', true);
         $('#backButton').attr('onclick',"loadClinics('List')");
@@ -55,12 +60,8 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
     if(loadClinicsOnMapResponse.status == "success"){
         $("body").removeClass("body");
         $("#header").show();
-        $("#backButton").hide();
-        $("#clinicsSwitchDiv").show();
-        $("#shareIcon").hide();
-        $("#headerLogo").hide();
         $("#footer").show();
-        
+        //hideSplashScreenLoadingIndicator();
         my.utils.renderViewTo('Views/clinicsOnMap.html', loadClinicsOnMapResponse, 'mainContentDiv', function(){
             if(loadClinicsOnMapResponse.searchKeyword!=undefined)
                 $("#searchClinicsKeyword").val(loadClinicsOnMapResponse.searchKeyword);
@@ -109,10 +110,6 @@ function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
         }
         
         my.utils.renderViewTo('Views/clinicsList.html', loadClinicsAsListResponse, targetDiv, function(){
-            $("#headerLogo").hide();
-            $("#backButton").hide();
-            $("#clinicsSwitchDiv").show();
-            $("#shareIcon").hide();
             
             if(loadClinicsAsListResponse.pageNumber == 0 && loadClinicsAsListResponse.resultSize == 0){
                 $("#noClinicsFoundDiv").show();
