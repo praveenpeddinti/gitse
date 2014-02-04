@@ -217,7 +217,7 @@ function loadAboutCCA(){
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").addClass("active");
-    ajaxRequest("getAboutUs", "", loadAboutCCAResponseHandler);
+    ajaxRequest("getAboutUs", "deviceAgent="+deviceAgent, loadAboutCCAResponseHandler);
 }
 
 function loadAboutCCAResponseHandler(loadAboutCCAResponse){
