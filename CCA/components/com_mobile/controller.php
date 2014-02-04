@@ -51,8 +51,8 @@ class mobileController extends JController {
             } else{
                 $response = array();
                 $response['title'] = $responseData->title;
-
-                if($_REQUEST['isMobile'] != 'true'){
+                
+                if($_REQUEST['deviceAgent'] == 'PC'){
                     $introtext = $responseData->introtext;
                 } else {
                     $doc = new DOMDocument();
