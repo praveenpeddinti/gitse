@@ -1,6 +1,6 @@
 
-var serverURL = "http://10.10.73.107/CCA/index.php/";
-var site_base_ur = "http://10.10.73.107/CCA/";
+var serverURL = "http://115.248.17.88/CCA/index.php/";
+var site_base_ur = "http://115.248.17.88/CCA/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
