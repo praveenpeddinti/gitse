@@ -1,6 +1,6 @@
 {{if pageNumber == 0}}
-    <div id="clinicsListMainDiv" class="cca_continer marginT54">
-        <div class="sub_header_div">
+<div id="clinicsListMainDiv" class="cca_continer">
+    <div class="sub_header_div">
         <div class="row-fluid">
             <div class="span12">
                 <div class="switch_div">
@@ -14,38 +14,38 @@
             </div>
         </div>
     </div>
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="padding20">
-                    <h2>Clinics</h2>
-                    <div id="existingClinicsList" class="list_results">
-                        <div class="row-fluid">
-                            <div id="existingClinicsListDiv" class="span12">
-                                {{/if}}
-                                {{if data!=null && data!=""}}
-                                    {{for data}}
-                                        <div class="store_list" onclick="loadClinicDetailPage('{{:id}}')">
-                                            <div class="store_name">{{:name}}</div>
-                                            <div class="store_address">{{:address}} {{:phone}}</div>
-                                        </div>
-                                    {{/for}}
-                                {{/if}}
-                                {{if pageSize>resultSize }}
-                                    <div class="nomoreclinics">No more clinics.</div>
-                                {{/if}}
-                                {{if pageNumber==0}}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="padding20">
+                <h2>Clinics</h2>
+                <div id="existingClinicsList" class="list_results">
+                    <div class="row-fluid">
+                        <div id="existingClinicsListDiv" class="span12">
+                            {{/if}}
+                            {{if data!=null && data!=""}}
+                            {{for data}}
+                            <div class="store_list" onclick="loadClinicDetailPage('{{:id}}')">
+                                <div class="store_name">{{:name}}</div>
+                                <div class="store_address">{{:address}} {{:phone}}</div>
                             </div>
+                            {{/for}}
+                            {{/if}}
+                            {{if pageSize>resultSize }}
+                            <div class="nomoreclinics">No more clinics.</div>
+                            {{/if}}
+                            {{if pageNumber==0}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {{/if}}
 {{if pageNumber==0 && resultSize==0}}
-    <div id="noClinicsFoundDiv">
-        <div class="alert alert-block alert-danger fade in">
-            <h4 class="marigin-bzero hcenter">No Clinics Found.</h4>                
-        </div>
+<div id="noClinicsFoundDiv">
+    <div class="alert alert-block alert-danger fade in">
+        <h4 class="marigin-bzero hcenter">No Clinics Found.</h4>                
     </div>
+</div>
 {{/if}}

@@ -9,6 +9,18 @@ function showIndexPageResponseHandler(){
     hideSplashScreenLoadingIndicator();
 }
 
+function loadDashboard(){
+    showSplashScreenLoadingIndicator();
+    clearInterval(splashIntervalId);
+    $("#splash_header").hide();
+    $("#wrapper").removeClass("splash_header_top");
+    $("#wrapper").addClass("wrapper_top");
+    $("#header").show();
+    $("#footer").show();
+    loadClinics('Map');
+    hideSplashScreenLoadingIndicator();
+}
+
 /* Display Clinics Starts Here */
 
 function searchClinicsInCurrentLocation(position){
@@ -35,9 +47,7 @@ function getClinicsForZipOrLocation(searchKeyword){
 }
 
 function loadClinics(target){
-    clearInterval(splashIntervalId);
-    //showSplashScreenLoadingIndicator();
-    $("#wrapper").removeClass("bottom0");
+    showLoadingIndicator();
     $("#clinicsTab").addClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").removeClass("active");
@@ -58,10 +68,7 @@ function loadClinics(target){
 
 function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
     if(loadClinicsOnMapResponse.status == "success"){
-        $("body").removeClass("body");
-        $("#header").show();
-        $("#footer").show();
-        //hideSplashScreenLoadingIndicator();
+        hideSplashScreenLoadingIndicator();
         my.utils.renderViewTo('Views/clinicsOnMap.html', loadClinicsOnMapResponse, 'mainContentDiv', function(){
             if(loadClinicsOnMapResponse.searchKeyword!=undefined)
                 $("#searchClinicsKeyword").val(loadClinicsOnMapResponse.searchKeyword);

@@ -1,4 +1,4 @@
-<div id="partnersDiv" class="cca_continer marginT54" >
+<div id="partnersDiv" class="cca_continer" >
     <div class="row-fluid">
         <div class="span12">
             <div class="padding20">
@@ -7,15 +7,17 @@
                     <div class="row-fluid">
                         <div class="span12 ">
                             <div class="partners_div">
-                            <ul class="partner_logos">
-                                {{if data!=null && data!=""}}
-                                {{for data}}
+                                <ul class="members_list">
+                                    {{if data!=null && data!=""}}
+                                    {{for data}}
                                     <li>
                                         <img src="{{:#parent.parent.data.site_base_ur}}{{:logo}}" align="absmiddle" class="partner_logo">
                                     </li>
-                                {{/for}}
-                            {{/if}}
-                            </ul><div class="clearfix"></div></div>
+                                    {{/for}}
+                                    {{/if}}
+                                </ul>
+                                <div class="clearfix padding4"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
