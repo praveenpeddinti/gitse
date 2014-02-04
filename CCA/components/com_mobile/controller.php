@@ -49,7 +49,29 @@ class mobileController extends JController {
             if($responseData=='failure' || $responseData=='error'){
                 $returnValue['status'] = "failure";
             } else{
-                $returnValue['data'] = $responseData;
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if($_REQUEST['isMobile'] != 'true'){
+                    $introtext = $responseData->introtext;
+                } else {
+                    $doc = new DOMDocument();
+                    $doc->loadHTML($responseData->introtext);
+                    $doc->preserveWhiteSpace = false;
+
+                    foreach($doc->getElementsByTagName('a') as $anchor) {
+                        $link = $anchor->getAttribute('href');
+                        $anchor->setAttribute('href', '#');
+                        $anchor->setAttribute('onclick', 'openInChildBrowser("'.$link.'")');
+                        $anchor->removeAttribute('target');
+                    }
+
+                    $introtext = $doc->saveHTML();
+                }
+
+
+                $response['introtext'] = $introtext;
+                $returnValue['data'] = $response;
                 $returnValue['status'] = "success";
             }
         } catch (Exception $ex) {
