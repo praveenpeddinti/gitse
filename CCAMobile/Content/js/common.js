@@ -401,7 +401,6 @@ function sendViaEmail(){
 /* Calculate Current Location Latitude & Longitude Starts Here */
 
 function getCurrentLocationLatLong(){
-    showLoadingIndicator();
     if(deviceAgent == "PC"){
         if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(searchClinicsInCurrentLocation, geoLocationError);

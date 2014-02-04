@@ -5,20 +5,13 @@ function showIndexPage() {
 
 function showIndexPageResponseHandler(){
     refreshBodyScroll();
-    splashIntervalId = setTimeout( function(){ loadClinics('Map'); } , timeInterval);
+    splashIntervalId = setTimeout( loadDashboard, timeInterval);
     hideSplashScreenLoadingIndicator();
 }
 
 function loadDashboard(){
-    showSplashScreenLoadingIndicator();
     clearInterval(splashIntervalId);
-    $("#splash_header").hide();
-    $("#wrapper").removeClass("splash_header_top");
-    $("#wrapper").addClass("wrapper_top");
-    $("#header").show();
-    $("#footer").show();
     loadClinics('Map');
-    hideSplashScreenLoadingIndicator();
 }
 
 /* Display Clinics Starts Here */
@@ -47,7 +40,6 @@ function getClinicsForZipOrLocation(searchKeyword){
 }
 
 function loadClinics(target){
-    showLoadingIndicator();
     $("#clinicsTab").addClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").removeClass("active");
@@ -58,6 +50,11 @@ function loadClinics(target){
     if(target == "Map"){
         $("#clinics_Map_Switch").attr('checked', true);
         $('#backButton').attr('onclick',"loadClinics('Map')");
+        if(index == 0){
+            showSplashScreenLoadingIndicator();
+        } else{
+            showLoadingIndicator();
+        }
         getCurrentLocationLatLong();        
     } else if(target == "List"){
         $("#clinics_List_Switch").attr('checked', true);
@@ -68,7 +65,15 @@ function loadClinics(target){
 
 function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
     if(loadClinicsOnMapResponse.status == "success"){
-        hideSplashScreenLoadingIndicator();
+        if(index == 0){
+            $("#splash_header").hide();
+            $("#wrapper").removeClass("splash_header_top");
+            $("#wrapper").addClass("wrapper_top");
+            $("#header").show();
+            $("#footer").show();
+            hideSplashScreenLoadingIndicator();
+        }
+        
         my.utils.renderViewTo('Views/clinicsOnMap.html', loadClinicsOnMapResponse, 'mainContentDiv', function(){
             if(loadClinicsOnMapResponse.searchKeyword!=undefined)
                 $("#searchClinicsKeyword").val(loadClinicsOnMapResponse.searchKeyword);
@@ -77,7 +82,12 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
             refreshBodyScroll();
         });
         
-        hideLoadingIndicator();
+        if(index == 1){
+            hideLoadingIndicator();
+        }
+        
+        index = 1; //To handle header & footer for every request.
+            
     } else{
         hideLoadingIndicator();
         ShowMessage('errorModal', 'Search Clinics Status', "<li class='error'>Unable to get clinics.</li>" , true, false);

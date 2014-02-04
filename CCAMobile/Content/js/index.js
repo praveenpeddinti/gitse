@@ -6,6 +6,7 @@ var timeInterval = 5 *1000;
 var childBrowser;
 var distance = 25;
 var splashIntervalId;
+var index = 0; // To controll multiple spinners
 
 var app = { 
     initialize: function () {         
