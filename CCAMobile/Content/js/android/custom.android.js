@@ -52,14 +52,14 @@ function exitApp(){
 
 function sendSMS(){
     if(deviceAgent != "PC"){
-        SmsPlugin.prototype.send([], getClinicDetailsForSMS(), '',
+        SmsPlugin.prototype.send([], getClinicDetailsForSMS(), 'INTENT',
             function () { 
-            //showAlert('SMS sent successfully');  
+                //showAlert('SMS sent successfully');  
             },
             function (e) {
-            //showAlert('SMS sending Failed:' + e);
+                //showAlert('SMS sending Failed:' + e);
             }
-            );
+         );
     } else{
         showAlert("Please share clinic details from mobile app only.!");
     }   

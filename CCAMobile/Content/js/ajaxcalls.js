@@ -115,6 +115,15 @@ function loadClinicsAsList(reset){
 
 function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
     if(loadClinicsAsListResponse.status == "success"){
+    	if(index == 0){
+            $("#splash_header").hide();
+            $("#wrapper").removeClass("splash_header_top");
+            $("#wrapper").addClass("wrapper_top");
+            $("#header").show();
+            $("#footer").show();
+            hideSplashScreenLoadingIndicator();
+        }
+        
         globalspace.clinicsCurrentPageNumber = loadClinicsAsListResponse.pageNumber;        
         var targetDiv = '', append = '';
         
@@ -147,7 +156,13 @@ function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
             }
             
             $('#clinicsLoading').hide();
-            hideLoadingIndicator();
+            
+            if(index == 1){
+                hideLoadingIndicator();
+            }
+        
+            index = 1; //To handle header & footer for every request.
+            
         }, append);
         
         globalspace.isClinicsCurrentlyLoading = false;
