@@ -24,46 +24,23 @@ class mobileController extends JController {
                 $doc->preserveWhiteSpace = false;
                 $partnerLogosSrc = $doc->getElementsByTagName('img');
 
-                $t=0;
+                $i = 0;
                 foreach ($partnerLogosSrc as $partnerLogo) {
-                    //$partnerLogos[]['logo'] = $partnerLogo->getAttribute('src');
-                    $partnerLogostt[$t] = $partnerLogo->getAttribute('src');
-
-                    $t++;
+                    $partnerLogostt[$i] = $partnerLogo->getAttribute('src');
+                    $i++;
                 }
 
                 $partnerUrlsSrc = $doc->getElementsByTagName('a');
 
-                $tt=0;
+                $j = 0;
                 foreach ($partnerUrlsSrc as $partnerUrl) {
-                    $partnerLogos[$tt]['logo'] = $partnerLogostt[$tt];
-                    $partnerLogos[$tt]['url'] = $partnerUrl->getAttribute('href');
-
-                    $tt++;
+                    $partnerLogos[$j]['logo'] = $partnerLogostt[$j];
+                    $partnerLogos[$j]['url'] = $partnerUrl->getAttribute('href');
+                    $j++;
                 }
 
                 $returnValue['data'] = $partnerLogos;
                 $returnValue['status'] = "success";
-
-
-
-                /*$partnerLogos = array();
-
-                $doc = new DOMDocument();
-                $doc->loadHTML($responseData->introtext);
-                $doc->preserveWhiteSpace = false;
-                $partnerLogosSrc = $doc->getElementsByTagName('img');
-
-                foreach ($partnerLogosSrc as $partnerLogo) {
-                    $partnerLogos[]['logo'] = $partnerLogo->getAttribute('src');
-                }
-                $partnerLogosUrl = $doc->getElementsByTagName('a');
-
-                foreach ($partnerLogosUrl as $partnerUrls) {
-                    $partnerLogos[]['url'] = $partnerUrls->getAttribute('href');
-                }
-                $returnValue['data'] = $partnerLogos;
-                $returnValue['status'] = "success";*/
             }
         } catch (Exception $ex) {
             JError::raiseError(500, "Error Occured in Publish news");
