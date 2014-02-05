@@ -26,6 +26,11 @@ class mobileController extends JController {
                 foreach ($partnerLogosSrc as $partnerLogo) {
                     $partnerLogos[]['logo'] = $partnerLogo->getAttribute('src');
                 }
+                $partnerLogosUrl = $doc->getElementsByTagName('a');
+
+                foreach ($partnerLogosUrl as $partnerUrls) {
+                    $partnerLogos[]['url'] = $partnerUrls->getAttribute('href');
+                }
                 $returnValue['data'] = $partnerLogos;
                 $returnValue['status'] = "success";
             }
