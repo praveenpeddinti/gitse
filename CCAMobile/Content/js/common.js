@@ -305,7 +305,7 @@ function getPageSize(context) {
 }
 
 function openInChildBrowser(url){
-    childBrowser.showWebPage(url);
+    childBrowser = window.open(url, '_blank', 'location=yes');
 }
 
 function identifyLinks(inputText) {

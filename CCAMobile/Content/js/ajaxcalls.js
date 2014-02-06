@@ -157,10 +157,7 @@ function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
             
             $('#clinicsLoading').hide();
             
-            if(index == 1){
-                hideLoadingIndicator();
-            }
-        
+            hideLoadingIndicator();        
             index = 1; //To handle header & footer for every request.
             
         }, append);
