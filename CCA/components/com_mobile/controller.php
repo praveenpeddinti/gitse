@@ -107,6 +107,8 @@ class mobileController extends JController {
             if($responseData=='failure' || $responseData=='error'){
                 $returnValue['status'] = "failure";
             } else{
+                $returnValue['latitude'] = $_REQUEST['lat'];
+                $returnValue['longitude'] = $_REQUEST['lng'];
                 $returnValue['data'] = $responseData;
                 $returnValue['status'] = "success";
             }
@@ -190,6 +192,8 @@ class mobileController extends JController {
             if($responseData=='failure' || $responseData=='error'){
                 $returnValue['status'] = "failure";
             } else{
+                $returnValue['latitude'] = $userLatitude;
+                $returnValue['longitude'] = $userLongitude;
                 $returnValue['data'] = $responseData;
                 $returnValue['searchKeyword'] = $zip;
                 $returnValue['status'] = "success";
