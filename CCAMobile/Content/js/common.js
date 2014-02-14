@@ -330,20 +330,28 @@ function identifyLinks(inputText) {
 
 /* Map Display Starts Here */
 
-function showMap(divId, clinicsData){
+function showMap(divId, clinicsData, currentLatitude, currentLongitude){
+    if(typeof(currentLatitude) == 'string'){
+        currentLatitude = evaluateObject(currentLatitude);
+        currentLongitude = evaluateObject(currentLongitude);
+    }else{
+        currentLatitude = currentLatitude[0];
+        currentLongitude = currentLongitude[0];
+    }
+    
     var mapOptions = {
         zoom: 10,
         minZoom :0,
         maxZoom :15,
-        center: new google.maps.LatLng(globalspace.currentLatitude, globalspace.currentLongitude),        
+        center: new google.maps.LatLng(currentLatitude, currentLongitude),        
         size: new google.maps.Size(100,100),
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
 
-    /*if(clinicsData.length > 0)
+    if(clinicsData.length > 0)
         mapOptions.center = new google.maps.LatLng(clinicsData[0].lat, clinicsData[0].lng);
     else
-        mapOptions.center = new google.maps.LatLng(globalspace.currentLatitude, globalspace.currentLongitude);*/
+        mapOptions.center = new google.maps.LatLng(currentLatitude, currentLongitude);
     
     var map = new google.maps.Map(document.getElementById(divId),mapOptions);
     var infowindow = new google.maps.InfoWindow();
