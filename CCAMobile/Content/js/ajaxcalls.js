@@ -11,6 +11,7 @@ function showIndexPageResponseHandler(){
 
 function loadDashboard(){
     clearInterval(splashIntervalId);
+    $("body").removeClass("homepage_body_bg");
     loadClinics('Map');
 }
 

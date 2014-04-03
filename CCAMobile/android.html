@@ -25,7 +25,7 @@
         <script type="text/javascript" src="Content/js/ajaxcalls.js"></script>
         <script type="text/javascript" src="Content/js/index.js"></script>
     </head>
-    <body>
+    <body class="homepage_body_bg">
         <div id="errorModal" class="modal fade error_modal modal_top" aria-hidden="false" aria-labelledby="Error Modal Label" role="dialog" tabindex="-1">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -70,14 +70,14 @@
         <div id="splash_header" class="splash_headerBG wrapper_top">
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="clients_box_big">
-                        <img src="Content/images/login_logo.png" align="absmiddle" onclick="loadDashboard();" class="spalsh_logo"/>
+                    <div class="clients_box_big"  >
+                         <img src="Content/images/cca_homepage_logo.png" align="absmiddle" onclick="loadDashboard();" class="spalsh_logo" />
                     </div>
                 </div>
             </div>
-            <div class="row-fluid">
-                <div class="span12">
-            <div class="splash_headerBottom"></div>
+            <div class="row-fluid" >
+                <div class="span12" style="min-height:10px;">
+                    <div class="home_headerBottom"></div>
                 </div>
             </div>
         </div>
@@ -112,7 +112,8 @@
         <div id="footer" class="footer" style="display: none;">            
             <div id="clinicsTab"><a href="#" class="clinic" onclick="loadClinics('Map');"><img src="Content/images/spacer.png" /></a></div>
             <div id="partnersTab"><a href="#" class="partners" onclick="loadPartners()"><img src="Content/images/spacer.png" /></a></div>
-            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="loadAboutCCA();"><img src="Content/images/spacer.png" /></a></div>            
+            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="loadAboutCCA();"><img src="Content/images/spacer.png" /></a></div>
+            <div id="membersTab"><a href="#" class="members" onclick="loadMembers();"><img src="Content/images/spacer.png" /></a></div>
         </div>
         
         <script type="text/javascript">
