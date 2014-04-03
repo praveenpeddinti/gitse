@@ -2,7 +2,7 @@ var globalspace = new Object();
 var deviceAgent = '';
 var bodyScroll,modalScroll;
 var notificationTitle = "CCA";
-var timeInterval = 5 *1000;
+var timeInterval = 30 *1000;
 var childBrowser;
 var distance = 25;
 var splashIntervalId;
@@ -41,7 +41,9 @@ function onDeviceReady() {
     
     initializeBodyScroll();
     
-    showIndexPage();
+    splashIntervalId = setTimeout( loadDashboard, timeInterval);
+    
+    //showIndexPage();
 }
 
 function onResume(){
