@@ -11,7 +11,7 @@ function showIndexPageResponseHandler(){
 
 function loadDashboard(){
     clearInterval(splashIntervalId);
-    loadClinics('List');
+    loadClinics('Map');
 }
 
 /* Display Clinics Starts Here */
