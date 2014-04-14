@@ -1,6 +1,6 @@
 function showIndexPage() {
     showSplashScreenLoadingIndicator();
-    my.utils.renderViewTo('Views/index.html', null, 'mainContentDiv', showIndexPageResponseHandler);
+    my.utils.renderViewTo('Views/members.html', null, 'mainContentDiv', showIndexPageResponseHandler);
 }
 
 function showIndexPageResponseHandler(){
@@ -11,7 +11,6 @@ function showIndexPageResponseHandler(){
 
 function loadDashboard(){
     clearInterval(splashIntervalId);
-    $("body").removeClass("homepage_body_bg");
     loadClinics('Map');
 }
 
@@ -48,7 +47,6 @@ function loadClinics(target){
     $("#clinicsTab").addClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").removeClass("active");
-    $("#membersTab").removeClass("active");
     $("#clinics_Map_Switch").removeAttr('checked');
     $("#clinics_List_Switch").removeAttr('checked');
     $("#backButton").hide();
@@ -225,7 +223,6 @@ function loadPartners(){
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").addClass("active");
     $("#aboutCCATab").removeClass("active");
-    $("#membersTab").removeClass("active");
     ajaxRequest("getPartners", "", loadPartnersResponseHandler);
 }
 
@@ -256,7 +253,6 @@ function loadAboutCCA(){
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").addClass("active");
-    $("#membersTab").removeClass("active");
     ajaxRequest("getAboutUs", "deviceAgent="+deviceAgent, loadAboutCCAResponseHandler);
 }
 
@@ -278,23 +274,21 @@ function loadAboutCCAResponseHandler(loadAboutCCAResponse){
 
 /* Display About CCA Ends Here */
 
-/* Display Members Starts Here */
-
 function loadMembers(){
-    showLoadingIndicator();    
-    my.utils.renderViewTo('Views/members.html', null, 'mainContentDiv', function(){
-        $("#clinicsTab").removeClass("active");
-        $("#partnersTab").removeClass("active");
-        $("#aboutCCATab").removeClass("active");
-        $("#membersTab").addClass("active");
-    
-        $("#headerLogo").show();
-        $("#backButton").hide();
-        $("#clinicsSwitchDiv").hide();
-        $("#shareIcon").hide();
-        refreshBodyScroll();
-        hideLoadingIndicator();
-    });
+    showLoadingIndicator();
+    my.utils.renderViewTo('Views/members.html', null, 'mainContentDiv', loadMembersResponseHandler);
 }
 
-/* Display Members Ends Here */
+function loadMembersResponseHandler(){
+    $("#headerLogo").show();
+    $("#backButton").hide();
+    $("#clinicsSwitchDiv").hide();
+    $("#shareIcon").hide();
+    
+    $("#clinicsTab").removeClass("active");
+    $("#partnersTab").removeClass("active");
+    $("#aboutCCATab").removeClass("active");
+        
+    refreshBodyScroll();
+    hideLoadingIndicator();
+}

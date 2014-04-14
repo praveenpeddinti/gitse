@@ -137,7 +137,7 @@
 
 body {padding-left: 0px;padding-right:0px;background:#fff; font-family:exoregular; font-size:12px;}
 /*.body{background:#3ccdac;}*/
-#wrapper{position:absolute; z-index:-1;bottom:55px; left:0;width:100%;overflow:auto;top:0px;}
+#wrapper{position:absolute; z-index:1;bottom:55px; left:0;width:100%;overflow:auto;top:0px;}
 #scroller{position:absolute; z-index:1;/*	-webkit-touch-callout:none;*/-webkit-tap-highlight-color:rgba(0,0,0,0);width:100%;padding:0;}
 .cca_continer{padding:2px;}
 .cca_continer .row-fluid .span6 {width:50%; margin-left:0;}
@@ -147,7 +147,7 @@ body {padding-left: 0px;padding-right:0px;background:#fff; font-family:exoregula
 .clients_boxes img{display: table-cell;max-height: 40px; display:table-cell; margin:auto;vertical-align:middle;}
 .clients_boxes, .clients_box_big{ background:#fff; text-align: center; vertical-align: middle; }
 .clients_boxes img, .clients_box_big img{display: block; margin: auto;vertical-align: middle; padding-top: 10px; }
-.clients_box_big{ background:none;z-index:10}
+.clients_box_big{min-height:115px; background:none; max-height:115px}
 .cca_continer [class*="span"], .cca_continer .uneditable-input[class*="span"], .cca_continer .row-fluid [class*="span"] {float: left;}
 .header .row-fluid .span6, .header .row-fluid .span3 {margin-left:0; float:left;}
 .header .row-fluid .span6 {width:50%; }
@@ -164,17 +164,15 @@ body {padding-left: 0px;padding-right:0px;background:#fff; font-family:exoregula
 .marginT54{ margin-top:53px;}
 .marginT40{ margin-top:40px;}
 .footer {position:absolute; z-index:2;bottom:0; left:0;width:100%;height:55px; background: url(../images/footer_bg.png) repeat-x left top;padding:0;border-top:1px solid #1f3d54;}
-.footer div{ float:left;width: 25%; text-align:center; color:#fff}
+.footer div{ float:left;width: 33.33333%; text-align:center; color:#fff}
 .footer div a{ }
 .footer div a{  border-left:2px solid #003a64; height:54px; display:block; vertical-align:middle }
 .footer div a.clinic img{ background:url(../images/footer_icons.png) no-repeat 5px top;}
 .footer div a.partners img{ background:url(../images/footer_icons.png) no-repeat left -73px;}
 .footer div a.aboutcca img{ background:url(../images/footer_icons.png) no-repeat left -144px;}
-.footer div a.members img{ background:url(../images/footer_icons.png) no-repeat left -217px;}
 .footer div:hover a.clinic img, .footer div.active a.clinic img{ background:url(../images/footer_icons.png) no-repeat -156px top;}
 .footer div:hover a.partners img, .footer div.active a.partners img{ background:url(../images/footer_icons.png) no-repeat -156px -73px;}
 .footer div:hover a.aboutcca img, .footer div.active a.aboutcca img{ background:url(../images/footer_icons.png) no-repeat -156px -144px;}
-.footer div:hover a.members img, .footer div.active a.members img{ background:url(../images/footer_icons.png) no-repeat -156px -217px;}
 .footer div a img{ width:62px; height:54px;}
 .footer #clinicsTab a img{ width:84px; height:54px;}
 .switch_div{ margin: auto; width:40%; text-align: center}
@@ -288,38 +286,30 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3e6f5', end
 .splash_logo_splitter{background: url(../images/separator_shadow.png) no-repeat center top; border-top:1px solid #c0cdd6}
 #wrapper.splash_header_top{ top:160px; bottom:0;}
 #wrapper.wrapper_top{top: 53px;background: url(../images/separator_shadow.png) no-repeat center top; }
-.spalsh_logo{border:0px;cursor: pointer;}
+.spalsh_logo{height:115px;border:0px;cursor: pointer;}
 .splash_headerBG{background:#fff url(../images/header_top_bg.png) no-repeat center top;}
 .splash_headerBottom{ background: url(../images/separator_shadow.png) no-repeat center top; border-top: 1px solid #c0cdd6; height: 20px; margin: auto;width:100%;  }
-.home_headerBottom{ background: url(../images/app_cca_spl_bg2.png) repeat-x left top; height: 24px; margin: auto;width:100%;  }
 .padding4{ padding: 4px;}
 .btn-default {background-color: #074471;border-color: #13537f; color: #fff;}
 .btn-default:hover,.btn-default:focus,.btn-default:active,.btn-default.active,.open .dropdown-toggle.btn-default{background-color: #074471;border-color: #13537f; color: #fff;}
 .header_spinner{margin: 10px 0 0 10px;}
-.homepage_body_bg{background: url(../images/cca_homepage_bg.png) repeat left top; }
+.cca_splasharrow{width:166px;text-align: right;margin:auto;padding:0 0 10px 0}
 @media screen and (min-width:768px){
     .partner_logos3 li{ float: left;}
 }
 @media (min-width: 320px) {  
   .modal_top{margin-top:30%;}
   .map_canvas{height:430px;}
-  .clients_box_big{min-height:90px; max-height:90px; margin-top:180px}
 }
 @media (min-width: 480px) {  
   .modal_top{margin-top:10%;}
   .map_canvas{height:140px;}
-   .clients_box_big{min-height:118px; max-height:118px; margin-top: 75px}
-}
-@media (min-width: 640px) {  
-  .clients_box_big{min-height:150px; max-height:150px; margin-top: 75px}
 }
 @media (min-width: 768px) {  
   .modal_top{margin-top:40%;}
   .map_canvas{height:800px;}
-   .clients_box_big{min-height:154px; max-height:154px; margin-top: 300px}
 }
 @media (min-width: 1024px) {  
   .modal_top{margin-top:25%;}
   .map_canvas{height:1000px;}
-   .clients_box_big{min-height:154px; max-height:154px; margin-top:350px}
 }

@@ -25,7 +25,7 @@
         <script type="text/javascript" src="Content/js/ajaxcalls.js"></script>
         <script type="text/javascript" src="Content/js/index.js"></script>
     </head>
-    <body class="homepage_body_bg">
+    <body>
         <div id="errorModal" class="modal fade error_modal modal_top" aria-hidden="false" aria-labelledby="Error Modal Label" role="dialog" tabindex="-1">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -70,18 +70,22 @@
         <div id="splash_header" class="splash_headerBG wrapper_top">
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="clients_box_big"  >
-                         <img src="Content/images/cca_homepage_logo.png" align="absmiddle" onclick="loadDashboard();" class="spalsh_logo" />
+                    <div class="clients_box_big">
+                        <img src="Content/images/login_logo.png" align="absmiddle" onclick="loadDashboard();" class="spalsh_logo"/>
                     </div>
                 </div>
             </div>
-            <div class="row-fluid" >
-                <div class="span12" style="min-height:10px;">
-                    <div class="home_headerBottom"></div>
+            <div class="row-fluid cca_splasharrow">
+                 <img src="Content/images/cca_splasharrow.png" align="absmiddle" onclick="loadDashboard();"/>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="splash_headerBottom"></div>
                 </div>
             </div>
+            
         </div>
-        
+         
         <div id="splashscreen_spinner" class="splash_spinner" style="display:none;"><i class="custom-spinner margin_auto"></i></div>
         
         <div id="loadingWidget" class="splash_spinner" style="display:none;"><i class="custom-spinner header_spinner"></i></div>
@@ -94,7 +98,7 @@
                     </div>
                     <div class="span6">
                         <div id="headerLogo">
-                            <p><img src="Content/images/cca_inner_logo.png" onclick="loadClinics('Map')"/></p>
+                            <p><img src="Content/images/cca_inner_logo.png" onclick="loadMembers()"/></p>
                         </div>
                     </div>
                     <div class="span3 marginT7 paddingR5"><a id="shareIcon" href="#" class="pull-right top_share_icon" style="display:none;" onclick="showShareActionsModal();"></a></div>
@@ -112,8 +116,7 @@
         <div id="footer" class="footer" style="display: none;">            
             <div id="clinicsTab"><a href="#" class="clinic" onclick="loadClinics('Map');"><img src="Content/images/spacer.png" /></a></div>
             <div id="partnersTab"><a href="#" class="partners" onclick="loadPartners()"><img src="Content/images/spacer.png" /></a></div>
-            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="loadAboutCCA();"><img src="Content/images/spacer.png" /></a></div>
-            <div id="membersTab"><a href="#" class="members" onclick="loadMembers();"><img src="Content/images/spacer.png" /></a></div>
+            <div id="aboutCCATab"><a href="#" class="aboutcca" onclick="loadAboutCCA();"><img src="Content/images/spacer.png" /></a></div>            
         </div>
         
         <script type="text/javascript">

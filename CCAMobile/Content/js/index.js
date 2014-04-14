@@ -2,7 +2,7 @@ var globalspace = new Object();
 var deviceAgent = '';
 var bodyScroll,modalScroll;
 var notificationTitle = "CCA";
-var timeInterval = 30 *1000;
+var timeInterval = 30 *1000; // Splash screen sleep out time = 30 sec
 var childBrowser;
 var distance = 25;
 var splashIntervalId;
@@ -41,9 +41,7 @@ function onDeviceReady() {
     
     initializeBodyScroll();
     
-    splashIntervalId = setTimeout( loadDashboard, timeInterval);
-    
-    //showIndexPage();
+    showIndexPage();
 }
 
 function onResume(){
