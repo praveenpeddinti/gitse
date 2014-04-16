@@ -32,15 +32,21 @@ function searchClinics(keyword){
         ShowMessage('errorModal', 'Search Clinics Status', "<li class='error'>Please enter either zip code or location name.</li>" , true, false);
         return false;
     } else{
-        getClinicsForZipOrLocation(searchKeyword)
+        geoCodeGivenAddress(searchKeyword, getClinicsForZipOrLocationHandler);
     }
 }
 
-function getClinicsForZipOrLocation(searchKeyword){
-    showLoadingIndicator();
-    queryString = "distance="+distance+"&zip="+searchKeyword;
+function getClinicsForZipOrLocationHandler(searchKeyword, getClinicsForZipOrLocationResponse){
+    showLoadingIndicator();    
+    if(getClinicsForZipOrLocationResponse != ""){
+        queryString = "distance="+ distance +"&zip="+searchKeyword+"&givenLatitude="+ getClinicsForZipOrLocationResponse.lat() +"&givenLongitude="+ getClinicsForZipOrLocationResponse.lng();        
+        ajaxRequest("getClinicsDetailForZipandLocation", queryString, loadClinicsOnMapResponseHandler);
+    } else{
+        queryString = "distance="+distance+"&zip="+searchKeyword;
+        ajaxRequest("getClinicsDetailForZipandLocation", queryString, loadClinicsOnMapResponseHandler);
+    }
+    
     $('#backButton').attr('onclick',"loadMapWithSearchResults()");
-    ajaxRequest("getClinicsDetailForZipandLocation", queryString, loadClinicsOnMapResponseHandler);
 }
 
 function loadClinics(target){

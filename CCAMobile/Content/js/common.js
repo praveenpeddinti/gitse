@@ -425,3 +425,25 @@ function geoLocationError(error){
 }
 
 /* Calculate Current Location Latitude & Longitude Starts Here */
+
+/* Get Longitude And Latitude From Google Maps Javascript Geocoder Starts Here */
+
+function geoCodeGivenAddress(givenAddress, callBackHandler){
+    var geocoder = new google.maps.Geocoder();
+
+    if (geocoder) {
+        geocoder.geocode({ 
+            'address': givenAddress
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                callBackHandler(givenAddress,results[0].geometry.location);
+            } else {
+                callBackHandler(givenAddress, "");
+            }
+        });
+    } else{
+        callBackHandler(givenAddress, "");
+    }
+}
+
+/* Get Longitude And Latitude From Google Maps Javascript Geocoder Ends Here */
