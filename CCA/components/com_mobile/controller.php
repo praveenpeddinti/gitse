@@ -1,4 +1,5 @@
 <?php
+
 defined("_JEXEC") or die("Restricted access");
 jimport("joomla.application.component.controller");
 
@@ -13,9 +14,9 @@ class mobileController extends JController {
         try {
             $model = $this->getModel("mobileData");
             $responseData = $model->contentDetails();
-            if($responseData=='failure' || $responseData=='error'){
+            if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
-            } else{
+            } else {
 
                 $partnerLogos = array();
 
@@ -59,23 +60,23 @@ class mobileController extends JController {
         try {
             $model = $this->getModel("mobileData");
             $responseData = $model->contentAboutUsDetails();
-            if($responseData=='failure' || $responseData=='error'){
+            if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
-            } else{
+            } else {
                 $response = array();
                 $response['title'] = $responseData->title;
-                
-                if($_REQUEST['deviceAgent'] == 'PC'){
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
                     $introtext = $responseData->introtext;
                 } else {
                     $doc = new DOMDocument();
                     $doc->loadHTML($responseData->introtext);
                     $doc->preserveWhiteSpace = false;
 
-                    foreach($doc->getElementsByTagName('a') as $anchor) {
+                    foreach ($doc->getElementsByTagName('a') as $anchor) {
                         $link = $anchor->getAttribute('href');
                         $anchor->setAttribute('href', '#');
-                        $anchor->setAttribute('onclick', 'openInChildBrowser("'.$link.'")');
+                        $anchor->setAttribute('onclick', 'openInChildBrowser("' . $link . '")');
                         $anchor->removeAttribute('target');
                     }
 
@@ -104,9 +105,9 @@ class mobileController extends JController {
         try {
             $model = $this->getModel("mobileData");
             $responseData = $model->contentClinicsDetailsForLatandLng($_REQUEST['lat'], $_REQUEST['lng'], $_REQUEST['distance']);
-            if($responseData=='failure' || $responseData=='error'){
+            if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
-            } else{
+            } else {
                 $returnValue['latitude'] = $_REQUEST['lat'];
                 $returnValue['longitude'] = $_REQUEST['lng'];
                 $returnValue['data'] = $responseData;
@@ -129,9 +130,9 @@ class mobileController extends JController {
         try {
             $model = $this->getModel("mobileData");
             $responseData = $model->contentClinicsDetailForId($_REQUEST['id']);
-            if($responseData=='failure' || $responseData=='error'){
+            if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
-            } else{
+            } else {
                 $returnValue['data'] = $responseData;
                 $returnValue['status'] = "success";
             }
@@ -156,9 +157,9 @@ class mobileController extends JController {
             $model = $this->getModel("mobileData");
             $totalClinics = $model->getTotalClinics();
             $responseData = $model->contentClinicsDetailForList(($pageNumber * $pageSize), $pageSize);
-            if($responseData=='failure' || $responseData=='error'){
+            if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
-            } else{
+            } else {
                 $returnValue['data'] = $responseData;
                 $returnValue['resultSize'] = count($responseData);
                 $returnValue['totalClinics'] = $totalClinics;
@@ -180,18 +181,45 @@ class mobileController extends JController {
         $returnValue['status'] = "failure";
         global $mainframe;
         $mainframe = JFactory::getApplication();
-        try {
-            $zip = $_REQUEST['zip'];
-            $url = 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . $zip . '&sensor=false';
+        $responseData = "failure";
 
-            $parser = simplexml_load_file($url);
-            $userLatitude = $parser->{'result'}->{'geometry'}->{'location'}->{'lat'};
-            $userLongitude = $parser->{'result'}->{'geometry'}->{'location'}->{'lng'};
+        try {
             $model = $this->getModel("mobileData");
+            $zip = $_REQUEST['zip'];
+
+            if (!empty($_REQUEST['givenLatitude']) && !empty($_REQUEST['givenLongitude'])) {
+                $userLatitude = $_REQUEST['givenLatitude'];
+                $userLongitude = $_REQUEST['givenLongitude'];
+            } else {
+                $savedLatLongDetails = $model->getLatAndLonFromDB($zip);
+
+                if (empty($savedLatLongDetails)) { //Not stored in db previously
+                    /* $url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' . $zip . '&sensor=false';
+                      $parser = simplexml_load_file($url);
+                      $userLatitude = $parser->{'result'}->{'geometry'}->{'location'}->{'lat'};
+                      $userLongitude = $parser->{'result'}->{'geometry'}->{'location'}->{'lng'}; */
+
+                    $url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $zip . '&sensor=false';
+                    $geocodeResponse = file_get_contents($url);
+                    $geoCodeDetails = json_decode($geocodeResponse);                    
+
+                    if ($geoCodeDetails->status == "OK") {
+                        $userLatitude = $geoCodeDetails->results[0]->geometry->location->lat;
+                        $userLongitude = $geoCodeDetails->results[0]->geometry->location->lng;
+
+                        $storeLocationDetails = $model->storeLatAndLonInDB($userLatitude, $userLongitude, $zip); //Store in db table for future purpose    
+                    }
+                } else {
+                    $userLatitude = $savedLatLongDetails[0]->lat;
+                    $userLongitude = $savedLatLongDetails[0]->lng;
+                }
+            }
+
             $responseData = $model->contentClinicsDetailsForLatandLng($userLatitude, $userLongitude, $_REQUEST['distance']);
-            if($responseData=='failure' || $responseData=='error'){
+
+            if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
-            } else{
+            } else {
                 $returnValue['latitude'] = $userLatitude;
                 $returnValue['longitude'] = $userLongitude;
                 $returnValue['data'] = $responseData;
@@ -207,4 +235,5 @@ class mobileController extends JController {
     }
 
 }
+
 ?>

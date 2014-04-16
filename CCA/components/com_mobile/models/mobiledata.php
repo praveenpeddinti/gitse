@@ -91,4 +91,38 @@ class mobileModelMobileData extends JModel {
         }
         return $returnValue;
     }
+
+    /*
+     * @praveen New Functionality to Maps
+     */
+    
+    public function getLatAndLonFromDB($zip) {
+        $returnValue = "failure";
+        try {
+            $db = $this->getDBO();
+            $query = "SELECT * from #__get_latitude_longitude where address='$zip' limit 1";
+            
+            $db->setQuery($query);
+            $returnValue = $db->loadObjectList();
+            
+        } catch (Exception $ex) {
+            $returnValue = "error";
+        }
+        return $returnValue;
+    }
+
+    public function storeLatAndLonInDB($userLatitude,$userLongitude,$zip) {
+        $returnValue = "failure";
+        try {
+            $db = $this->getDBO();
+            $query= "insert into #__get_latitude_longitude(lat,lng,address) values('".addslashes($userLatitude)."','".addslashes($userLongitude)."','".addslashes($zip)."')";
+            $db->setQuery($query);
+	    $db->query();          
+
+        } catch (Exception $ex) {
+            $returnValue = "error";
+        }
+        return $returnValue;
+    }
+
 }
