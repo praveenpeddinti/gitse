@@ -84,15 +84,20 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
             hideSplashScreenLoadingIndicator();
         }
         
-        my.utils.renderViewTo('Views/clinicsOnMap.html', loadClinicsOnMapResponse, 'mainContentDiv', function(){
-            if(loadClinicsOnMapResponse.searchKeyword != undefined){
-                $("#searchClinicsKeyword").val(loadClinicsOnMapResponse.searchKeyword);
-                globalspace.searchClinicsKeyword = loadClinicsOnMapResponse.searchKeyword;
-            }
+        if(loadClinicsOnMapResponse.latitude == null || loadClinicsOnMapResponse.longitude == null){
+            ShowMessage('errorModal', 'Search Clinics Status', "<li class='error'>Sorry! Unable to get given zip / location details.</li>" , true, false);
+            //getCurrentLocationLatLong();
+        } else{
+            my.utils.renderViewTo('Views/clinicsOnMap.html', loadClinicsOnMapResponse, 'mainContentDiv', function(){
+                if(loadClinicsOnMapResponse.searchKeyword != undefined){
+                    $("#searchClinicsKeyword").val(loadClinicsOnMapResponse.searchKeyword);
+                    globalspace.searchClinicsKeyword = loadClinicsOnMapResponse.searchKeyword;
+                }            
             
-            showMap("map_canvas", loadClinicsOnMapResponse.data, loadClinicsOnMapResponse.latitude, loadClinicsOnMapResponse.longitude);
-            refreshBodyScroll();
-        });
+                showMap("map_canvas", loadClinicsOnMapResponse.data, loadClinicsOnMapResponse.latitude, loadClinicsOnMapResponse.longitude);
+                refreshBodyScroll();
+            });
+        }
         
         if(index == 1){
             hideLoadingIndicator();
