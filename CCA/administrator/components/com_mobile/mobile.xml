@@ -1,65 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
     <!--<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">-->
     <install type="component" version="1.5.0">
-                <!-- Component name -->
-                <name>Mobile</name>
-               
-                <!-- Optional  -->
-                <creationDate>2008 04 28</creationDate>
-                <author>b1ix</author>
-                <authorEmail>b1ix(at)joomladevuser.com</authorEmail>
-                <authorUrl>http://www.joomladevuser.com</authorUrl>
-                <copyright>Copyright Info</copyright>
-                <license>License Info</license>      
-                <version>1.0</version>
-                <description>Mobile Service Component</description>
-                <!-- Optional  -->
+	<!-- Component name -->
+	<name>Mobile</name>
 
-                <!-- Install Database Section -->
-                <!--<install>
-                            <sql>
-                                       <file charset="utf8" driver="mysql">install.sql</file>
-                            </sql>
-                </install>-->
-               
-                <!-- Uninstall Database Section -->
-                <!--<uninstall>
-                            <sql>
-                                       <file charset="utf8" driver="mysql">uninstall.sql</file>
-                            </sql>
-                </uninstall>-->
+	<!-- Optional  -->
+	<creationDate>2014 09 09</creationDate>
+	<author>Techo2</author>
+	<authorEmail>CCA@techo2.com</authorEmail>
+	<authorUrl>http://www.techo2.com</authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>License Info</license>      
+	<version>1.0</version>
+	<description>Mobile Service Management</description>
 
-                <!--Custom Install Script to execute -->
-                <installfile>install.php</installfile>
-               
-                <!--Custom Uninstall Script to execute -->
-                <uninstallfile>uninstall.php</uninstallfile>
 
-                <!-- Files that go to the frontend -->
-               
-                <!-- Files that go to the backend -->
-                <administration>
-                            <!-- Administration Menu Section -->
-                            <menu>Mobile Service Management</menu>               
-                            <submenu>
-                                       <!--<menu link="option=com_chapters&amp;task=display">List News</menu>-->
-                                       <menu link="#">Add Data</menu>                   
-                            </submenu>
-                           
-                            <!-- Administration Main File Copy Section -->
-                            <files folder="admin">
-                                       <filename>mobile.php</filename>
-					<filename>install.php</filename>
-					<filename>uninstall.php</filename>
-					<filename>install.sql</filename>
-					<filename>uninstall.sql</filename>								
-                                       <filename>index.html</filename>
-					<filename>controller.php</filename>
-					<folder>js</folder>
-                                       <folder>models</folder>					
-	 			       <folder>views</folder>									
-                            </files>                            
-                </administration>
+	<!--Custom Install Script to execute -->
+	<installfile>install.php</installfile>
+
+	<!--Custom Uninstall Script to execute -->
+	<uninstallfile>uninstall.php</uninstallfile>
+
+	<!-- Files that go to the frontend -->
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>mobile.php</filename>
+		<filename>controller.php</filename>
+		<filename>models/index.html</filename>
+		<filename>models/mobiledata.php</filename>
+	 	<filename>views/index.html</filename>				
+		<!--<folder>views</folder>
+		<folder>models</folder>-->
+	</files>
+
+	<!-- Files that go to the backend -->
+	<administration>
+		
+		<menu>Mobile</menu>
+		
+		<files folder="admin">			
+			<filename>index.html</filename>
+			<filename>mobile.php</filename>
+			<filename>install.php</filename>
+			<filename>uninstall.php</filename>
+		</files>
+	</administration>
 
 </install>
 

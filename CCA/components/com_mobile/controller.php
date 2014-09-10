@@ -79,7 +79,7 @@ class mobileController extends JController {
                         $anchor->setAttribute('onclick', 'openInChildBrowser("' . $link . '")');
                         $anchor->removeAttribute('target');
                     }
-
+                    
                     $introtext = $doc->saveHTML();
                 }
 
@@ -228,6 +228,449 @@ class mobileController extends JController {
             }
         } catch (Exception $ex) {
             JError::raiseError(500, "Error Occured in Publish news");
+            $returnValue['status'] = "failure";
+        }
+        echo json_encode($returnValue);
+        $mainframe->close();
+    }
+    
+    //7 About Us Details for Landing Page------------
+     public function getIntroContentforIndexPage() {
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentAboutUsDetails();
+            $membersResponseData = $model->contentMembersDetails();
+            if ($responseData == 'failure' || $responseData == 'error') {
+               // $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $string = $responseData->introtext;
+                    $string = substr($string,0, strpos($string, "</p>")+4);
+                    $introtext = str_replace("<p>", "", str_replace("<p/>", "", $string));
+        
+                } else {
+                    $doc = new DOMDocument();
+                    
+                    $string = $responseData->introtext;
+                    $string = substr($string,0, strpos($string, "</p>")+4);
+                    $introtext = str_replace("<p>", "", str_replace("<p/>", "", $string));
+                    
+                    $doc->loadHTML($introtext);
+                    $doc->preserveWhiteSpace = false;
+
+                    foreach ($doc->getElementsByTagName('a') as $anchor) {
+                        $link = $anchor->getAttribute('href');
+                        $anchor->setAttribute('href', '#');
+                        $anchor->setAttribute('onclick', 'openInChildBrowser("' . $link . '")');
+                        $anchor->removeAttribute('target');
+                    }
+                    
+                    $introtext = $doc->saveHTML();
+                }
+
+
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        return $introtext;
+        //echo json_encode($returnValue);
+        $mainframe->close();
+    }
+    
+    //8 Members Details for Landing Page------------
+    public function getAboutUsforIndexPage() {
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentAboutUsDetails();
+            $membersResponseData = $model->contentMembersDetails();
+            if ($membersResponseData == 'failure' || $membersResponseData == 'error') {
+                $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $membersResponseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $finalValue = $responseData->introtext;
+                } else {
+
+                    $doc = new DOMDocument();
+                  
+                    $finalValue = "";
+
+                    preg_match_all("/(<([\w]+)[^>]*>)(.*?)(<\/\\2>)/", $membersResponseData->introtext, $matches, PREG_SET_ORDER);
+
+                    $finalValue="";
+                    $m=0;    
+                    foreach ($matches as $val) {
+                        
+                        if($val[2]=="h3"){
+                            if(strip_tags($val[3])){
+                            $padding = "";
+                            if($m!=0){$finalValue .= "</ul></div>"; $padding = "style='padding-top:30px;'"; }
+                            
+                            $finalValue .= "<div class='span12' ".$padding."><div class='members_title'><label>".strip_tags($val[3])."</label></div><ul class='members_list'>";
+                           }
+                           
+                            $m++;
+                        }else if($val[2]=="p"){
+                            
+                            $doc->loadHTML($val[0]);
+                            $doc->preserveWhiteSpace = false;
+                    
+                                $link = "";
+                                $params2 = $doc->getElementsByTagName('img');
+                                $params3 = $doc->getElementsByTagName('a');
+
+                                $j = 0;
+                                foreach ($params3 as $param3) {
+                                    if ($param3 && $j == 0) {
+                                        $link = $param3->getAttribute('href');
+                                        $j++;
+                                    }
+                                }
+
+
+                                $jj = 0;
+                                foreach ($params2 as $param2) {
+                                    $imgPath = $param2->getAttribute('src');
+                                    $altText = $param2->getAttribute('alt');
+                                    if ($param2 && $jj == 0 && $imgPath != "plugins/editors/jce/tiny_mce/plugins/filemanager/img/ext/pdf_small.gif") {
+
+
+                                        if($link){
+                                            $link = str_replace("/", "\/", $link);
+                                            $anchor1="<a href='#' onclick='openInChildBrowser(\"$link\")'>"; $anchor2="</a>";
+                                        }else{
+                                            $anchor1=""; $anchor2="";
+                                        }
+
+                                        $finalValue .= "<li>".$anchor1."<img src='" . JURI::base() . $imgPath . "' alt='".$altText."' align='absmiddle' width='75px' height='30px'>".$anchor2."</li>";
+
+                                        $jj++;
+                                    }
+                                }
+
+
+                            
+                        } 
+                       
+                    }
+
+
+                }
+
+                //$response['introtext1']=$finalValue;
+                $response['introtext']=$this->getIntroContentforIndexPage();
+                $response['memberlogos'] = $finalValue."</ul>";
+                
+                $returnValue['data'] = $response;
+                $returnValue['status'] = "success";
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        echo json_encode($returnValue);
+        $mainframe->close();
+    }
+    
+    //9 About Our Clinics Details------------
+    public function getAboutOurClinics() {       
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentAboutOurClinicsDetails();
+            if ($responseData == 'failure' || $responseData == 'error') {
+                $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $introtext = $responseData->introtext;
+                } else {
+                    $doc = new DOMDocument();
+                    $doc->loadHTML($responseData->introtext);
+                    $doc->preserveWhiteSpace = false;
+
+                    foreach ($doc->getElementsByTagName('a') as $anchor) {
+                        $link = $anchor->getAttribute('href');
+                        $anchor->setAttribute('href', '#');
+                        $anchor->setAttribute('onclick', 'openInChildBrowser("' . $link . '")');
+                        $anchor->removeAttribute('target');
+                    }
+                    
+                    $introtext = $doc->saveHTML();
+                }
+
+
+                $response['introtext'] = $introtext;
+                $returnValue['data'] = $response;
+                $returnValue['status'] = "success";
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        echo json_encode($returnValue);
+        $mainframe->close();
+    }
+    
+    
+    //10 FAQs Details------------
+    public function getFAQs() {       
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentFAQsDetails();
+            if ($responseData == 'failure' || $responseData == 'error') {
+                $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $introtext = $responseData->introtext;
+                } else {
+                    $doc = new DOMDocument();
+                    $doc->loadHTML($responseData->introtext);
+                    $doc->preserveWhiteSpace = false;
+                    
+                    $out = "";
+                    $params = $doc->getElementsByTagName('dl'); // Find dl tag
+                    $k=0;
+                    foreach ($params as $param) //go to each dl tag 1 by 1
+                    {
+                        $params2 = $params->item($k)->getElementsByTagName('dt'); //dig dt with in dl
+                        $params3 = $params->item($k)->getElementsByTagName('dd'); //dig dd with in dl
+                          
+                        $i=0; // values is used to iterate dt 
+                        foreach ($params2 as $p) {
+                            $out .= "<a onclick='displayAnswer(".$k.");'>Q: ".$params2->item($i)->nodeValue."</a><br />"; //get dt Value
+                            $out .= "<span id='A".$k."' style='display:none;'><br />A: ".$params3->item($i)->nodeValue."<br /><br /></span><br />"; //get dd Value
+                            $i++;
+                        }
+                           
+                        $k++;
+                    }
+                 
+                    
+                     $introtext = $out;
+                    
+                   // $introtext = $doc->saveHTML();
+                }
+
+
+                $response['introtext'] = $introtext;
+                $returnValue['data'] = $response;
+                $returnValue['status'] = "success";
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        echo json_encode($returnValue);
+        $mainframe->close();
+    }
+    
+    
+    //11 Virtual Tour Details------------
+    public function getVirtualTour() {
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentVirtualTourDetails();
+            if ($responseData == 'failure' || $responseData == 'error') {
+                $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $app = JFactory::getApplication();
+                    $templateDir = JURI::base() . 'templates/' . $app->getTemplate();
+           
+                    $introtext = '<div><a onclick="virtualTourImages(\'virtual_tour_ext\');">Tour the Waiting Room | </a> | <a onclick="virtualTourImages(\'virtual_tour\');">Tour the Exam Room</a></div><div><div id="virtual_tour_ext"><div class="virtualimages">
+                                                    <div class="tourinfo circle circle1" onclick="popoverText(\'circle1\');" 
+data-container="body" data-toggle="popover" data-placement="right" data-content="This is Popover." 
+
+><img src="'.$templateDir.'/images/info.png"></div>
+                                                    <div class="tourinfo circle circle2"><img src="'.$templateDir.'/images/info_arrow.png"></div>
+                                                    <div class="tourinfo circle circle3" onclick="popoverText(\'circle3\');" rel="popover"
+   data-content="This is the body of Popover This is the body of Popover This is the body of Popover" data-placement="left"><img src="'.$templateDir.'/images/info.png"></div><img src="'.$templateDir.'/images/waitingroom.jpg"/></div>
+       </div></div>
+       
+<div><div id="virtual_tour" style="display:none;"><div class="virtualimages">
+                                                    <div class="tourinfo circle circle4" onclick="popoverText(\'circle4\');" rel="popover"
+   data-content="This is the body of Popover This is the body of PopoverThis is the body of PopoverThis is the body of PopoverThis is the body of PopoverThis is the body of PopoverThis is the body of PopoverThis is the body of PopoverThis is the body of Popover"
+   data-original-title="Creativity Tuts" data-placement="top"><img src="'.$templateDir.'/images/info.png"></div>
+                                                    <div class="tourinfo circle circle5"><img src="'.$templateDir.'/images/info.png"></div>
+                                                    <div class="tourinfo circle circle6" onclick="popoverText(\'circle3\');" rel="popover"
+   data-content="This is the body of Popover This is the body of Popover This is the body of Popover" data-placement="left"><img src="'.$templateDir.'/images/info.png"></div><img src="'.$templateDir.'/images/examroom.jpg"/></div>
+       </div></div>';
+           
+                } else {
+                    $doc = new DOMDocument();
+                    $doc->loadHTML($responseData->introtext);
+                    $doc->preserveWhiteSpace = false;
+                    
+                    $app = JFactory::getApplication();
+                    $templateDir = JURI::base() . 'templates/' . $app->getTemplate();                    
+              
+                    
+                    $out = ""; $out1 = "";
+                    $kk=0;
+                    foreach ($doc->getElementsByTagName('h4') as $param) {
+                        
+                        if($kk<2){  error_log("K value : ".$kk);
+                            
+                           $params2 = $param->getElementsByTagName('a');
+                           
+                           $j=0;
+                           $anchorId = "";
+                           foreach ($params2 as $anchor) {                             
+                               
+                               if($j==0){$anchorId="virtual_tour_ext";$anchor->setAttribute('style', 'font-style:italic');}
+                               else if($j==1){$anchorId="virtual_tour";}
+
+                                $link = $anchor->removeAttribute('href');
+                                $anchor->setAttribute('href', '#');
+                                $anchor->setAttribute('class', $anchorId);
+                                $anchor->setAttribute("onclick", "virtualTourImages('$anchorId')");
+                            $j++;    
+                            }
+                            
+                            $params3 = $param->getElementsByTagName('img');
+                           
+                            foreach ($params3 as $image) {
+                                $path = $image->getAttribute('src');   
+                                $image->setAttribute('src', JURI::base() . $path);                                
+                                
+                            }
+                            
+                            $val="";
+                            if($kk==0){
+                                $out .= strip_tags($param->c14n(), "<a>");
+                            }else if($kk==1){
+                                $out .= "<br /><br />".strip_tags($param->c14n(), "<img>")."<br /><br />";
+                            }
+                            
+                        }
+                        $kk++;
+                    }
+                    
+                    $out .= $out1;
+                    foreach ($doc->getElementsByTagName('div') as $divTag) {
+                        
+                        $info_checkin = ""; $info_door1 = ""; $info_monitor = "";
+                        $info_wall = ""; $info_computer = ""; $info_floor = "";
+                        foreach ($divTag->getElementsByTagName('div') as $divTagInner) {
+                            
+                            if($divTagInner->getAttribute('id')=="info_checkin"){
+                                $Pvalue = explode("<p>", $divTagInner->c14n());
+                                $Pvalue1 = explode("</p>", $Pvalue[1]);
+                                $info_checkin = $Pvalue1[0];
+                            }
+                            
+                           
+                            if($divTagInner->getAttribute('id')=="info_door1"){
+                                $Pvalue = explode("<p>", $divTagInner->c14n());
+                                $Pvalue1 = explode("</p>", $Pvalue[1]);
+                               $info_door1 = $Pvalue1[0];
+                            }
+                            if($divTagInner->getAttribute('id')=="info_monitor"){
+                                $Pvalue = explode("<p>", $divTagInner->c14n());
+                                $Pvalue1 = explode("</p>", $Pvalue[1]);
+                               $info_monitor = $Pvalue1[0];
+                            }
+                            
+                            if($divTagInner->getAttribute('id')=="info_wall"){   
+                                $Pvalue = explode("<p>", $divTagInner->c14n());
+                                $Pvalue1 = explode("</p>", $Pvalue[1]);
+                               $info_wall = $Pvalue1[0];
+                            }
+                            if($divTagInner->getAttribute('id')=="info_computer"){
+                                $Pvalue = explode("<p>", $divTagInner->c14n());
+                                $Pvalue1 = explode("</p>", $Pvalue[1]);
+                               $info_computer = $Pvalue1[0];
+                            }
+                            if($divTagInner->getAttribute('id')=="info_floor"){
+                                $Pvalue = explode("<p>", $divTagInner->c14n());
+                                $Pvalue1 = explode("</p>", $Pvalue[1]);
+                               $info_floor = $Pvalue1[0];
+                            }
+                            
+                            
+                        }
+                      
+                        $divTagText = $divTag->getAttribute('id');
+                        
+                        if($divTagText=="virtual_tour_ext" || $divTagText=="virtual_tour"){
+                            
+                             if($divTagText=="virtual_tour_ext"){
+                                 
+                                 $addInfoImages = '<div class="virtualimages">
+                                                    <div class="tourinfo circle circle1"  
+                                                    data-content="'.$info_checkin.'" data-placement="top"><img src="'.$templateDir.'/images/info.png"></div>
+                                                    <div class="tourinfo circle circle2"
+                                                    data-content="'.$info_door1.'" data-placement="top"><img src="'.$templateDir.'/images/info_arrow.png"></div>
+                                                    <div class="tourinfo circle circle3" 
+                                                    data-content="'.$info_monitor.'" data-placement="left"><img src="'.$templateDir.'/images/info.png"></div>';
+                                 
+                                 $imgPath = $templateDir."/images/waitingroom.jpg";
+                                 $style="style='padding : 0px; position:relative;'";
+                             } else if($divTagText=="virtual_tour"){
+                                 
+                                 $addInfoImages = '<div class="virtualimages">
+                                                    <div class="tourinfo circle circle4"
+                                                    data-content="'.$info_floor.'" data-placement="top"><img src="'.$templateDir.'/images/info.png"></div>
+                                                    <div class="tourinfo circle circle5" 
+                                                    data-content="'.$info_computer.'" data-placement="top"><img src="'.$templateDir.'/images/info.png"></div>
+                                                    <div class="tourinfo circle circle6" 
+   data-content="'.$info_wall.'" data-placement="top"><img src="'.$templateDir.'/images/info.png"></div>';
+                                 
+                                 $imgPath = $templateDir."/images/examroom.jpg";
+                                 $style="style='padding : 0px; position:relative; display:none;'";
+                             }
+                             
+                            $out.="<div id='".$divTagText."' ".$style.">".$addInfoImages."<img src='". $imgPath."'></div></div>";                          
+                        }                        
+                        
+                    }                 
+                    
+                    $introtext=$out;
+                }
+                
+                $introtext = str_replace("Roll your mouse over the", "Tap on", $introtext);
+
+                $response['introtext'] = $introtext;
+                $returnValue['data'] = $response;
+                $returnValue['status'] = "success";
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
             $returnValue['status'] = "failure";
         }
         echo json_encode($returnValue);

@@ -32,7 +32,7 @@ class mobileModelMobileData extends JModel {
         return $returnValue;
     }
 
-    //3 Clinics Details for Lat and Lng------------6 Clinics Details for Zip code and Location List------------
+    //3 Clinics Details for Lat and Lng------------
     public function contentClinicsDetailsForLatandLng($lat, $lng,$distance) {
         $returnValue = "failure";
         try {
@@ -78,7 +78,7 @@ class mobileModelMobileData extends JModel {
         }
         return $returnValue;
     }
-    //6 Total Clinics========
+    //6 Total Clinics------------
     public function getTotalClinics() {
         $returnValue = "failure";
         try {
@@ -95,7 +95,7 @@ class mobileModelMobileData extends JModel {
     /*
      * @praveen New Functionality to Maps
      */
-    
+    //7 Get Lat and Long From DB----------
     public function getLatAndLonFromDB($zip) {
         $returnValue = "failure";
         try {
@@ -110,7 +110,8 @@ class mobileModelMobileData extends JModel {
         }
         return $returnValue;
     }
-
+    
+    //7 Store Lat and Long In DB-------------
     public function storeLatAndLonInDB($userLatitude,$userLongitude,$zip) {
         $returnValue = "failure";
         try {
@@ -119,6 +120,63 @@ class mobileModelMobileData extends JModel {
             $db->setQuery($query);
 	    $db->query();          
 
+        } catch (Exception $ex) {
+            $returnValue = "error";
+        }
+        return $returnValue;
+    }
+    
+    
+     //8 About Our Clinics Details------------
+    public function contentAboutOurClinicsDetails() {      
+        $returnValue = "failure";
+        try {
+            $db = $this->getDBO();
+            $query = "select title,introtext from #__content where id=7";
+            $db->setQuery($query);
+            $returnValue = $db->loadObject();
+        } catch (Exception $ex) {
+            $returnValue = "error";
+        }
+        return $returnValue;
+    }
+    
+     //9 FAQs Details------------
+    public function contentFAQsDetails() {      
+        $returnValue = "failure";
+        try {
+            $db = $this->getDBO();
+            $query = "select title,introtext from #__content where id=10";
+            $db->setQuery($query);
+            $returnValue = $db->loadObject();
+        } catch (Exception $ex) {
+            $returnValue = "error";
+        }
+        return $returnValue;
+    }
+    
+    //10 Members Details------------
+    public function contentMembersDetails() {
+        $returnValue = "failure";
+        try {
+            $db = $this->getDBO();
+            $query = "select title,introtext from #__content where id=17";
+            $db->setQuery($query);
+            $returnValue = $db->loadObject();
+        } catch (Exception $ex) {
+            $returnValue = "error";
+        }
+        return $returnValue;
+    }
+    
+    //11 Virtual Tour Details------------
+    public function contentVirtualTourDetails() {
+        $returnValue = "failure";
+        try {
+            $db = $this->getDBO();
+            $query = "select title,introtext from #__content where id=13";
+            $db->setQuery($query);
+            $returnValue = $db->loadObject();
         } catch (Exception $ex) {
             $returnValue = "error";
         }
