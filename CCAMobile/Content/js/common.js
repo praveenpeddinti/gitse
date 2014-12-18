@@ -1,6 +1,5 @@
-
-var serverURL = "http://115.248.17.88/CCA/index.php/";
-var site_base_ur = "http://115.248.17.88/CCA/";
+var serverURL = "http://ccaclinics.org/index.php/";
+var site_base_ur = "http://ccaclinics.org/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
@@ -9,6 +8,7 @@ function ajaxRequest(requestURL,queryString,callback){
         return;
     } else{
         var data = "option=com_mobile&task="+requestURL+"&"+queryString+"&isMobile=true";
+       
         $.ajax({
             dataType:"json",
             type: "POST",
@@ -16,10 +16,10 @@ function ajaxRequest(requestURL,queryString,callback){
             async:true,
             data: data,
             success : function(data){
-                callback(data);
+            	callback(data);
             },
             error : function(XMLHttpRequest, textStatus, errorThrown) {
-                hideLoadingIndicator();
+            	hideLoadingIndicator();
                 showAlert("Sorry! Unable to process the request.!");
             }
         });
@@ -304,7 +304,7 @@ function getPageSize(context) {
     return pageSize;
 }
 
-function openInChildBrowser(url){
+function openInChildBrowser(url){  
     childBrowser = window.open(url, '_blank', 'location=yes');
 }
 
@@ -354,7 +354,12 @@ function showMap(divId, clinicsData, currentLatitude, currentLongitude){
         mapOptions.center = new google.maps.LatLng(currentLatitude, currentLongitude);
     
     var map = new google.maps.Map(document.getElementById(divId),mapOptions);
-    var infowindow = new google.maps.InfoWindow();
+    //var infowindow = new google.maps.InfoWindow();
+   
+    var infowindow = new google.maps.InfoWindow({
+    	maxWidth: 185
+   });
+   
     var marker, infowindowContent, i;
         
     for (i = 0; i < clinicsData.length; i++) {
@@ -369,10 +374,23 @@ function showMap(divId, clinicsData, currentLatitude, currentLongitude){
                 infowindowContent = "<div onclick='loadClinicDetailPage("+ clinicsData[i].id +")'><p><span class='marker_name'>"+ clinicsData[i].name +"</span><span>("+ clinicsData[i].distance +" mi)</span><br/> "+ clinicsData[i].address+"<br/> "+ clinicsData[i].phone +" <br/> Category: "+ clinicsData[i].Category +"</p></div>";
                 infowindow.setContent(infowindowContent);
                 infowindow.open(map, marker);
+                
+                $(".gm-style-iw").next("div").hide();
+                
             }
-        })(marker, i));
+        })(marker, i)); 
+        
+        google.maps.event.addListener(map, 'click', function(event) {
+        if (infowindow) {
+            infowindow.close();
+        };        
+    	});       
+        
     }
+    
 }
+
+
 
 /* Map Display Ends Here */
 
@@ -409,6 +427,8 @@ function sendViaEmail(){
 /* Calculate Current Location Latitude & Longitude Starts Here */
 
 function getCurrentLocationLatLong(){
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
     if(deviceAgent == "PC"){
         if(navigator.geolocation)
             navigator.geolocation.getCurrentPosition(searchClinicsInCurrentLocation, geoLocationError);

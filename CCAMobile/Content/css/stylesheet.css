@@ -163,18 +163,30 @@ body {padding-left: 0px;padding-right:0px;background:#fff; font-family:exoregula
 .paddingT5L10{ padding:5px 10px;}
 .marginT54{ margin-top:53px;}
 .marginT40{ margin-top:40px;}
-.footer {position:absolute; z-index:2;bottom:0; left:0;width:100%;height:55px; background: url(../images/footer_bg.png) repeat-x left top;padding:0;border-top:1px solid #1f3d54;}
-.footer div{ float:left;width: 33.33333%; text-align:center; color:#fff}
+.footer {position:absolute; z-index:2;bottom:0; left:0;width:100%;height:61px; background: url(../images/footer_bg.png) repeat-x left top;padding:0;border-top:1px solid #1f3d54;}
+/*.footer div{ float:left;width: 33.33333%; text-align:center; color:#fff}*/
+.footer div{ float:left;width: 100%; text-align:center; color:#fff}
 .footer div a{ }
-.footer div a{  border-left:2px solid #003a64; height:54px; display:block; vertical-align:middle }
-.footer div a.clinic img{ background:url(../images/footer_icons.png) no-repeat 5px top;}
-.footer div a.partners img{ background:url(../images/footer_icons.png) no-repeat left -73px;}
-.footer div a.aboutcca img{ background:url(../images/footer_icons.png) no-repeat left -144px;}
-.footer div:hover a.clinic img, .footer div.active a.clinic img{ background:url(../images/footer_icons.png) no-repeat -156px top;}
-.footer div:hover a.partners img, .footer div.active a.partners img{ background:url(../images/footer_icons.png) no-repeat -156px -73px;}
-.footer div:hover a.aboutcca img, .footer div.active a.aboutcca img{ background:url(../images/footer_icons.png) no-repeat -156px -144px;}
-.footer div a img{ width:62px; height:54px;}
-.footer #clinicsTab a img{ width:84px; height:54px;}
+/*.footer div a{  border-left:2px solid #003a64; height:54px; display:block; vertical-align:middle }*/
+.footer div a{  border-right:2px solid #003a64; height:60px; display:block; vertical-align:middle;}
+.footer div a.clinic img{ background:url(../images/footer_icons.png) no-repeat 8px 2px;}
+.footer div a.partners img{ background:url(../images/footer_icons.png) no-repeat 12px -216px;}
+.footer div a.aboutcca img{ background:url(../images/footer_icons.png) no-repeat 12px -142px;}
+.footer div.active a.clinic img{ background:url(../images/footer_icons.png) no-repeat -153px 2px;}
+.footer div.active a.partners img{ background:url(../images/footer_icons.png) no-repeat -144px -216px;}
+.footer div.active a.aboutcca img{ background:url(../images/footer_icons.png) no-repeat -144px -142px;}
+
+.footer div a.faqs img{ background:url(../images/footer_icons.png) no-repeat 26px -459px;}
+.footer div a.aboutclinics img{ background:url(../images/footer_icons.png) no-repeat 14px -302px;}
+.footer div a.virtualtour img{ background:url(../images/footer_icons.png) no-repeat 11px -389px;}
+.footer div.active a.faqs img{ background:url(../images/footer_icons.png) no-repeat -135px -459px;}
+.footer div.active a.aboutclinics img{ background:url(../images/footer_icons.png) no-repeat -147px -302px;}
+.footer div.active a.virtualtour img{ background:url(../images/footer_icons.png) no-repeat -150px -389px;}
+
+
+
+/*.footer div a img{ width:62px; height:54px;}*/
+.footer div a img{ height:54px;width:90px; margin:auto;}
 .switch_div{ margin: auto; width:40%; text-align: center}
 .register-switch {height: 32px;margin-top:5px;padding: 4px;background: url(../images/switch_bg.png) repeat-x left top;border-radius: 2px;
   /*background-image: -webkit-linear-gradient(top, #60a83a, #7dbe52);
@@ -209,7 +221,7 @@ body {padding-left: 0px;padding-right:0px;background:#fff; font-family:exoregula
 .hcenter{text-align:center;}
 /* Maps Styles Starts Here */
 .map_canvas{height:350px;width:100%;}
-.marker_name { font-size:1.2em; font-weight:bold; white-space:nowrap;}
+.marker_name { font-size:1.2em; font-weight:bold;}
 /* Maps Styles Ends Here */
 .nomoreclinics{text-align: center; margin-top:6px;font-weight: bold;}
 .margin-top6{margin-top:6px}
@@ -312,4 +324,72 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3e6f5', end
 @media (min-width: 1024px) {  
   .modal_top{margin-top:25%;}
   .map_canvas{height:1000px;}
+}
+
+
+
+.virtualimages{max-width:100%;position:relative}
+.virtualimages img{max-width:100%}	
+.virtualimages .circle{width:30px;height:30px;position:absolute;text-align:center;}
+
+@media (min-width:320px) and  (max-width: 320px) {
+.virtualimages .circle1{top:66px;left:43px;}
+.virtualimages .circle2{top:66px;left:142px;}
+.virtualimages .circle3{top:26px;left:230px;}
+
+.virtualimages .circle4{top:152px;left:65px;}
+.virtualimages .circle5{top:39px;left:151px;}
+.virtualimages .circle6{top:1px;left:177px;}
+
+}
+@media (min-width:360px) and  (max-width: 360px) {
+.virtualimages .circle1{top:79px;left:51px;}
+.virtualimages .circle2{top:80px;left:164px;}
+.virtualimages .circle3{top:37px;left:264px;}
+
+.virtualimages .circle4{top:189px;left:72px;}
+.virtualimages .circle5{top:49px;left:174px;}
+.virtualimages .circle6{top:4px;left:201px;}
+}
+@media (min-width:384px) and  (max-width: 384px) {
+.virtualimages .circle1{top:84px;left:56px;}
+.virtualimages .circle2{top:90px;left:177px;}
+.virtualimages .circle3{top:41px;left:284px;}
+
+.virtualimages .circle4{top:204px;left:76px;}
+.virtualimages .circle5{top:54px;left:188px;}
+.virtualimages .circle6{top:6px;left:219px;}
+}
+@media (min-width:480px) and  (max-width: 480px) {
+.virtualimages .circle1{top:112px;left:76px;}
+.virtualimages .circle2{top:119px;left:232px;}
+.virtualimages .circle3{top:58px;left:371px;}
+
+.virtualimages .circle4{top:260px;left:110px;}
+.virtualimages .circle5{top:72px;left:246px;}
+.virtualimages .circle6{top:14px;left:287px;}
+}
+@media (min-width:500px) and  (max-width:533px){
+.virtualimages .circle1{top:127px;left:87px;}
+.virtualimages .circle2{top:132px;left:261px;}
+.virtualimages .circle3{top:71px;left:410px;}
+
+.virtualimages .circle4{top:285px;left:130px;}
+.virtualimages .circle5{top:84px;left:275px;}
+.virtualimages .circle6{top:20px;left:318px;}
+}
+
+@media (min-width:535px) {
+.virtualimages .circle1{top:141px;left:98px;}
+.virtualimages .circle2{top:145px;left:291px;}
+.virtualimages .circle3{top:85px;left:462px;}
+
+.virtualimages .circle4{top:315px;left:140px;}
+.virtualimages .circle5{top:93px;left:309px;}
+.virtualimages .circle6{top:24px;left:355px;}
+}
+
+.virtualimages .popover{
+    max-width: 200px;
+    min-width: 200px;    
 }

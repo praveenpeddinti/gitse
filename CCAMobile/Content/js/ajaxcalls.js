@@ -1,12 +1,25 @@
 function showIndexPage() {
     showSplashScreenLoadingIndicator();
-    my.utils.renderViewTo('Views/members.html', null, 'mainContentDiv', showIndexPageResponseHandler);
+    
+    //ajaxRequest("getAboutUsforIndexPage", "deviceAgent="+deviceAgent, showIndexPageResponseHandler);
+    ajaxRequest("getIntroContentforIndexPage", "deviceAgent="+deviceAgent, showIndexPageResponseHandler);    
 }
 
-function showIndexPageResponseHandler(){
-    refreshBodyScroll();
-    splashIntervalId = setTimeout( loadDashboard, timeInterval);
-    hideSplashScreenLoadingIndicator();
+function showIndexPageResponseHandler(showIndexPageResponse){    
+    if(showIndexPageResponse.status == "success"){
+        //my.utils.renderViewTo('Views/members.html', showIndexPageResponse, 'mainContentDiv', function(data){
+        my.utils.renderViewTo('Views/index.html', showIndexPageResponse, 'mainContentDiv', function(data){
+            
+            refreshBodyScroll();            
+            splashIntervalId = setTimeout( loadDashboard, timeInterval);
+            hideSplashScreenLoadingIndicator();
+        });
+    } else{
+        hideLoadingIndicator();
+         ShowMessage('errorModal', 'Home', "<li class='error'>Unable to get Index Page Content.</li>", true, false);
+    }  
+    
+    
 }
 
 function loadDashboard(){
@@ -17,6 +30,8 @@ function loadDashboard(){
 /* Display Clinics Starts Here */
 
 function searchClinicsInCurrentLocation(position){
+    globalspace.listLatitude = position.coords.latitude;
+    globalspace.listLongitude = position.coords.longitude;   
     queryString = "distance="+distance+"&lat="+position.coords.latitude+"&lng="+position.coords.longitude;
     ajaxRequest("getClinicsDetails", queryString, loadClinicsOnMapResponseHandler);
 }
@@ -39,9 +54,15 @@ function searchClinics(keyword){
 function getClinicsForZipOrLocationHandler(searchKeyword, getClinicsForZipOrLocationResponse){
     showLoadingIndicator();    
     if(getClinicsForZipOrLocationResponse != ""){
+      
+        globalspace.listLatitude = getClinicsForZipOrLocationResponse.lat();
+        globalspace.listLongitude = getClinicsForZipOrLocationResponse.lng();
+        
+        globalspace.searchKeyword = searchKeyword;
+        
         queryString = "distance="+ distance +"&zip="+searchKeyword+"&givenLatitude="+ getClinicsForZipOrLocationResponse.lat() +"&givenLongitude="+ getClinicsForZipOrLocationResponse.lng();        
         ajaxRequest("getClinicsDetailForZipandLocation", queryString, loadClinicsOnMapResponseHandler);
-    } else{
+    } else{      
         queryString = "distance="+distance+"&zip="+searchKeyword;
         ajaxRequest("getClinicsDetailForZipandLocation", queryString, loadClinicsOnMapResponseHandler);
     }
@@ -53,6 +74,9 @@ function loadClinics(target){
     $("#clinicsTab").addClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").removeClass("active");
+    $("#faqsTab").removeClass("active");
+    $("#aboutClinicsTab").removeClass("active");    
+    $("#virtualTourTab").removeClass("active");
     $("#clinics_Map_Switch").removeAttr('checked');
     $("#clinics_List_Switch").removeAttr('checked');
     $("#backButton").hide();
@@ -64,8 +88,16 @@ function loadClinics(target){
             showSplashScreenLoadingIndicator();
         } else{
             showLoadingIndicator();
+            
         }
-        getCurrentLocationLatLong();        
+        //alert(index+"====="+globalspace.searchClinicsKeyword);
+        if(globalspace.searchClinicsKeyword)
+        {
+            searchClinics(globalspace.searchClinicsKeyword);
+        }else{         
+            getCurrentLocationLatLong();
+        }
+        
     } else if(target == "List"){
         $("#clinics_List_Switch").attr('checked', true);
         $('#backButton').attr('onclick',"loadClinics('List')");
@@ -80,7 +112,7 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
             $("#wrapper").removeClass("splash_header_top");
             $("#wrapper").addClass("wrapper_top");
             $("#header").show();
-            $("#footer").show();
+            $("#footer").show();            
             hideSplashScreenLoadingIndicator();
         }
         
@@ -111,11 +143,15 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
     }
 }
 
-function loadMapWithSearchResults(){
+function loadMapWithSearchResults(){    
     $("#shareIcon").hide();
     $("#backButton").hide();
     showLoadingIndicator();
-    searchClinics(globalspace.searchClinicsKeyword);
+    if(globalspace.searchClinicsKeyword)
+        searchClinics(globalspace.searchClinicsKeyword);
+    else
+        loadClinics("Map");
+        
 }
 
 function loadClinicsAsList(reset){
@@ -132,7 +168,7 @@ function loadClinicsAsList(reset){
     if(globalspace.isClinicsCurrentlyLoading != true && globalspace.isClinicsReachedEnd != true){
         globalspace.isClinicsCurrentlyLoading = true;
         showLoadingIndicator();
-        queryString = "startpage="+pageNumber+"&endpage="+pageSize;
+        queryString = "startpage="+pageNumber+"&endpage="+pageSize+"&distance="+ distance+"&givenLatitude="+ globalspace.listLatitude +"&givenLongitude="+ globalspace.listLongitude;
         ajaxRequest("getClinicsDetailList", queryString, loadClinicsAsListResponseHandler); 
     }
 }
@@ -171,7 +207,7 @@ function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
             
             if(loadClinicsAsListResponse.pageNumber == 0){
                 initializeBodyScroll(null, loadClinicsAsList);
-            } else{
+            } else{//initializeBodyScroll
                 refreshBodyScroll();
             }
             
@@ -230,14 +266,21 @@ function closeShareActionsModal(){
 /* Display Partners Starts Here */
 
 function loadPartners(){
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
+    
     showLoadingIndicator();
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").addClass("active");
     $("#aboutCCATab").removeClass("active");
+    $("#faqsTab").removeClass("active");
+    $("#aboutClinicsTab").removeClass("active");    
+    $("#virtualTourTab").removeClass("active");
     ajaxRequest("getPartners", "", loadPartnersResponseHandler);
 }
 
 function loadPartnersResponseHandler(loadPartnersResponse){
+    //alert(loadPartnersResponse.membersLogo);
     if(loadPartnersResponse.status == "success"){
         loadPartnersResponse.site_base_url = site_base_ur;
         loadPartnersResponse.deviceAgent = deviceAgent;
@@ -260,10 +303,17 @@ function loadPartnersResponseHandler(loadPartnersResponse){
 /* Display About CCA Starts Here */
 
 function loadAboutCCA(){
-    showLoadingIndicator();
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
+    
+    showLoadingIndicator();   
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").addClass("active");
+    $("#faqsTab").removeClass("active");
+    $("#aboutClinicsTab").removeClass("active");    
+    $("#virtualTourTab").removeClass("active");
+    
     ajaxRequest("getAboutUs", "deviceAgent="+deviceAgent, loadAboutCCAResponseHandler);
 }
 
@@ -285,21 +335,189 @@ function loadAboutCCAResponseHandler(loadAboutCCAResponse){
 
 /* Display About CCA Ends Here */
 
-function loadMembers(){
-    showLoadingIndicator();
-    my.utils.renderViewTo('Views/members.html', null, 'mainContentDiv', loadMembersResponseHandler);
+function loadHomePage(){
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
+    showLoadingIndicator();    
+    //ajaxRequest("getAboutUsforIndexPage", "deviceAgent="+deviceAgent, loadMembersResponseHandler);
+    ajaxRequest("getIntroContentforIndexPage", "deviceAgent="+deviceAgent, loadHomePageResponseHandler);    
 }
 
-function loadMembersResponseHandler(){
-    $("#headerLogo").show();
-    $("#backButton").hide();
-    $("#clinicsSwitchDiv").hide();
-    $("#shareIcon").hide();
+function loadHomePageResponseHandler(loadHomePageResponse){  
+    if(loadHomePageResponse.status == "success"){
+        //my.utils.renderViewTo('Views/members.html', loadMembersResponse, 'mainContentDiv', function(data){
+        my.utils.renderViewTo('Views/index.html', loadHomePageResponse, 'mainContentDiv', function(data){
+            
+            $("#headerLogo").show();
+            $("#backButton").hide();
+            $("#clinicsSwitchDiv").hide();
+            $("#shareIcon").hide();
+
+            $("#clinicsTab").removeClass("active");
+            $("#partnersTab").removeClass("active");
+            $("#aboutCCATab").removeClass("active");            
+            $("#faqsTab").removeClass("active");
+            $("#aboutClinicsTab").removeClass("active");    
+            $("#virtualTourTab").removeClass("active");
+
+            refreshBodyScroll();
+            hideLoadingIndicator();
+            
+        });
+    } else{
+        hideLoadingIndicator();
+        ShowMessage('errorModal', 'Home', "<li class='error'>Unable to get Index Page Content.</li>", true, false);
+    }
+}
     
+/* Display About Our Clinics Starts Here */
+
+function loadAboutOurClinics(){
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
+    
+    showLoadingIndicator();
     $("#clinicsTab").removeClass("active");
     $("#partnersTab").removeClass("active");
     $("#aboutCCATab").removeClass("active");
-        
+    $("#faqsTab").removeClass("active");
+    $("#aboutClinicsTab").addClass("active");    
+    $("#virtualTourTab").removeClass("active");
+    ajaxRequest("getAboutOurClinics", "deviceAgent="+deviceAgent, loadAboutOurClinicsResponseHandler);
+}
+
+function loadAboutOurClinicsResponseHandler(loadAboutOurClinicsResponse){
+    if(loadAboutOurClinicsResponse.status == "success"){
+        my.utils.renderViewTo('Views/aboutOurClinics.html', loadAboutOurClinicsResponse, 'mainContentDiv', function(data){
+            $("#headerLogo").show();
+            $("#backButton").hide();
+            $("#clinicsSwitchDiv").hide();
+            $("#shareIcon").hide();
+            refreshBodyScroll();
+            hideLoadingIndicator();
+        });
+    } else{
+        hideLoadingIndicator();
+        ShowMessage('errorModal', 'About Our Clinics', "<li class='error'>Unable to get about our clinics.</li>", true, false);
+    }
+}
+
+/* Display About Our Clinics Ends Here */
+
+
+/* Display FAQs Starts Here */
+
+function loadFAQs(){
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
+    
+    showLoadingIndicator();
+    $("#clinicsTab").removeClass("active");
+    $("#partnersTab").removeClass("active");
+    $("#aboutCCATab").removeClass("active");
+    $("#faqsTab").addClass("active");
+    $("#aboutClinicsTab").removeClass("active");    
+    $("#virtualTourTab").removeClass("active");
+    ajaxRequest("getFAQs", "deviceAgent="+deviceAgent, loadFAQsResponseHandler);
+}
+
+function loadFAQsResponseHandler(loadFAQsResponse){  
+    if(loadFAQsResponse.status == "success"){
+        my.utils.renderViewTo('Views/faqs.html', loadFAQsResponse, 'mainContentDiv', function(data){
+            $("#headerLogo").show();
+            $("#backButton").hide();
+            $("#clinicsSwitchDiv").hide();
+            $("#shareIcon").hide();
+            refreshBodyScroll();
+            hideLoadingIndicator();
+        });
+    } else{
+        hideLoadingIndicator();
+        ShowMessage('errorModal', 'FAQs', "<li class='error'>Unable to get FAQs.</li>", true, false);
+    }
+}
+
+/* Display FAQs Ends Here */
+
+
+/* Display Answer Starts Here */
+function displayAnswer(k){
+    $("#A"+k).toggle();
     refreshBodyScroll();
-    hideLoadingIndicator();
+}
+/* Display Answer Ends Here */
+
+
+/* Display Virtual Tour Starts Here */
+
+function loadVirtualTour(){
+    globalspace.searchClinicsKeyword="";
+    $("#searchClinicsKeyword").val('');
+    
+    showLoadingIndicator();
+    $("#clinicsTab").removeClass("active");
+    $("#partnersTab").removeClass("active");
+    $("#aboutCCATab").removeClass("active");
+    $("#faqsTab").removeClass("active");
+    $("#aboutClinicsTab").removeClass("active");    
+    $("#virtualTourTab").addClass("active");
+    
+    ajaxRequest("getVirtualTour", "deviceAgent="+deviceAgent, loadVirtualTourResponseHandler);
+}
+
+function loadVirtualTourResponseHandler(loadVirtualTourResponse){
+    if(loadVirtualTourResponse.status == "success"){       
+        my.utils.renderViewTo('Views/virtualTour.html', loadVirtualTourResponse, 'mainContentDiv', function(data){
+            $("#headerLogo").show();
+            $("#backButton").hide();
+            $("#clinicsSwitchDiv").hide();
+            $("#shareIcon").hide();
+            refreshBodyScroll();
+            hideLoadingIndicator();
+        });
+    } else{
+        hideLoadingIndicator();
+        ShowMessage('errorModal', 'Virtual Tour', "<li class='error'>Unable to get virtual tour.</li>", true, false);
+    }
+}
+
+/* Display Virtual Tour Ends Here */
+
+
+function virtualTourImages(id){
+    refreshBodyScroll();
+    if(id=="virtual_tour_ext"){
+        $("#virtual_tour").hide('slow');
+        $("#virtual_tour_ext").show('slow');
+        
+        $("#virtual_tour_ext").css('overflow', 'visible');
+        $(".virtual_tour_ext").css('font-style', 'italic');
+        $(".virtual_tour").css('font-style', 'normal');
+       
+        $(".circle1").show(700);
+        $(".circle2").show(700);
+        $(".circle3").show(700);
+        $(".circle4").hide();
+        $(".circle5").hide();
+        $(".circle6").hide();
+
+    }
+
+    else if(id=="virtual_tour"){
+        $("#virtual_tour_ext").hide('slow');
+        $("#virtual_tour").show('slow');
+        
+        $("#virtual_tour").css('overflow', 'visible');
+        $(".virtual_tour").css('font-style', 'italic');
+        $(".virtual_tour_ext").css('font-style', 'normal');
+       
+        $(".circle1").hide();
+        $(".circle2").hide();
+        $(".circle3").hide();
+        $(".circle4").show(700);
+        $(".circle5").show(700);
+        $(".circle6").show(700);
+        
+    }
+
 }

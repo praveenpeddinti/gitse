@@ -22,7 +22,27 @@ var app = {
 };
 
 function onDeviceReady() {
+
     if (deviceAgent != "PC") {
+    	
+    	//to avoid double tap in droid 4.3 version
+    	var ver=parseFloat(device.version);
+		if(ver>=4.1 && ver < 4.4){ 
+		 var last_click_time = new Date().getTime();
+			document.addEventListener('click', function (e) {
+			try{
+			click_time = e['timeStamp'];
+			if (click_time && (click_time - last_click_time) < 1000) {
+			e.stopImmediatePropagation();
+			e.preventDefault();
+			return false;
+			}
+			last_click_time = click_time;
+			}catch(err){alert(err)}
+			}, true); 
+		}
+    	
+    	
         if (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE) {
             showAlert("Please check your network connection..!");
             return;
