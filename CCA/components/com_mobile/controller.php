@@ -1,10 +1,10 @@
 <?php
 
-defined("_JEXEC") or die("Restricted access");
+defined("_JEXEC") or die;
 jimport("joomla.application.component.controller");
 
-class mobileController extends JController {
-
+class mobileController extends JControllerLegacy {
+    
     //1 Partners Details------------
     public function getPartners() {
         $returnValue = array();
@@ -41,6 +41,7 @@ class mobileController extends JController {
                 }
 
                 $returnValue['data'] = $partnerLogos;
+		$returnValue['membersLogo'] = $this->getMembers();
                 $returnValue['status'] = "success";
             }
         } catch (Exception $ex) {
@@ -58,7 +59,7 @@ class mobileController extends JController {
         global $mainframe;
         $mainframe = JFactory::getApplication();
         try {
-            $model = $this->getModel("mobileData");
+            $model = $this->getModel('mobileData');
             $responseData = $model->contentAboutUsDetails();
             if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
@@ -104,6 +105,8 @@ class mobileController extends JController {
         $mainframe = JFactory::getApplication();
         try {
             $model = $this->getModel("mobileData");
+            //$_REQUEST['lat'] =, $_REQUEST['lng'], $_REQUEST['distance']
+            //$responseData = $model->contentClinicsDetailsForLatandLng('32.2858637', '-110.9785714', 25);
             $responseData = $model->contentClinicsDetailsForLatandLng($_REQUEST['lat'], $_REQUEST['lng'], $_REQUEST['distance']);
             if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
@@ -155,8 +158,8 @@ class mobileController extends JController {
             $pageSize = $_REQUEST['endpage'];
 
             $model = $this->getModel("mobileData");
-            $totalClinics = $model->getTotalClinics();
-            $responseData = $model->contentClinicsDetailForList(($pageNumber * $pageSize), $pageSize);
+            $totalClinics = count($model->getTotalClinics($_REQUEST['givenLatitude'], $_REQUEST['givenLongitude'], $_REQUEST['distance']));            
+            $responseData = $model->contentClinicsDetailForList(($pageNumber * $pageSize), $pageSize, $_REQUEST['givenLatitude'], $_REQUEST['givenLongitude'], $_REQUEST['distance']);
             if ($responseData == 'failure' || $responseData == 'error') {
                 $returnValue['status'] = "failure";
             } else {
@@ -235,7 +238,62 @@ class mobileController extends JController {
     }
     
     //7 About Us Details for Landing Page------------
-     public function getIntroContentforIndexPage() {
+   /* public function getAboutUsforIndexPage() {
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentAboutUsDetails();
+            $membersResponseData = $model->contentMembersDetails();
+            if ($responseData == 'failure' || $responseData == 'error') {
+                $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $string = $responseData->introtext;
+                    $string = substr($string,0, strpos($string, "</p>")+4);
+                    $introtext = str_replace("<p>", "", str_replace("<p/>", "", $string));
+        
+                } else {
+                    $doc = new DOMDocument();
+                    
+                    $string = $responseData->introtext;
+                    $string = substr($string,0, strpos($string, "</p>")+4);
+                    $introtext = str_replace("<p>", "", str_replace("<p/>", "", $string));
+                    
+                    $doc->loadHTML($introtext);
+                    $doc->preserveWhiteSpace = false;
+
+                    foreach ($doc->getElementsByTagName('a') as $anchor) {
+                        $link = $anchor->getAttribute('href');
+                        $anchor->setAttribute('href', '#');
+                        $anchor->setAttribute('onclick', 'openInChildBrowser("' . $link . '")');
+                        $anchor->removeAttribute('target');
+                    }
+                    
+                    $introtext = $doc->saveHTML();
+                }
+
+
+                $response['introtext'] = $introtext;
+                $returnValue['data'] = $response;
+                $returnValue['status'] = "success";
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        echo json_encode($returnValue);
+        $mainframe->close();
+    }
+    */
+    
+    
+    /* public function getIntroContentforIndexPage() {
         $returnValue = array();
         $returnValue['status'] = "failure";
         global $mainframe;
@@ -285,8 +343,167 @@ class mobileController extends JController {
         //echo json_encode($returnValue);
         $mainframe->close();
     }
+    */
+
+//7 About Us Details for Landing Page------------
+     public function getIntroContentforIndexPage() {
+        $returnValue = array();
+        $returnValue['status'] = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            $responseData = $model->contentHomeDetails();
+            //$membersResponseData = $model->contentMembersDetails();
+            if ($responseData == 'failure' || $responseData == 'error') {
+               // $returnValue['status'] = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $responseData->title;
+
+                if ($_REQUEST['deviceAgent'] == 'PC') {
+                    //$string = $responseData->introtext;
+                    //$string = substr($string,0, strpos($string, "</p>")+4);
+                    //$introtext = str_replace("<p>", "", str_replace("<p/>", "", $string));
+                    $introtext = $responseData->introtext;
+        
+                } else {
+                    $doc = new DOMDocument();
+                    
+                    //$string = $responseData->introtext;
+                    //$string = substr($string,0, strpos($string, "</p>")+4);
+                    //$introtext = str_replace("<p>", "", str_replace("<p/>", "", $string));
+                    $introtext = $responseData->introtext;
+                    $doc->loadHTML($introtext);
+                    $doc->preserveWhiteSpace = false;
+
+                    foreach ($doc->getElementsByTagName('a') as $anchor) {
+                        $link = $anchor->getAttribute('href');
+                        $anchor->setAttribute('href', '#');
+                        $anchor->setAttribute('onclick', 'openInChildBrowser("' . $link . '")');
+                        $anchor->removeAttribute('target');
+                    }
+                    
+                    $introtext = $doc->saveHTML();
+                }
+
+
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        
+        $response['introtext'] = $introtext;
+        $returnValue['data'] = $response;
+        $returnValue['status'] = "success";
+        
+        //return $returnValue;
+        echo json_encode($returnValue);
+        $mainframe->close();
+    } 
+
+//8 Members Details for Landing Page------------
+    public function getMembers() {
+        //$returnValue = array();
+        //$returnValue['status'] = "failure";
+        $returnValue = "failure";
+        global $mainframe;
+        $mainframe = JFactory::getApplication();
+        try {
+            $model = $this->getModel("mobileData");
+            //$responseData = $model->contentAboutUsDetails();
+            $membersResponseData = $model->contentMembersDetails();
+            if ($membersResponseData == 'failure' || $membersResponseData == 'error') {
+                $returnValue = "failure";
+            } else {
+                $response = array();
+                $response['title'] = $membersResponseData->title;
+
+                /*if ($_REQUEST['deviceAgent'] == 'PC') {
+                    $finalValue = $membersResponseData->introtext;
+                } else {*/
+
+                    $doc = new DOMDocument();
+
+                    preg_match_all("/(<([\w]+)[^>]*>)(.*?)(<\/\\2>)/", $membersResponseData->introtext, $matches, PREG_SET_ORDER);
+
+                    $finalValue="";
+                    $m=0;    
+                    foreach ($matches as $val) {
+                        
+                        if($val[2]=="h3"){
+                            if(strip_tags($val[3])){
+                            $padding = "";
+                            if($m!=0){$finalValue .= "</ul></div>"; $padding = "style='padding-top:30px;'"; }
+                            
+                            $finalValue .= "<div class='span12' ".$padding."><div class='members_title'><label>".strip_tags($val[3])."</label></div><ul class='members_list'>";
+                           }
+                           
+                            $m++;
+                        }else if($val[2]=="p"){
+                            
+                            $doc->loadHTML($val[0]);
+                            $doc->preserveWhiteSpace = false;
+                    
+                            $link = "";
+                            $params2 = $doc->getElementsByTagName('img');
+                            $params3 = $doc->getElementsByTagName('a');
+
+                            $j = 0;
+                            foreach ($params3 as $param3) {
+                                if ($param3 && $j == 0) {
+                                    $link = $param3->getAttribute('href');
+                                    $j++;
+                                }
+                            }
+
+
+                            $jj = 0;
+                            foreach ($params2 as $param2) {
+                                $imgPath = $param2->getAttribute('src');
+                                $altText = $param2->getAttribute('alt');
+                                if ($param2 && $jj == 0 && $imgPath != "plugins/editors/jce/tiny_mce/plugins/filemanager/img/ext/pdf_small.gif") {
+
+
+                                    if($link){
+                                        $link = str_replace("/", "\/", $link);
+                                        $anchor1="<a href='#' onclick='openInChildBrowser(\"$link\")'>"; $anchor2="</a>";
+                                    }else{
+                                        $anchor1=""; $anchor2="";
+                                    }
+
+                                    $finalValue .= "<li>".$anchor1."<img src='" . JURI::base() . $imgPath . "' alt='".$altText."' align='absmiddle' width='75px' height='30px'>".$anchor2."</li>";
+
+                                    $jj++;
+                                }
+                            }                            
+                        }                        
+                    }
+                //}
+
+                //$response['introtext1']=$finalValue;
+                //$response['introtext']=$this->getIntroContentforIndexPage();
+                
+                //$response['memberlogos'] = $finalValue."</ul>";
+                
+                $returnValue = $finalValue."</ul>";
+                //$returnValue['status'] = "success";
+                
+                //$teest = $finalValue."</ul>";
+                //$teest = "dddddd";
+                //cho json_encode($teest);
+                
+            }
+        } catch (Exception $ex) {
+            JError::raiseError(500, "Error Occured in About Us");
+            $returnValue['status'] = "failure";
+        }
+        return $returnValue;
+        //echo json_encode($returnValue);
+        $mainframe->close();
+    }
     
-    //8 Members Details for Landing Page------------
     public function getAboutUsforIndexPage() {
         $returnValue = array();
         $returnValue['status'] = "failure";
@@ -365,7 +582,13 @@ class mobileController extends JController {
 
 
                             
-                        } 
+                        }
+                        //$x .= "matched: " . $val[0] . "------";
+                       // echo "part 1: " . $val[1] . "\n";
+                       // $x .= "part 2: " . $val[2] . "--";
+                      //  echo "part 3: " . $val[3] . "\n";
+                       // echo "part 4: " . $val[4] . "\n\n";
+                        
                        
                     }
 
@@ -387,7 +610,7 @@ class mobileController extends JController {
         $mainframe->close();
     }
     
-    //9 About Our Clinics Details------------
+    //8 About Our Clinics Details------------
     public function getAboutOurClinics() {       
         $returnValue = array();
         $returnValue['status'] = "failure";
@@ -433,7 +656,7 @@ class mobileController extends JController {
     }
     
     
-    //10 FAQs Details------------
+    //9 FAQs Details------------
     public function getFAQs() {       
         $returnValue = array();
         $returnValue['status'] = "failure";
@@ -493,7 +716,7 @@ class mobileController extends JController {
     }
     
     
-    //11 Virtual Tour Details------------
+    //2 About Us Details------------
     public function getVirtualTour() {
         $returnValue = array();
         $returnValue['status'] = "failure";
@@ -544,7 +767,7 @@ data-container="body" data-toggle="popover" data-placement="right" data-content=
                     $kk=0;
                     foreach ($doc->getElementsByTagName('h4') as $param) {
                         
-                        if($kk<2){  error_log("K value : ".$kk);
+                        if($kk<2){
                             
                            $params2 = $param->getElementsByTagName('a');
                            
@@ -588,7 +811,7 @@ data-container="body" data-toggle="popover" data-placement="right" data-content=
                         $info_wall = ""; $info_computer = ""; $info_floor = "";
                         foreach ($divTag->getElementsByTagName('div') as $divTagInner) {
                             
-                            if($divTagInner->getAttribute('id')=="info_checkin"){
+                            if($divTagInner->getAttribute('id')=="info_checkin"){  
                                 $Pvalue = explode("<p>", $divTagInner->c14n());
                                 $Pvalue1 = explode("</p>", $Pvalue[1]);
                                 $info_checkin = $Pvalue1[0];
