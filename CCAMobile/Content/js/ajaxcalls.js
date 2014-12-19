@@ -284,7 +284,7 @@ function loadPartnersResponseHandler(loadPartnersResponse){
     if(loadPartnersResponse.status == "success"){
         loadPartnersResponse.site_base_url = site_base_ur;
         loadPartnersResponse.deviceAgent = deviceAgent;
-        my.utils.renderViewTo('Views/partners.html', loadPartnersResponse, 'mainContentDiv', function(){
+        my.utils.renderViewTo('Views/members.html', loadPartnersResponse, 'mainContentDiv', function(){
             $("#headerLogo").show();
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
