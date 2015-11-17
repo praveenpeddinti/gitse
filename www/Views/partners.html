@@ -1,0 +1,33 @@
+<div id="partnersDiv" class="cca_continer" >
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="padding20">
+                <h2>Partners</h2>
+                <div class="list_results">
+                    <div class="row-fluid">
+                        <div class="span12 ">
+                            <div class="partners_div">
+                                <ul class="partner_logos2">
+                                    {{if data!=null && data!=""}}
+                                    {{for data}}
+                                    <li>
+                                        {{if #parent.parent.data.deviceAgent=="PC"}}
+                                            <a href="{{:url}}" target="_blank"><img src="{{:#parent.parent.parent.data.site_base_url}}{{:logo}}" align="absmiddle" class="partner_logo"></a>
+                                        {{else}}
+                                            <a href="#" onclick="openInChildBrowser('{{:url}}')"><img src="{{:#parent.parent.parent.data.site_base_url}}{{:logo}}" align="absmiddle" class="partner_logo"></a>
+                                        {{/if}}
+                                    </li>
+                                    {{/for}}
+                                    {{else}}
+                                        <div class="nomoreclinics">No partners found.</div>
+                                    {{/if}}
+                                </ul>
+                                <div class="clearfix padding4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
