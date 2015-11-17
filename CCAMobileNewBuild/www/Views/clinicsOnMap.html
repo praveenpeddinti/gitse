@@ -1,0 +1,36 @@
+<div id="clinicOnMapDiv" class="cca_continer" >
+    <div class="sub_header_div">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="switch_div">
+                    <div id="clinicsSwitchDiv" class="register-switch" >
+                        <input type="radio" name="clinics" value="Map" id="clinics_Map_Switch" class="register-switch-input" checked onchange="loadClinics('Map')" />
+                        <label for="clinics_Map_Switch" class="register-switch-label">Map</label>
+                        <input type="radio" name="clinics" value="List" id="clinics_List_Switch" class="register-switch-input" onchange="loadClinics('List')" />
+                        <label for="clinics_List_Switch" class="register-switch-label">List</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="serach_location">
+                <div class="search_div">
+                    <div id="searchClinicsDiv" class="searchClinics">
+                        <input type="text" id="searchClinicsKeyword" placeholder="Enter a Zip / Location" class="input-medium search-query" onkeypress="return enterKeyFunction(event, 'searchClinicsButton')" />
+                        <button type="button" id="searchClinicsButton" class="btn location_searchButton" onclick="searchClinics()"> &nbsp;</button>
+                        <button type="button" class="btn location_currentButton" onclick="getCurrentLocationLatLong()"> &nbsp;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="paddingT5L10">
+                <div id="map_canvas" class="map_canvas"></div>
+            </div>
+        </div>
+    </div> 	
+</div>
