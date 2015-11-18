@@ -474,3 +474,30 @@ function geoCodeGivenAddress(givenAddress, callBackHandler){
 }
 
 /* Get Longitude And Latitude From Google Maps Javascript Geocoder Ends Here */
+
+/* Sending SMS Starts Here */
+
+function sendSMS(){
+    if(deviceAgent != "PC"){
+
+        var success = function () {
+            //alert('Message sent successfully');
+        };
+        var error = function (e) {
+            //alert('Message Failed:' + e); 
+        };
+        sms.send('', getClinicDetailsForSMS(), 'INTENT', 
+            function () {
+                //alert('Message sent successfully');
+            }, function (e) {
+                //alert('Message Failed:' + e); 
+            }
+        );
+ 
+ 
+    } else{
+        showAlert("Please share clinic details from mobile app only.!");
+    }   
+}
+
+/* Sending SMS Ends Here */

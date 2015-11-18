@@ -30,18 +30,6 @@ function refreshBodyScroll(){
 
 /* iScroll initilization ends here */
 
-/* Sending SMS Starts Here */
-
-function sendSMS(){
-    if(deviceAgent != "PC"){
-        window.plugins.smsComposer.showSMSComposer([],getClinicDetailsForSMS());
-    } else{
-        showAlert("Please share clinic details from mobile app only.!");
-    }
-}
-
-/* Sending SMS Ends Here */
-
 /* Add To Contacts Starts Here */
 
 function addPhoneNumberToContacts(){
