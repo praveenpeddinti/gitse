@@ -4,13 +4,9 @@
         <title>CCA Mobile</title>
         <script type="text/javascript">
             function loadCustomResources(userAgent){
-                if(userAgent.match(/(iPhone)/)){
+                if(userAgent.match(/(iPhone)/) || userAgent.match(/(iPad)/) || userAgent.match(/(iPod)/)){
                     window.location = 'ios.html';
-                } else if(userAgent.match(/(iPad)/)){
-                    window.location = 'ios.html';
-                } else if(userAgent.match(/(iPod)/)){
-                    window.location = 'ios.html';
-                } else if(userAgent.match(/(Android)/)){
+                }else if(userAgent.match(/(Android)/)){
                     window.location = 'android.html';
                 } else {
                     window.location = 'ios.html';
