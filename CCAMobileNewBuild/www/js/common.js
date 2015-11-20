@@ -68,7 +68,7 @@ function getTodaysDate(){
 }
 
 //For fetching all selected values of drop down list
-function fetchDropDownListSelectedValues(id){    
+function fetchDropDownListSelectedValues(id){
     var selectedValues = "";    
     var obj = document.getElementById(''+id);
     for (var i = 0; i < obj.options.length; i++){
@@ -501,3 +501,40 @@ function sendSMS(){
 }
 
 /* Sending SMS Ends Here */
+
+
+/* iScroll initilization strats here */
+
+function initializeBodyScroll(onScrollMoveCallback, onScrollEndCallback) {
+    
+    if(bodyScroll){bodyScroll.destroy(); bodyScroll = null; }
+    
+    bodyScroll = new iScroll('wrapper',{
+        zoom:false,
+        //useTransform: false,
+        onBeforeScrollStart: function (e) {
+            var target = e.target;
+
+            if (target.tagName == "INPUT") { }
+
+            while (target.nodeType != 1) target = target.parentNode;
+
+            if (e.target.tagName != "DIV" && target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA')
+                e.preventDefault();
+        },
+        onScrollMove: function () { if (onScrollMoveCallback) { onScrollMoveCallback(); } },
+        onScrollEnd: function () { if (onScrollEndCallback) { if (this.maxScrollY - this.y >= -50) { onScrollEndCallback(); } } }
+    });
+    
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+}
+
+function refreshBodyScroll(){
+    setTimeout(function (){ bodyScroll.refresh(); },500);
+}
+
+function scrollToTop(){
+   bodyScroll.scrollTo(0, 0);
+}
+
+/* iScroll initilization ends here */

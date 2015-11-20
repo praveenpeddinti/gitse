@@ -283,7 +283,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3e6f5', end
 .sub_header_div{ background:#f3f3f3 url(../images/separator_shadow.png) no-repeat center top; height: 45px;  }
 .search_div{ margin: auto;}
 /*spinner*/
-.custom-spinner { background-image: url("../images/ajax-loader.gif");display: block;height: 32px !important;opacity: 1 !important;width: 32px !important;}
+.custom-spinner { background-image: url("../images/ajax-loader.gif");display: block;height: 32px !important;opacity: 1 !important;width: 32px !important;position: relative;top: 50%; margin: -10px auto 0;}
 .partners_div{ /*border:1px solid #cedfed; padding: 5px;*/}
 .partner_logos{ margin: 0; padding: 0; list-style: none}
 .partner_logos li{ float:left; margin:0; padding:10px; max-height:50px; min-height:50px; line-height:50px;}
@@ -297,7 +297,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3e6f5', end
 /*.clients_box_big{ background: url(../images/separator_shadow.png) no-repeat center bottom;   }*/
 .members_title{ background:url(../images/title_bg.png)repeat-x left bottom; text-align: center; display: bock;}
 .members_title label{ background:#fff; font-size:16px; font-family:exobold ;line-height:20px; color:#1d6bad; text-align: center; display: bock; margin: auto; width: 155px;}
-.splash_spinner{position: absolute;z-index: 99999999;width: 100%; height: 100%; text-align: center;background: url(../images/spinner_bg.png)repeat left top; }
+.splash_spinner{position: fixed; top:0;z-index: 99999999;width: 100%; height: 100%; text-align: center;background: url(../images/spinner_bg.png)repeat left top;}
 .margin_auto{ margin: auto; position:relative; top:20%;}
 .members_list{ list-style:none; margin:0; padding:0 10px 0 10px}
 .members_list li{ float:left; margin:0; padding:5px; max-height:50px; min-height:50px; line-height:50px;}
@@ -312,7 +312,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3e6f5', end
 .padding4{ padding: 4px;}
 .btn-default {background-color: #074471;border-color: #13537f; color: #fff;}
 .btn-default:hover,.btn-default:focus,.btn-default:active,.btn-default.active,.open .dropdown-toggle.btn-default{background-color: #074471;border-color: #13537f; color: #fff;}
-.header_spinner{margin: 10px 0 0 10px;}
+.header_spinner{ margin: -10px auto 0;
+    position: relative;
+    top: 50%;}
 .cca_splasharrow{width:166px;text-align: right;margin:auto;padding:0 0 10px 0}
 @media screen and (min-width:768px){
     .partner_logos3 li{ float: left;}

@@ -129,6 +129,7 @@ function loadClinicsOnMapResponseHandler(loadClinicsOnMapResponse){
                 }            
             
                 showMap("map_canvas", loadClinicsOnMapResponse.data, loadClinicsOnMapResponse.latitude, loadClinicsOnMapResponse.longitude);
+                scrollToTop();
                 refreshBodyScroll();
             });
         }
@@ -206,6 +207,7 @@ function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
             if(loadClinicsAsListResponse.pageNumber == 0){
                 initializeBodyScroll(null, loadClinicsAsList);
             } else{//initializeBodyScroll
+                scrollToTop();
                 refreshBodyScroll();
             }
             
@@ -289,6 +291,7 @@ function loadPartnersResponseHandler(loadPartnersResponse){
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
             $("#shareIcon").hide();
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
         });
@@ -326,6 +329,7 @@ function loadAboutCCAResponseHandler(loadAboutCCAResponse){
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
             $("#shareIcon").hide();
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
         });
@@ -363,7 +367,7 @@ function loadHomePageResponseHandler(loadHomePageResponse){
             $("#virtualTourTab").removeClass("active");
             $("#webinarsTab").removeClass("active");
             
-
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
             
@@ -399,6 +403,7 @@ function loadAboutOurClinicsResponseHandler(loadAboutOurClinicsResponse){
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
             $("#shareIcon").hide();
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
         });
@@ -436,6 +441,7 @@ function loadFAQsResponseHandler(loadFAQsResponse){
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
             $("#shareIcon").hide();
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
         });
@@ -481,6 +487,7 @@ function loadVirtualTourResponseHandler(loadVirtualTourResponse){
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
             $("#shareIcon").hide();
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
         });
@@ -494,6 +501,7 @@ function loadVirtualTourResponseHandler(loadVirtualTourResponse){
 
 
 function virtualTourImages(id){
+    scrollToTop();
     refreshBodyScroll();
     if(id=="virtual_tour_ext"){
         $("#virtual_tour").hide('slow');
@@ -556,6 +564,7 @@ function loadWebinarsResponseHandler(loadWebinarsResponse){
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
             $("#shareIcon").hide();
+            scrollToTop();
             refreshBodyScroll();
             hideLoadingIndicator();
         });

@@ -39,11 +39,11 @@ var app = {
     bindEvents: function() {
         findDevice(screen.width, screen.height);
     	if(deviceAgent == "PC"){
-            onDeviceReady(); //this is web browser
+            this.onDeviceReady(); //this is web browser
     	} else if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {               
             document.addEventListener("deviceready", this.onDeviceReady, false);           
         } else{
-            onDeviceReady(); //this is web browser
+            this.onDeviceReady(); //this is web browser
         } 
         
     },
