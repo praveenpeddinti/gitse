@@ -207,7 +207,7 @@ function loadClinicsAsListResponseHandler(loadClinicsAsListResponse){
             if(loadClinicsAsListResponse.pageNumber == 0){
                 initializeBodyScroll(null, loadClinicsAsList);
             } else{//initializeBodyScroll
-                scrollToTop();
+                //scrollToTop();
                 refreshBodyScroll();
             }
             
