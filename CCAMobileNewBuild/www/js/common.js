@@ -68,7 +68,7 @@ function getTodaysDate(){
 }
 
 //For fetching all selected values of drop down list
-function fetchDropDownListSelectedValues(id){
+function fetchDropDownListSelectedValues(id){    
     var selectedValues = "";    
     var obj = document.getElementById(''+id);
     for (var i = 0; i < obj.options.length; i++){
