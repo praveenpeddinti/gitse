@@ -77,7 +77,7 @@ function loadClinics(target){
     $("#faqsTab").removeClass("active");
     $("#aboutClinicsTab").removeClass("active");    
     $("#virtualTourTab").removeClass("active");
-    $("#webinarsTab").removeClass("active");
+    $("#educationTab").removeClass("active");
     
     $("#clinics_Map_Switch").removeAttr('checked');
     $("#clinics_List_Switch").removeAttr('checked');
@@ -276,7 +276,7 @@ function loadPartners(){
     $("#faqsTab").removeClass("active");
     $("#aboutClinicsTab").removeClass("active");    
     $("#virtualTourTab").removeClass("active");
-    $("#webinarsTab").removeClass("active");
+    $("#educationTab").removeClass("active");
     
     ajaxRequest("getPartners", "", loadPartnersResponseHandler);
 }
@@ -316,7 +316,7 @@ function loadAboutCCA(){
     $("#faqsTab").removeClass("active");
     $("#aboutClinicsTab").removeClass("active");    
     $("#virtualTourTab").removeClass("active");
-    $("#webinarsTab").removeClass("active");
+    $("#educationTab").removeClass("active");
     
     
     ajaxRequest("getAboutUs", "deviceAgent="+deviceAgent, loadAboutCCAResponseHandler);
@@ -365,7 +365,7 @@ function loadHomePageResponseHandler(loadHomePageResponse){
             $("#faqsTab").removeClass("active");
             $("#aboutClinicsTab").removeClass("active");    
             $("#virtualTourTab").removeClass("active");
-            $("#webinarsTab").removeClass("active");
+            $("#educationTab").removeClass("active");
             
             scrollToTop();
             refreshBodyScroll();
@@ -391,7 +391,7 @@ function loadAboutOurClinics(){
     $("#faqsTab").removeClass("active");
     $("#aboutClinicsTab").addClass("active");    
     $("#virtualTourTab").removeClass("active");
-    $("#webinarsTab").removeClass("active");
+    $("#educationTab").removeClass("active");
     
     ajaxRequest("getAboutOurClinics", "deviceAgent="+deviceAgent, loadAboutOurClinicsResponseHandler);
 }
@@ -429,7 +429,7 @@ function loadFAQs(){
     $("#faqsTab").addClass("active");
     $("#aboutClinicsTab").removeClass("active");    
     $("#virtualTourTab").removeClass("active");
-    $("#webinarsTab").removeClass("active");
+    $("#educationTab").removeClass("active");
     
     ajaxRequest("getFAQs", "deviceAgent="+deviceAgent, loadFAQsResponseHandler);
 }
@@ -475,7 +475,7 @@ function loadVirtualTour(){
     $("#faqsTab").removeClass("active");
     $("#aboutClinicsTab").removeClass("active");    
     $("#virtualTourTab").addClass("active");
-    $("#webinarsTab").removeClass("active");
+    $("#educationTab").removeClass("active");
     
     ajaxRequest("getVirtualTour", "deviceAgent="+deviceAgent, loadVirtualTourResponseHandler);
 }
@@ -539,9 +539,9 @@ function virtualTourImages(id){
 
 }
 
-/* Display Webinars Starts Here */
+/* Display educations Starts Here */
 
-function loadWebinars(){
+function loadEducation(){
     globalspace.searchClinicsKeyword="";
     $("#searchClinicsKeyword").val('');
     
@@ -552,14 +552,14 @@ function loadWebinars(){
     $("#faqsTab").removeClass("active");
     $("#aboutClinicsTab").removeClass("active");    
     $("#virtualTourTab").removeClass("active");
-    $("#webinarsTab").addClass("active");
+    $("#educationTab").addClass("active");
     
-    ajaxRequest("getWebinars", "deviceAgent="+deviceAgent, loadWebinarsResponseHandler);
+    ajaxRequest("getEducation", "deviceAgent="+deviceAgent, loadEducationResponseHandler);
 }
 
-function loadWebinarsResponseHandler(loadWebinarsResponse){
-    if(loadWebinarsResponse.status == "success"){       
-        my.utils.renderViewTo('Views/webinars.html', loadWebinarsResponse, 'mainContentDiv', function(data){
+function loadEducationResponseHandler(loadEducationResponse){
+    if(loadEducationResponse.status == "success"){       
+        my.utils.renderViewTo('Views/education.html', loadEducationResponse, 'mainContentDiv', function(data){
             $("#headerLogo").show();
             $("#backButton").hide();
             $("#clinicsSwitchDiv").hide();
@@ -570,8 +570,8 @@ function loadWebinarsResponseHandler(loadWebinarsResponse){
         });
     } else{
         hideLoadingIndicator();
-        ShowMessage('errorModal', 'Webinars', "<li class='error'>Unable to get webinars.</li>", true, false);
+        ShowMessage('errorModal', 'education', "<li class='error'>Unable to get education.</li>", true, false);
     }
 }
 
-/* Display Webinars Ends Here */
+/* Display education Ends Here */

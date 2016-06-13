@@ -183,15 +183,19 @@ body {padding-left: 0px;padding-right:0px;background:#fff; font-family:exoregula
 .footer div.active a.aboutclinics img{ background:url(../images/footer_icons.png) no-repeat -147px -302px;}
 .footer div.active a.virtualtour img{ background:url(../images/footer_icons.png) no-repeat -150px -389px;}
 
-.footer div a.webinars img{ background:url(../images/footer_icons.png) no-repeat 0px -540px;}
-.footer div.active a.webinars img{ background:url(../images/footer_icons.png) no-repeat -160px -540px;}
+.footer div a.education img{ background:url(../images/footer_icons.png) no-repeat 18px -542px;}
+.footer div.active a.education img{ background:url(../images/footer_icons.png) no-repeat -143px -542px;}
 
-.webinar li{background-image: url("../images/cross_bullet.png");
+.education li{background-image: url("../images/cross_bullet.png");
     background-position: 0 6px;
     background-repeat: no-repeat;
     list-style: outside none none;
     margin: 10px 0 0;
-    padding: 0 0 6px 12px;font-size:18px;margin-top:10px}
+    color: #8daf15;
+    font-size: 12px;
+    padding: 0 0 6px 12px;margin-top:10px}
+.education a{color: #8daf15;}
+.education p{color: #1a466f;}
 
 /*.footer div a img{ width:62px; height:54px;}*/
 .footer div a img{ height:54px;width:90px; margin:auto;}
