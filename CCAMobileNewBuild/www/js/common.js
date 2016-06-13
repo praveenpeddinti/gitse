@@ -1,8 +1,8 @@
-//var serverURL = "http://ccaclinics.org/index.php/";
-//var site_base_ur = "http://ccaclinics.org/";
+var serverURL = "http://ccaclinics.org/index.php/";
+var site_base_ur = "http://ccaclinics.org/";
 
-var serverURL = "http://10.10.73.62:8081/index.php/";
-var site_base_ur = "http://10.10.73.62:8081/";
+//var serverURL = "http://10.10.73.62:8081/index.php/";
+//var site_base_ur = "http://10.10.73.62:8081/";
 
 function ajaxRequest(requestURL,queryString,callback){	
     if (deviceAgent != "PC" && (navigator.connection.type == Connection.UNKNOWN || navigator.connection.type == Connection.NONE)) {
